@@ -8,6 +8,8 @@ export default function DataProvider({
 }) {
   return (
     // Include all your Cntext Poviders in this file. It wraps the app.
-    <>{children}</>
+    <>
+      <FirebaseProvider>{children}</FirebaseProvider>
+    </>
   );
 }
