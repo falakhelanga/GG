@@ -7,12 +7,7 @@ export interface EntryValues {
   email: string;
   phone: string;
   photoURL: string;
-  videoURL: string;
   id?: string;
-  isDuplicate?: boolean;
-  enteredAt: any;
-  totalVotes: number;
-  status: string;
+  enteredAt?: any;
   location: string;
-  votes?: Vote[];
 }

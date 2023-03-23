@@ -2,7 +2,7 @@ import { Field } from "formik";
 import React from "react";
 import InputWrapper from "./InputWrapper";
 
-interface TextInputPropType {
+interface TextAreaInputPropType {
   name: string;
   label?: string;
   placeholder?: string;
@@ -10,9 +10,11 @@ interface TextInputPropType {
   inputClassNames?: string;
   labelClassNames?: string;
   type?: React.HTMLInputTypeAttribute | undefined;
+  cols?: string;
+  rows?: string;
 }
 
-const TextInput = ({
+const TextAreaInput = ({
   name,
   placeholder,
   label,
@@ -21,7 +23,9 @@ const TextInput = ({
   labelClassNames,
 
   type = "text",
-}: TextInputPropType) => {
+  rows,
+  cols,
+}: TextAreaInputPropType) => {
   return (
     <InputWrapper
       labelClassNames={labelClassNames}
@@ -32,11 +36,13 @@ const TextInput = ({
       <Field name={name}>
         {({ field, form, meta }: { field: any; form: any; meta: any }) => (
           <div>
-            <input
-              className={`outline-none w-full  bg-white  border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
+            <textarea
+              className={`outline-none w-full rounded bg-white py-3 px-2 ${inputClassNames}`}
               type={type}
               {...field}
               placeholder={placeholder}
+              rows={rows}
+              cols={cols}
             />
             {meta.touched && meta.error && (
               <div className="text-red-600 text-sm p-2  bg-opacity-10">
@@ -50,4 +56,4 @@ const TextInput = ({
   );
 };
 
-export default TextInput;
+export default TextAreaInput;

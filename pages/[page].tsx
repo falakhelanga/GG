@@ -13,6 +13,7 @@ const GenericPage = ({ apiBasicPageData }: { apiBasicPageData: any }) => {
           <title>BB Next Component Builder</title>
           <link rel="shortcut icon" href="/favicon/icon-48x48.png" />
         </Head>
+
         <PageComponentBuilderController
           pageContent={apiBasicPageData.pageContent}
         />
@@ -84,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const [pageRes] = await Promise.all([
     fetchAPI(`/basic-pages/${getPageIdFromPath()}?populate=deep`, {}),
   ]);
-
+  console.log(pageRes, "pagres");
   return {
     props: {
       apiBasicPageData: pageRes.data,

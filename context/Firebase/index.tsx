@@ -16,4 +16,4 @@ export const FirebaseProvider = ({
 
 export default FirebaseProvider;
 
-export const useFirebase = () => useContext(FirebaseContext);
+export const useFirebase = () => useContext(FirebaseContext) as FirebaseTypes;

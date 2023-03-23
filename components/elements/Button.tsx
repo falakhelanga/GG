@@ -5,7 +5,8 @@ interface ButtonPropType {
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  variant?: "outline" | "primary" | "secondary";
+  variant?: "outline" | "pink" | "green";
+  fullWidth?: boolean;
 }
 
 const Button = ({
@@ -13,7 +14,8 @@ const Button = ({
   className,
   type = "button",
   onClick,
-  variant = "primary",
+  variant = "pink",
+  fullWidth = false,
   ...rest
 }: ButtonPropType) => {
   return (
@@ -21,12 +23,12 @@ const Button = ({
       {...rest}
       onClick={onClick}
       type={type}
-      className={` w-full rounded-lg  px-12 py-2 ${
+      className={`${fullWidth && "w-full"} text-white  rounded-lg  px-12 py-2 ${
         variant === "outline" &&
-        "bg-transparent border-yellow-300 border-2 hover:bg-hmYellow"
+        "bg-transparent border-pink border-2 hover:bg-pink"
       } 
-      ${variant === "primary" && "bg-hmRed hover:opacity-75"}
-      ${variant === "secondary" && "bg-hmYellow hover:opacity-75"}
+      ${variant === "pink" && "bg-pink hover:opacity-75"}
+      ${variant === "green" && "bg-green hover:opacity-75"}
       font-bold  ${className}`}
     >
       {children}
