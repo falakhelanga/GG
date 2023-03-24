@@ -3,11 +3,13 @@ import {
   DocumentData,
   DocumentReference,
   DocumentSnapshot,
+  Firestore,
   QuerySnapshot,
 } from "firebase/firestore";
 import { EntryValues } from "./entry";
 
 export type FirebaseTypes = {
+  db: Firestore;
   createEntry: (
     values: EntryValues
   ) => Promise<DocumentReference<DocumentData>>;

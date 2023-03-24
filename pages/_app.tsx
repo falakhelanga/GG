@@ -1,3 +1,4 @@
+import Footer from "@/components/elements/Footer";
 import NavBar from "@/components/elements/layout/NavBar";
 import DataProvider from "@/context/data";
 import "@/styles/globals.css";
@@ -10,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="">
         <Component {...pageProps} />
       </div>
+      <Footer />
     </DataProvider>
   );
 }

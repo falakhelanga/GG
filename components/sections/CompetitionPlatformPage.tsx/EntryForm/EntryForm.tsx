@@ -1,4 +1,5 @@
 import Button from "@/components/elements/Button";
+import Checkbox from "@/components/elements/Checkbox";
 import DatePicker from "@/components/elements/DatePicker";
 import DatePickerInput from "@/components/elements/DatePicker";
 import Form from "@/components/elements/Form";
@@ -9,7 +10,14 @@ import TextInput from "@/components/elements/TextInput";
 import ContentWrap from "@/components/elements/layout/ContentWrap";
 import { useFirebase } from "@/context/Firebase";
 import { EntryValues } from "@/types/entry";
-import React from "react";
+import {
+  faFacebookF,
+  faInstagram,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import { entryFormValidationSchema } from "./validationSchema";
 
 const initialValues: EntryValues = {
   firstName: "",
@@ -20,6 +28,9 @@ const initialValues: EntryValues = {
   photoURL: "",
   enteredAt: "",
   location: "",
+  bio: "",
+  acceptedTsAndCs: false,
+  subscribe: false,
 };
 
 const provinces = [
@@ -36,56 +47,137 @@ const provinces = [
 
 const EntryForm = () => {
   const { createEntry } = useFirebase();
-
-  const submitEntry = (values: any) => {
-    createEntry(values);
+  const [showTermsError, setShowTermsError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const submitEntry = async (values: any) => {
+    if (!values.acceptedTsAndCs) {
+      return setShowTermsError(true);
+    }
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await createEntry({
+        ...values,
+        firstName: values.firstName.toLowerCase(),
+        lastName: values.lastName.toLowerCase(),
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div className=" w-full flex items-center pt-24 flex-col bg-[#EEE0E6]">
+    <div className=" w-full flex items-center pt-24 flex-col bg-[#EEE0E6] pb-14">
       <h1 className=" text-5xl text-pink uppercase mb-12">
         {" "}
         <span className="font-extrabold">entry</span> form
       </h1>
       <ContentWrap className="flex justify-center w-full ">
-        <Form
-          containerClassName=" w-full flex-1 px-[10rem]"
-          initialValues={initialValues}
-          onSubmit={submitEntry}
-        >
-          <div className="grid grid-cols-2 gap-5 w-full ">
-            <TextInput
-              containerClassNames=""
-              name="firstName"
-              placeholder="Name"
-            />
-            <TextInput name="lastName" placeholder="Surname" />
-            <TextInput placeholder="Mobile Number" name="phone" />
-            <TextInput name="email" placeholder="Email Address" />
-            <DatePicker name="dateOfBirth" placeholder="Date of Birth" />
-            <SelectInput
-              name="location"
-              options={provinces}
-              placeholder="Location"
-            />
-            <TextAreaInput
-              placeholder="Tell us which GynaGuard product you bought, and what your experience was using it!"
-              name="bio"
-              containerClassNames="col-span-2"
-              rows="5"
-            />
-          </div>
-          <div className="flex flex-col items-center w-full">
-            <div className="px-16 mt-7 mb-4">
-              <ImageUploader name="photoURL" />
+        {submitted && (
+          <div className="flex flex-col items-center">
+            <div className="bg-[url(/images/paint_stroke.png)] bg-center h-full bg-contain bg-no-repeat flex w-full flex-col font-paul items-center text-[5em] text-green">
+              <div className="text-brown">Thank you for</div>
+              <div className="-mt-[4rem]">your entry</div>
             </div>
-            <div>
-              <Button className="rounded-full" variant="green" type="submit">
-                SUBMIT MY ENTRY!{" "}
-              </Button>
+            <div className="text-center mt-6">
+              {`Approved entries will appear in the contestant gallery within 48
+hours. If you don't see your entry after that period, you can
+submit a query and request a second entry by sending an email to:`}
+            </div>
+            <div className="text-pink">help@gynaquard.co.za</div>
+            <div className="flex gap-4 my-6">
+              <div
+                className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink
+              "
+              >
+                <FontAwesomeIcon
+                  icon={faFacebookF}
+                  className="text-pink"
+                  size="xl"
+                />
+              </div>
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink">
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  size="xl"
+                  className="text-pink"
+                />
+              </div>
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink">
+                <FontAwesomeIcon
+                  icon={faTiktok}
+                  size="xl"
+                  className="text-pink"
+                />
+              </div>
             </div>
           </div>
-        </Form>
+        )}
+
+        {!submitted && (
+          <Form
+            containerClassName=" w-full flex-1 px-[10rem] "
+            initialValues={initialValues}
+            onSubmit={submitEntry}
+            validationSchema={entryFormValidationSchema}
+          >
+            <div className="grid grid-cols-2 gap-5 w-full ">
+              <TextInput
+                containerClassNames=""
+                name="firstName"
+                placeholder="Name"
+              />
+              <TextInput name="lastName" placeholder="Surname" />
+              <TextInput placeholder="Mobile Number" name="phone" />
+              <TextInput name="email" placeholder="Email Address" />
+              <DatePicker name="dateOfBirth" placeholder="Date of Birth" />
+              <SelectInput
+                name="location"
+                options={provinces}
+                placeholder="Location"
+              />
+              <TextAreaInput
+                placeholder="Tell us which GynaGuard product you bought, and what your experience was using it!"
+                name="bio"
+                containerClassNames="col-span-2"
+                rows="5"
+              />
+              <div className="flex col-span-2 justify-center gap-6">
+                <Checkbox
+                  inputClassNames=""
+                  name="isSubscribed"
+                  label="Subscribe to GynaGuard"
+                />
+                <Checkbox
+                  showError={false}
+                  name="acceptedTsAndCs"
+                  label="Accept T's & C's"
+                />
+              </div>
+              {showTermsError && (
+                <div className="text-red-600 text-sm p-2  bg-opacity-10 col-span-2 text-center">
+                  Please tick the box above to confirm that you agree to comply
+                  with terms and conditions of becoming a participating member
+                  in GYNAGaurd competition.
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col items-center w-full">
+              <div className="px-16 mt-7 mb-4">
+                <ImageUploader containerClassNames="w-full" name="photoURL" />
+              </div>
+              <div>
+                <Button className="rounded-full" variant="green" type="submit">
+                  {!submitting ? "SUBMIT MY ENTRY!" : "SUBMITTING..."}
+                </Button>
+              </div>
+            </div>
+          </Form>
+        )}
       </ContentWrap>
     </div>
   );

@@ -10,4 +10,7 @@ export interface EntryValues {
   id?: string;
   enteredAt?: any;
   location: string;
+  bio: "";
+  acceptedTsAndCs?: boolean;
+  subscribe?: boolean;
 }

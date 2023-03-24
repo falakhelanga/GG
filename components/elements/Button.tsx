@@ -23,7 +23,7 @@ const Button = ({
       {...rest}
       onClick={onClick}
       type={type}
-      className={`${fullWidth && "w-full"} text-white  rounded-lg  px-12 py-2 ${
+      className={`${fullWidth && "w-full"} text-white    px-12 py-2 ${
         variant === "outline" &&
         "bg-transparent border-pink border-2 hover:bg-pink"
       } 

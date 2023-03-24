@@ -1,7 +1,8 @@
 import { Field, useField } from "formik";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import InputWrapper from "./InputWrapper";
-
+import axios from "axios";
+import ProgressBar from "@ramonak/react-progress-bar";
 interface ImageUploaderPropType {
   name: string;
   label?: string;
@@ -23,7 +24,7 @@ const ImageUploader = ({
 }: ImageUploaderPropType) => {
   const [field, meta, helpers] = useField(name);
   const { value } = field;
-
+  const [uploadedProgress, setUploadedProgress] = useState<number | null>(null);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const photoFile =
       event?.currentTarget?.files && event?.currentTarget?.files[0];
@@ -32,13 +33,19 @@ const ImageUploader = ({
     fdPhoto.append("file", photoFile!!);
     fdPhoto.append("upload_preset", "gynaguard");
     fdPhoto.append("cloud_name", "dxrvqywct");
-
-    fetch("https://api.cloudinary.com/v1_1/dxrvqywct/image/upload", {
-      method: "post",
-      body: fdPhoto,
-    })
-      .then((resp) => resp.json())
-      .then((data) => helpers.setValue(data.url));
+    axios
+      .post("https://api.cloudinary.com/v1_1/dxrvqywct/image/upload", fdPhoto, {
+        onUploadProgress: (progressEvent) => {
+          const res = (progressEvent.loaded / progressEvent?.total!!) * 100;
+          setUploadedProgress(Math.floor(res));
+        },
+      })
+      // fetch("https://api.cloudinary.com/v1_1/dxrvqywct/image/upload", {
+      //   method: "post",
+      //   body: fdPhoto,
+      // })
+      // .then((resp) => resp.json())
+      .then(({ data }) => helpers.setValue(data.url));
   };
 
   return (
@@ -48,14 +55,51 @@ const ImageUploader = ({
       label={label}
       containerClassNames={containerClassNames}
     >
-      <label
-        htmlFor={name}
-        className="bg-pink  rounded-full text-center py-2 px-4 font-semibold"
-      >
-        <span className="text-white">
-          UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
-        </span>
-      </label>
+      <div className="w-full">
+        {!uploadedProgress && (
+          <label
+            htmlFor={name}
+            className={`bg-pink   rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer hover:opacity-75`}
+          >
+            <span className="text-white">
+              UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
+            </span>
+          </label>
+        )}
+        {uploadedProgress &&
+          uploadedProgress > 0 &&
+          uploadedProgress !== 100 && (
+            <>
+              <label
+                htmlFor={name}
+                className={`bg-pink opacity-0  rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer `}
+              >
+                <span className="text-white">
+                  UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
+                </span>
+              </label>
+              <div className="text-pink uppercase font-bold text-center mb-6">
+                uploading, please wait...
+              </div>
+              <ProgressBar
+                bgColor="#E9608A"
+                barContainerClassName="bg-[#CEB9BB] rounded-full"
+                className="-mt-4"
+                completed={uploadedProgress}
+              />
+            </>
+          )}
+
+        {uploadedProgress && uploadedProgress == 100 && (
+          <div>
+            <div className="flex flex-col text-pink items-center">
+              <div className="font-bold">success!</div>
+              <div>Click the SUBMIT button below</div>
+            </div>
+          </div>
+        )}
+      </div>
+
       <input
         id={name}
         name={name}

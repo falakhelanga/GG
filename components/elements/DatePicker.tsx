@@ -42,6 +42,12 @@ const DatePicker = ({
           onChange={(date) => {
             helpers.setValue(date);
           }}
+          dropdownMode="select"
+          // closeOnScroll={true}
+          showMonthDropdown
+          dateFormat="dd/MM/yyyy"
+          scrollableYearDropdown
+          showYearDropdown
         />
 
         {meta.touched && meta.error && (

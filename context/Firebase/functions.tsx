@@ -16,13 +16,14 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebaseConfig from "./config";
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore();
+export const db = getFirestore(app);
 
 const auth = getAuth();
 
 const Firebase = {
+  db,
   /* ----------------- CREATE ENTRY ----------------- */
   createEntry: (values: EntryValues) => {
     const entryRef = collection(db, "entries");
