@@ -76,13 +76,17 @@ const EntryForm = () => {
         {" "}
         <span className="font-extrabold">entry</span> form
       </h1>
-      <ContentWrap className="flex justify-center w-full ">
-        {submitted && (
-          <div className="flex flex-col items-center">
-            <div className="bg-[url(/images/paint_stroke.png)] bg-center h-full bg-contain bg-no-repeat flex w-full flex-col font-paul items-center text-[5em] text-green">
+
+      {submitted && (
+        <div className="flex flex-col items-center">
+          <div className="w-full max-sm:px-[0rem] h-full px-[3rem] ">
+            <div className="bg-[url(/images/paint_stroke.png)] bg-center  h-full md:py-8  bg-cover  md:bg-contain bg-no-repeat flex  w-full flex-col font-paul items-center md:text-[5em] text-6xl text-green">
               <div className="text-brown">Thank you for</div>
-              <div className="-mt-[4rem]">your entry</div>
+              <div className="md:-mt-[1.6rem]">your entry!</div>
             </div>
+          </div>
+
+          <ContentWrap className="flex flex-col items-center">
             <div className="text-center mt-6">
               {`Approved entries will appear in the contestant gallery within 48
 hours. If you don't see your entry after that period, you can
@@ -115,9 +119,10 @@ submit a query and request a second entry by sending an email to:`}
                 />
               </div>
             </div>
-          </div>
-        )}
-
+          </ContentWrap>
+        </div>
+      )}
+      <ContentWrap className="flex justify-center w-full ">
         {!submitted && (
           <Form
             containerClassName=" w-full flex-1 md:px-[10rem] "
@@ -125,7 +130,7 @@ submit a query and request a second entry by sending an email to:`}
             onSubmit={submitEntry}
             validationSchema={entryFormValidationSchema}
           >
-            <div className="grid grid-cols-2  gap-5 w-full ">
+            <div className="grid grid-cols-2  gap-x-4 w-full ">
               <TextInput
                 containerClassNames="md:col-span-1 col-span-2"
                 name="firstName"

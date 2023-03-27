@@ -23,12 +23,14 @@ const Button = ({
       {...rest}
       onClick={onClick}
       type={type}
-      className={`${fullWidth && "w-full"} text-white    px-12 py-2 ${
+      className={`rounded-full transition transition-all ease-in-out  duration-500 ${
+        fullWidth && "w-full"
+      } text-pink    px-12 py-2 ${
         variant === "outline" &&
-        "bg-transparent border-pink border-2 hover:bg-pink"
+        "bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink"
       } 
       ${variant === "pink" && "bg-pink hover:opacity-75"}
-      ${variant === "green" && "bg-green hover:opacity-75"}
+      ${variant === "green" && "bg-green hover:opacity-75 text-white"}
       font-bold  ${className}`}
     >
       {children}
