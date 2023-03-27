@@ -87,3 +87,21 @@ a {
     top: 6px;
   }
 }
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #ff0000 transparent;
+  border-style: solid;
+}
+
+.gallery-dropdown-triangle {
+  border-color: transparent transparent white transparent;
+}
+
+.first-drop-down-item-gallery:hover .gallery-dropdown-triangle {
+  border-color: transparent transparent red transparent;
+
+  display: none;
+}

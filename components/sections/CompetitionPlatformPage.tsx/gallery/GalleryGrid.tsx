@@ -20,6 +20,7 @@ import { EntryValues } from "@/types/entry";
 import { motion } from "framer-motion";
 import Button from "@/components/elements/Button";
 import { ScrollToTop } from "@/components/elements/ScrollToTop";
+import DropDown from "@/components/elements/GallerySortDropDown";
 
 const ITEMS_PER_PAGE = 16;
 
@@ -117,6 +118,22 @@ const GalleryGrid = () => {
     e.preventDefault();
 
     if (searchValue.trim() === "") {
+      const entriesRef = collection(db, "entries");
+      const q = query(
+        entriesRef
+
+        // where("lastName", "==", searchValue)
+      );
+
+      onSnapshot(q, { includeMetadataChanges: true }, (querySnapshot) => {
+        const data: EntryValues[] = [];
+        querySnapshot.forEach((doc) => {
+          const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+          data.push({ ...doc.data(), id: doc.id } as EntryValues);
+        });
+        setEntries(data);
+        console.log(data, "data");
+      });
       return;
     }
 
@@ -145,7 +162,11 @@ const GalleryGrid = () => {
           setSearchValue={setSearchValue}
           handleSearch={handleSearch}
         />
-        <SortSelectInput setSortValue={setSortValue} />
+        <div>
+          <DropDown sortValue={sortValue} setSortValue={setSortValue} />
+        </div>
+
+        {/* <SortSelectInput setSortValue={setSortValue} /> */}
       </div>
 
       <motion.div

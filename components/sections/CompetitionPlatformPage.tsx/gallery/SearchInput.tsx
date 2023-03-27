@@ -14,7 +14,7 @@ const SearchInput = ({
   return (
     <form
       onSubmit={handleSearch}
-      className=" flex bg-white px-3 py-2 rounded-lg items-center shadow"
+      className=" flex bg-white px-3 py-2 rounded-lg items-center shadow "
     >
       <input
         onChange={(e) => {

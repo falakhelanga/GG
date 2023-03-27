@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
-import DropDown from "@/components/elements/DropDown";
+import DropDown from "@/components/elements/GallerySortDropDown";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,6 @@ export default function Home() {
       </Head>
       <main className="pb-14">
         <CompetitionPageNav />
-        <DropDown />
       </main>
     </>
   );
