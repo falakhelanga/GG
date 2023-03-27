@@ -55,16 +55,24 @@ const ImageUploader = ({
       label={label}
       containerClassNames={containerClassNames}
     >
-      <div className="w-full">
+      <div className="w-full flex flex-col">
         {!uploadedProgress && (
-          <label
-            htmlFor={name}
-            className={`bg-pink   rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer hover:opacity-75`}
-          >
-            <span className="text-white">
-              UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
-            </span>
-          </label>
+          <div>
+            <label
+              htmlFor={name}
+              className={`bg-pink   rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer hover:opacity-75`}
+            >
+              <span className="text-white  max-sm:text-xs">
+                UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
+              </span>
+            </label>
+            {meta.touched && meta.error && (
+              <div className="text-red-600 text-sm p-2  bg-opacity-10">
+                {meta.error}
+              </div>
+            )}
+            {/* <div className="text-red-600 text-sm p-2  bg-opacity-10">hfhfh</div> */}
+          </div>
         )}
         {uploadedProgress &&
           uploadedProgress > 0 &&
@@ -115,11 +123,6 @@ const ImageUploader = ({
         className="input hidden"
         type="file"
       />
-      {meta.touched && meta.error && (
-        <div className="text-red-600 text-sm p-2  bg-opacity-10">
-          {meta.error}
-        </div>
-      )}
     </InputWrapper>
   );
 };

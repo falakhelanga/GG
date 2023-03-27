@@ -11,12 +11,14 @@ const Faq = () => {
           <div className="text-5xl flex flex-col items-center">
             <div
               className="
-      text-5xl uppercase text-pink
+      md:text-5xl text-4xl uppercase text-pink
       "
             >
               ABOUT &
             </div>
-            <div className="font-paul text-green text-8xl -mt-6">faq page</div>
+            <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+              faq page
+            </div>
           </div>
           <div className="my-14 text-brown text-center">
             <p className="text-lg">Have questions? Find some answers below.</p>
@@ -29,10 +31,10 @@ const Faq = () => {
           </div>
           <div>
             <div>
-              <h1 className="text-green font-semibold text-lg ">
+              <h1 className="max-sm:text-center text-green font-semibold text-lg ">
                 ABOUT THE COMPETITION
               </h1>
-              <div className="text-brown ">
+              <div className="text-brown max-sm:text-center">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Consequuntur laborum qui excepturi architecto dolorum pariatur
                 maiores corrupti id eos, aut suscipit, ex adipisci omnis

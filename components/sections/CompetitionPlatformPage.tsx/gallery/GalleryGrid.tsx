@@ -47,7 +47,7 @@ const GalleryGrid = () => {
     };
   }, [db]);
 
-  const sortedEntries = useMemo(() => {
+  useEffect(() => {
     if (sortValue === "newest") {
       entries?.sort((a, b) => {
         const firstDate = a.enteredAt.toDate();
@@ -102,7 +102,7 @@ const GalleryGrid = () => {
   };
   return (
     <div>
-      <div className="flex mb-8 justify-between">
+      <div className="md:flex mb-8 justify-between">
         <SearchInput
           searchValue={searchValue}
           setSearchValue={setSearchValue}
@@ -111,7 +111,11 @@ const GalleryGrid = () => {
         <SortSelectInput setSortValue={setSortValue} />
       </div>
 
-      <motion.div layout className="grid grid-cols-4 gap-6">
+      <motion.div
+        layout
+        className="grid md:grid-cols-4 gap-6"
+        transition={{ duration: 0.5 }}
+      >
         {entries &&
           entries.map((entry) => {
             return <GalleryCard entry={entry} key={entry.id} />;

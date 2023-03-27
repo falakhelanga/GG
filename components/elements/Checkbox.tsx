@@ -29,7 +29,7 @@ const Checkbox = ({
         {({ field, form, meta }: { field: any; form: any; meta: any }) => (
           <div className="">
             <input
-              className={`outline-none w-full  bg-white  border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
+              className={`checkbox outline-none w-full  bg-white  border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
               type="checkbox"
               {...field}
               placeholder={placeholder}

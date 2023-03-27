@@ -31,7 +31,7 @@ const NavBar = () => {
     <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex items-center z-[10]">
       <ContentWrap className="flex justify-between items-center">
         <Logo />
-        <div className="flex gap-[5rem] text-sm">
+        <div className="md:flex md:gap-[5rem] hidden text-sm">
           {NAV_ITEMS.map((item, idx) => {
             return (
               <div

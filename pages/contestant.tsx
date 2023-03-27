@@ -12,15 +12,17 @@ const contestant = () => {
           <div className="text-5xl flex flex-col items-center">
             <div
               className="
-        text-5xl uppercase text-pink
+        md:text-5xl text-4xl uppercase text-pink
         "
             >
               entry
             </div>
-            <div className="font-paul text-green text-8xl -mt-6">gallery</div>
+            <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+              gallery
+            </div>
           </div>
-          <div className="text-brown text-center mt-16 mb-8">
-            <p className="text-lg">
+          <div className="text-brown text-center mt-10 md:mt-16 mb-8">
+            <p className="md:text-lg text-md">
               Find yourself and your friends in the contestant gallery.
             </p>
             <p className="text-sm">

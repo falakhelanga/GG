@@ -11,12 +11,12 @@ const TermsAndConditions = () => {
           <div className="text-5xl flex flex-col items-center">
             <div
               className="
-  text-5xl uppercase text-pink
+  md:text-5xl uppercase text-pink text-4xl
   "
             >
               terms &
             </div>
-            <div className="font-paul text-green text-8xl -mt-6">
+            <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
               conditions
             </div>
           </div>

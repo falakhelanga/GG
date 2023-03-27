@@ -24,12 +24,12 @@ const SortSelectInput = ({
           control: (styles) => ({
             ...styles,
             border: "none",
-
+            boxShadow: "none",
             outline: "none",
           }),
         }}
         placeholder="Sort By"
-        className="w-[14rem] outline-none"
+        className="md:w-[14rem] outline-none md:mt-0 mt-3"
         options={options}
         onChange={(value) => {
           setSortValue(value?.value as any);
