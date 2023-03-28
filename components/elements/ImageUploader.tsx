@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import InputWrapper from "./InputWrapper";
 import axios from "axios";
 import ProgressBar from "@ramonak/react-progress-bar";
+import Spinner from "./Spinner";
 interface ImageUploaderPropType {
   name: string;
   label?: string;
@@ -25,7 +26,9 @@ const ImageUploader = ({
   const [field, meta, helpers] = useField(name);
   const { value } = field;
   const [uploadedProgress, setUploadedProgress] = useState<number | null>(null);
+  const [uploaded, setUploaded] = useState(false);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUploaded(false);
     const photoFile =
       event?.currentTarget?.files && event?.currentTarget?.files[0];
     let fdPhoto = new FormData();
@@ -40,12 +43,12 @@ const ImageUploader = ({
           setUploadedProgress(Math.floor(res));
         },
       })
-      // fetch("https://api.cloudinary.com/v1_1/dxrvqywct/image/upload", {
-      //   method: "post",
-      //   body: fdPhoto,
-      // })
-      // .then((resp) => resp.json())
-      .then(({ data }) => helpers.setValue(data.url));
+
+      .then(({ data }) => {
+        setUploaded(true);
+
+        helpers.setValue(data.url);
+      });
   };
 
   return (
@@ -74,9 +77,11 @@ const ImageUploader = ({
             {/* <div className="text-red-600 text-sm p-2  bg-opacity-10">hfhfh</div> */}
           </div>
         )}
+        {/* {uploadedProgress === 100 && !uploaded && <Spinner />} */}
         {uploadedProgress &&
           uploadedProgress > 0 &&
-          uploadedProgress !== 100 && (
+          // uploadedProgress !== 100 &&
+          !uploaded && (
             <>
               <label
                 htmlFor={name}
@@ -86,19 +91,20 @@ const ImageUploader = ({
                   UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
                 </span>
               </label>
-              <div className="text-pink uppercase font-bold text-center mb-6">
-                uploading, please wait...
+              <div className="-mt-8">
+                <div className="text-pink uppercase font-bold text-center mb-0">
+                  uploading, please wait...
+                </div>
+                <ProgressBar
+                  bgColor="#E9608A"
+                  barContainerClassName="bg-[#CEB9BB] rounded-full"
+                  completed={uploadedProgress}
+                />
               </div>
-              <ProgressBar
-                bgColor="#E9608A"
-                barContainerClassName="bg-[#CEB9BB] rounded-full"
-                className="-mt-4"
-                completed={uploadedProgress}
-              />
             </>
           )}
 
-        {uploadedProgress && uploadedProgress == 100 && (
+        {uploadedProgress && uploadedProgress == 100 && uploaded && (
           <div>
             <div className="flex flex-col text-pink items-center">
               <div className="font-bold">success!</div>

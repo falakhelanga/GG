@@ -88,11 +88,15 @@ const SelectInput = ({
           // value={value}
         />
 
-        {meta.touched && meta.error && (
-          <div className="text-red-600 text-sm p-2  bg-opacity-10 mt-[-1.2rem]">
-            {meta.error}
+        {
+          <div
+            className={`${
+              meta.touched && meta.error ? "opacity-1" : "opacity-0"
+            } text-red-600 text-sm    bg-opacity-10`}
+          >
+            {meta.error ? meta.error : "dd"}
           </div>
-        )}
+        }
       </div>
     </InputWrapper>
   );

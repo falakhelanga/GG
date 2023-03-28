@@ -4,27 +4,40 @@ import SearchInput from "./SearchInput";
 import SelectInput from "@/components/elements/SelectInput";
 import SortSelectInput from "./SortSelectInput";
 import {
+  DocumentData,
+  QuerySnapshot,
   collection,
   getDocs,
+  limit,
   onSnapshot,
   orderBy,
   query,
+  startAfter,
   where,
 } from "firebase/firestore";
 import { useFirebase } from "@/context/Firebase";
 import { EntryValues } from "@/types/entry";
 import { motion } from "framer-motion";
+import Button from "@/components/elements/Button";
+import { ScrollToTop } from "@/components/elements/ScrollToTop";
+import DropDown from "@/components/elements/GallerySortDropDown";
+
+const ITEMS_PER_PAGE = 16;
 
 const GalleryGrid = () => {
   const { db } = useFirebase();
-  const [sortValue, setSortValue] = useState<"newest" | "oldest">("newest");
+  const [sortValue, setSortValue] = useState<"newest" | "oldest" | null>(
+    "newest"
+  );
   const [entries, setEntries] = useState<EntryValues[] | null>(null);
   const [searchValue, setSearchValue] = useState("");
+  const [lastVisible, setLastVisible] = useState<any | null>(null);
   ///////// FETCH ALL ENTRIES OF THE EPISODE FROM FIRESTORE
 
   useEffect(() => {
     const q = query(
-      collection(db, "entries")
+      collection(db, "entries"),
+      limit(ITEMS_PER_PAGE)
       // orderBy("date_created", "desc")
     );
 
@@ -37,7 +50,8 @@ const GalleryGrid = () => {
           const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
           data.push({ ...doc.data(), id: doc.id } as EntryValues);
         });
-        console.log(data, "ffd");
+        console.log(querySnapshot.docs[querySnapshot.docs.length - 1], "ffd");
+        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
         setEntries(data);
       }
     );
@@ -47,6 +61,30 @@ const GalleryGrid = () => {
     };
   }, [db]);
 
+  const paginate = () => {
+    const q = query(
+      collection(db, "entries"),
+
+      startAfter(lastVisible),
+      limit(ITEMS_PER_PAGE)
+    );
+    onSnapshot(q, { includeMetadataChanges: true }, (querySnapshot) => {
+      const data: EntryValues[] = [];
+      querySnapshot.forEach((doc) => {
+        const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+        data.push({ ...doc.data(), id: doc.id } as EntryValues);
+      });
+      console.log(querySnapshot.docs[querySnapshot.docs.length - 1], "ffd");
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      setEntries((currState) => {
+        const newState = currState && [...currState, ...data];
+
+        return newState;
+      });
+    });
+  };
+
+  ///// sort entries
   useEffect(() => {
     if (sortValue === "newest") {
       entries?.sort((a, b) => {
@@ -80,6 +118,22 @@ const GalleryGrid = () => {
     e.preventDefault();
 
     if (searchValue.trim() === "") {
+      const entriesRef = collection(db, "entries");
+      const q = query(
+        entriesRef
+
+        // where("lastName", "==", searchValue)
+      );
+
+      onSnapshot(q, { includeMetadataChanges: true }, (querySnapshot) => {
+        const data: EntryValues[] = [];
+        querySnapshot.forEach((doc) => {
+          const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+          data.push({ ...doc.data(), id: doc.id } as EntryValues);
+        });
+        setEntries(data);
+        console.log(data, "data");
+      });
       return;
     }
 
@@ -101,14 +155,18 @@ const GalleryGrid = () => {
     });
   };
   return (
-    <div>
+    <div className="">
       <div className="md:flex mb-8 justify-between">
         <SearchInput
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           handleSearch={handleSearch}
         />
-        <SortSelectInput setSortValue={setSortValue} />
+        <div>
+          <DropDown sortValue={sortValue} setSortValue={setSortValue} />
+        </div>
+
+        {/* <SortSelectInput setSortValue={setSortValue} /> */}
       </div>
 
       <motion.div
@@ -121,6 +179,22 @@ const GalleryGrid = () => {
             return <GalleryCard entry={entry} key={entry.id} />;
           })}
       </motion.div>
+
+      <div className="flex md:justify-center mt-8 relative">
+        {lastVisible && (
+          <Button
+            onClick={() => {
+              paginate();
+            }}
+            variant="outline"
+            className=""
+          >
+            LOAD MORE
+          </Button>
+        )}
+
+        <ScrollToTop />
+      </div>
     </div>
   );
 };

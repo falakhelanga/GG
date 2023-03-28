@@ -71,8 +71,8 @@ const HowToEnter = () => {
             1. <span className="font-bold">Buy and try</span> any Gynaguard
             product
           </div>
-          <div className="text-brown font-bold mb-[2rem]">
-            2. Complete the form below
+          <div className="text-brown  mb-[2rem]">
+            2. <span className="font-bold">Complete the form below</span>
           </div>
         </div>
         <div className="md:-mb-[4rem] -mb-[2rem] w-full justify-center flex">

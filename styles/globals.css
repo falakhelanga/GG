@@ -40,6 +40,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
+
   background: linear-gradient(
       to bottom,
       transparent,
@@ -51,4 +52,56 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* scroll to top button styles */
+
+/* .container:hover {
+  background-color: red;
+  margin-bottom: 10rem;
+} */
+
+.scroll_to_top.chevron_container {
+  animation-name: moveup;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  /* top: 6px; */
+}
+
+@keyframes moveup {
+  0% {
+    top: 6px;
+  }
+  25% {
+    top: 8px;
+  }
+
+  50% {
+    top: 6px;
+  }
+  75% {
+    top: 4px;
+  }
+  100% {
+    top: 6px;
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #ff0000 transparent;
+  border-style: solid;
+}
+
+.gallery-dropdown-triangle {
+  border-color: transparent transparent white transparent;
+}
+
+.first-drop-down-item-gallery:hover .gallery-dropdown-triangle {
+  border-color: transparent transparent red transparent;
+
+  display: none;
 }

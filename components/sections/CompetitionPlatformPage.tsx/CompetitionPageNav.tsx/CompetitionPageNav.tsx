@@ -7,7 +7,7 @@ import React from "react";
 const CompetitionPageNav = () => {
   const router = useRouter();
   return (
-    <div className="b">
+    <div className="">
       <div className="md:h-[70vh] h-[50vh]  relative flex items-end  ">
         <div className="h-full overflow-hidden  w-full absolute top-[0rem] md:left-[6rem] z-[2]">
           <div className="h-full bg-[url(/images/comp_desktop_header_2.png)] bg-contain  bg-no-repeat w-full absolute md:top-[8rem] top-[20rem] "></div>
@@ -26,8 +26,8 @@ const CompetitionPageNav = () => {
       </div>
 
       <HeaderImageUnderline />
-      <ContentWrap>
-        <div className="flex gap-6 uppercase w-full justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
+      <ContentWrap className=" ">
+        <div className=" flex gap-6 uppercase w-full justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
           <Link
             href="/entry"
             className={`${

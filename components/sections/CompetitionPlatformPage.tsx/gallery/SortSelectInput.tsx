@@ -9,7 +9,9 @@ const options = [
 const SortSelectInput = ({
   setSortValue,
 }: {
-  setSortValue: React.Dispatch<React.SetStateAction<"newest" | "oldest">>;
+  setSortValue: React.Dispatch<
+    React.SetStateAction<"newest" | "oldest" | null>
+  >;
 }) => {
   return (
     <div>
