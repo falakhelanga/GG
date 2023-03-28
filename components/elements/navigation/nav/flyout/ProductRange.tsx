@@ -99,12 +99,12 @@ const ProductRange = () => {
   return (
     <div className="absolute w-screen bg-white bg-opacity-90 ">
       <div className="flex p-7">
-        <div className="mx-auto w-full max-w-7xl px-8 flex justify-between divide-x">
-          <div>
+        <div className="mx-auto w-full max-w-7xl px-8 flex justify-between">
+          <div className=" ">
             {MENU_ITEMS_COL_1.map(({ title, subtitle, links }, idx) => {
               return (
                 <div key={idx} className="w-64 space-y-1 py-5">
-                  <div className="uppercase font-bold text-gray-500">
+                  <div className="uppercase font-bold text-gray-500 ">
                     {title}
                   </div>
                   <div className="text-gray-700">{subtitle}</div>
@@ -131,10 +131,10 @@ const ProductRange = () => {
               );
             })}
           </div>
-          <div>
+          <div className="border-r-2 border-l-2 px-28 border-gray-400">
             {MENU_ITEMS_COL_2.map(({ title, subtitle, links }, idx) => {
               return (
-                <div key={idx} className="w-64 space-y-1 py-5">
+                <div key={idx} className="w-64 space-y-1 py-5  ">
                   <div className="uppercase font-bold text-gray-500">
                     {title}
                   </div>
