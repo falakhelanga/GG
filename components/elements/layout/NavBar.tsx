@@ -35,19 +35,51 @@ const NavBar = () => {
           <Logo />
         </div>
         <div className="md:flex md:gap-[5rem] hidden text-sm">
-          <Link
-            href={"#"}
-            className="flex flex-col items-start text-white uppercase"
-          >
-            <div className="text-[#f5f5f5] ">
-              <span className="">Product</span>
+          <div className="cursor-pointer">
+            <div
+              className="flex flex-col items-start text-white uppercase"
+              onMouseEnter={() => {
+                menu.showMenu();
+              }}
+              onClick={() => {
+                menu.lockMenu();
+              }}
+            >
+              <div className="text-[#f5f5f5] ">
+                <span className="">Product</span>
+              </div>
+              <div className="font-bold uppercase">Range</div>
             </div>
-            <div className="font-bold uppercase">Range</div>
-          </Link>
+            <Transition
+              as={Fragment}
+              show={menu.menuOpen}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 -translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 -translate-y-1"
+            >
+              <div
+                className="absolute left-1/2 transform -translate-x-1/2 px-2 w-screen sm:px-0"
+                onMouseLeave={() => {
+                  menu.unlockAndHideMenu();
+                }}
+              >
+                <div
+                  className="absolute mt-7 w-screen bg-white"
+                  onMouseLeave={() => menu.hideMenu()}
+                >
+                  <ProductRange />
+                </div>
+              </div>
+            </Transition>
+          </div>
           {NAV_ITEMS.map((item, idx) => {
             return (
               <Link
                 href={item.link}
+                onMouseEnter={menu.hideMenu}
                 key={idx}
                 className="flex flex-col items-start text-white  uppercase"
               >

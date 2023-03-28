@@ -96,7 +96,7 @@ const ProductRange = () => {
     <div className="absolute w-screen bg-white  ">
       <div>
         {MENU_ITEMS_COL_1.map(({ title, subtitle, links }, idx) => {
-          return <div key={idx}></div>;
+          return <div key={idx}>Test</div>;
         })}
       </div>
       <div>
