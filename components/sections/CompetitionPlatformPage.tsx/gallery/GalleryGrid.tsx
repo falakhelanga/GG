@@ -156,45 +156,63 @@ const GalleryGrid = () => {
   };
   return (
     <div className="">
-      <div className="md:flex mb-8 justify-between">
-        <SearchInput
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          handleSearch={handleSearch}
-        />
-        <div>
-          <DropDown sortValue={sortValue} setSortValue={setSortValue} />
-        </div>
-
-        {/* <SortSelectInput setSortValue={setSortValue} /> */}
-      </div>
-
-      <motion.div
-        layout
-        className="grid md:grid-cols-4 gap-6"
-        transition={{ duration: 0.5 }}
-      >
-        {entries &&
-          entries.map((entry) => {
-            return <GalleryCard entry={entry} key={entry.id} />;
-          })}
-      </motion.div>
-
-      <div className="flex md:justify-center mt-8 relative">
-        {lastVisible && (
-          <Button
-            onClick={() => {
-              paginate();
-            }}
-            variant="outline"
-            className=""
+      {entries && entries?.length === 0 && (
+        <div className="flex flex-col items-center w-full md:mt-[6rem] mt-[3rem]">
+          <div
+            className="
+        md:text-5xl text-4xl uppercase text-pink text-center text-paul
+        "
           >
-            LOAD MORE
-          </Button>
-        )}
+            You&apos;re the first one here.
+          </div>
+          <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+            enter now
+          </div>
+        </div>
+      )}
+      {entries && entries.length > 0 && (
+        <>
+          <div className="md:flex mb-8 justify-between">
+            <SearchInput
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              handleSearch={handleSearch}
+            />
+            <div>
+              <DropDown sortValue={sortValue} setSortValue={setSortValue} />
+            </div>
 
-        <ScrollToTop />
-      </div>
+            {/* <SortSelectInput setSortValue={setSortValue} /> */}
+          </div>
+
+          <motion.div
+            layout
+            className="grid md:grid-cols-4 gap-6"
+            transition={{ duration: 0.5 }}
+          >
+            {entries &&
+              entries.map((entry) => {
+                return <GalleryCard entry={entry} key={entry.id} />;
+              })}
+          </motion.div>
+
+          <div className="flex md:justify-center mt-8 relative">
+            {lastVisible && (
+              <Button
+                onClick={() => {
+                  paginate();
+                }}
+                variant="outline"
+                className=""
+              >
+                LOAD MORE
+              </Button>
+            )}
+
+            <ScrollToTop />
+          </div>
+        </>
+      )}
     </div>
   );
 };
