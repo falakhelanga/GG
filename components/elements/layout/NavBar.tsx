@@ -5,11 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/pro-solid-svg-icons";
 const NAV_ITEMS = [
   {
-    lightText: "product",
-    boldText: "range",
-    link: "#",
-  },
-  {
     lightText: "what is",
     boldText: "feminine hygiene?",
     link: "#",
@@ -32,6 +27,12 @@ const NavBar = () => {
       <ContentWrap className="flex justify-between items-center">
         <Logo />
         <div className="md:flex md:gap-[5rem] hidden text-sm">
+          <div className="flex flex-col items-start text-white uppercase">
+            <div className="text-[#f5f5f5] ">
+              <span className="">Product</span>
+            </div>
+            <div className="font-bold uppercase">Range</div>
+          </div>
           {NAV_ITEMS.map((item, idx) => {
             return (
               <div
