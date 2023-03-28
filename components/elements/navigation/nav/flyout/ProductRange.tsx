@@ -93,7 +93,7 @@ const ProductRange = () => {
   ];
 
   return (
-    <div className="flex ">
+    <div className="absolute w-screen bg-white  ">
       <div>
         {MENU_ITEMS_COL_1.map(({ title, subtitle, links }, idx) => {
           return <div key={idx}></div>;
