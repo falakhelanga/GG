@@ -103,7 +103,7 @@ const ProductRange = () => {
           <div className=" ">
             {MENU_ITEMS_COL_1.map(({ title, subtitle, links }, idx) => {
               return (
-                <div key={idx} className="w-64 space-y-1 py-5">
+                <div key={idx} className="w-64 space-y-1 pb-5">
                   <div className="uppercase font-bold text-gray-500 ">
                     {title}
                   </div>
@@ -134,7 +134,7 @@ const ProductRange = () => {
           <div className="border-r-2 border-l-2 px-28 border-gray-400">
             {MENU_ITEMS_COL_2.map(({ title, subtitle, links }, idx) => {
               return (
-                <div key={idx} className="w-64 space-y-1 py-5  ">
+                <div key={idx} className="w-64 space-y-1 pb-5  ">
                   <div className="uppercase font-bold text-gray-500">
                     {title}
                   </div>
@@ -165,7 +165,7 @@ const ProductRange = () => {
           <div>
             {MENU_ITEMS_COL_3.map(({ title, subtitle, links }, idx) => {
               return (
-                <div key={idx} className="w-64 space-y-1 py-5">
+                <div key={idx} className="w-64 space-y-1 pb-5">
                   <div className="uppercase font-bold text-gray-500">
                     {title}
                   </div>
