@@ -3,6 +3,7 @@ import ContentWrap from "./ContentWrap";
 import Logo from "../Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/pro-solid-svg-icons";
+import Link from "next/link";
 const NAV_ITEMS = [
   {
     lightText: "what is",
@@ -27,32 +28,41 @@ const NavBar = () => {
       <ContentWrap className="flex justify-between items-center">
         <Logo />
         <div className="md:flex md:gap-[5rem] hidden text-sm">
-          <div className="flex flex-col items-start text-white uppercase">
+          <Link
+            href={"#"}
+            className="flex flex-col items-start text-white uppercase"
+          >
             <div className="text-[#f5f5f5] ">
               <span className="">Product</span>
             </div>
             <div className="font-bold uppercase">Range</div>
-          </div>
+          </Link>
           {NAV_ITEMS.map((item, idx) => {
             return (
-              <div
+              <Link
+                href={item.link}
                 key={idx}
                 className="flex flex-col items-start text-white  uppercase"
               >
                 <div className="text-[#f5f5f5]">{item.lightText}</div>
                 <div className="font-bold">{item.boldText}</div>
-              </div>
+              </Link>
             );
           })}
-          <div className="flex flex-col items-start text-white  ">
+          <Link href={"#"} className="flex flex-col items-start text-white  ">
             <div className="text-[#f5f5f5] ">
               <span>Free to</span>{" "}
               <span className="font-paul lowercase  ">just be</span>
             </div>
             <div className="font-bold uppercase">hub</div>
-          </div>
+          </Link>
         </div>
-        <FontAwesomeIcon icon={faBars} color="white" size="xl" />
+        <FontAwesomeIcon
+          icon={faBars}
+          color="white"
+          size="xl"
+          className="md:cursor-pointer"
+        />
       </ContentWrap>
     </div>
   );
