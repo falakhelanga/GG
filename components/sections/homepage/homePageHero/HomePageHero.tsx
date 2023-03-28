@@ -9,19 +9,24 @@ const links = [
   {
     name: "comfort",
     link: "/",
+    text: `Gentle enough for everyday use to support a healthy, ideal pH
+    balance for ultimate comfort in the v-zone`,
   },
   {
     name: "control",
     link: "/control",
+    text: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
   },
   {
     name: "intimate",
     link: "/intimate",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
   },
 ];
 
 const HomePageHero = () => {
   const router = useRouter();
+  const description = links.find((link) => link.link === router.route);
   return (
     <div className="">
       <div className="md:h-[70vh] h-[50vh]  relative flex items-end bg-[url(/images/home_desktop_slider_img_1.png)] bg-cover bg-center"></div>
@@ -34,22 +39,25 @@ const HomePageHero = () => {
             product range
           </h1>
         </div>
-        <div className=" flex gap-12 uppercase w-[50%]  justify-center max-sm:text-center text-black md:text-lg text-sm border-b border-b-green ">
-          {links.map((item) => {
-            return (
-              <Link
-                key={item.name}
-                href={item.link}
-                className={`${
-                  router.route === item.link &&
-                  "border-b border-b-8 border-b-green text-green "
-                }  `}
-                scroll={false}
-              >
-                <span className="font-bold">{item.name}</span>
-              </Link>
-            );
-          })}
+        <div className="flex flex-col w-[50%]">
+          <div className=" flex gap-12 uppercase w-full  justify-center max-sm:text-center text-black md:text-lg text-sm border-b border-b-green ">
+            {links.map((item) => {
+              return (
+                <Link
+                  key={item.name}
+                  href={item.link}
+                  className={`${
+                    router.route === item.link &&
+                    "border-b border-b-8 border-b-green text-green "
+                  }  `}
+                  scroll={false}
+                >
+                  <span className="font-bold">{item.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="text-brown text-center my-5">{description.text}</div>
         </div>
       </ContentWrap>
     </div>

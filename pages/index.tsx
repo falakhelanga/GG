@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import DropDown from "@/components/elements/GallerySortDropDown";
 import HomePageHero from "@/components/sections/homepage/homePageHero/HomePageHero";
+import Products from "@/components/elements/products/Products";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,9 @@ export default function Home() {
       </Head>
       <main className="pb-14">
         <HomePageHero />
+        <div className="mt-8 mx-8">
+          <Products />
+        </div>
       </main>
     </>
   );

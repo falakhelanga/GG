@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import GalleryCard from "./GalleryCard";
 import SearchInput from "./SearchInput";
 import SelectInput from "@/components/elements/SelectInput";
-import SortSelectInput from "./SortSelectInput";
+
 import {
   DocumentData,
   QuerySnapshot,
@@ -181,8 +181,6 @@ const GalleryGrid = () => {
             <div>
               <DropDown sortValue={sortValue} setSortValue={setSortValue} />
             </div>
-
-            {/* <SortSelectInput setSortValue={setSortValue} /> */}
           </div>
 
           <motion.div

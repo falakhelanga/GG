@@ -105,3 +105,28 @@ a {
 
   display: none;
 }
+
+.find-out-more-chevron {
+  transition: margin ease 0.5s;
+}
+
+.find-out-more:hover .find-out-more-chevron {
+  margin-left: 0.2rem;
+}
+
+.swiper-pagination-bullet-active {
+  background: white !important;
+  width: 0.7rem !important;
+  height: 0.7rem !important;
+}
+
+.swiper-pagination-bullet {
+  width: 0.3rem !important;
+  height: 0.3rem !important;
+}
+/* .my-custom-pagination-div {
+  display: flex;
+  gap: 4rem;
+  position: absolute;
+  bottom: 4rem;
+} */

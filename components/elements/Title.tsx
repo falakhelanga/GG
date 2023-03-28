@@ -1,11 +1,16 @@
 import React from "react";
 
 export default function Title({
-  firstLine,
-  secondLine,
+  children,
+  className,
+  ...rest
 }: {
-  firstLine: string;
-  secondLine: string;
+  children: React.ReactNode;
+  className?: string;
 }) {
-  return <div>Title</div>;
+  return (
+    <div {...rest} className={`${className} text-xl`}>
+      {children}
+    </div>
+  );
 }
