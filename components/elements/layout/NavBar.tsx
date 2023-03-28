@@ -35,9 +35,9 @@ const NavBar = () => {
           <Logo />
         </div>
         <div className="md:flex md:gap-[5rem] hidden text-sm">
-          <div className="cursor-pointer">
+          <div className="">
             <div
-              className="flex flex-col items-start text-white uppercase"
+              className="flex flex-col items-start text-white uppercase cursor-pointer"
               onMouseEnter={() => {
                 menu.showMenu();
               }}
