@@ -14,6 +14,7 @@ module.exports = {
         pink: "#E9608A",
         green: "#43B8B4",
         brown: "#714F53",
+        black: "#676767",
       },
       fontFamily: {
         paul: ["Paul Signature", "Montserrat", "sans-serif"],
