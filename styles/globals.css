@@ -124,9 +124,15 @@ a {
   width: 0.3rem !important;
   height: 0.3rem !important;
 }
+
+.swiper,
+swiper-container {
+  overflow: visible !important;
+}
+
 /* .my-custom-pagination-div {
   display: flex;
   gap: 4rem;
   position: absolute;
-  bottom: 4rem;
+  bottom: -4rem;
 } */

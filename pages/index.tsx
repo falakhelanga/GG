@@ -5,8 +5,11 @@ import styles from "@/styles/Home.module.css";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import DropDown from "@/components/elements/GallerySortDropDown";
 import HomePageHero from "@/components/sections/homepage/homePageHero/HomePageHero";
-import Products from "@/components/elements/products/Products";
-
+import Products from "@/components/sections/homepage/products/Products";
+import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
+import { ParallaxProvider } from "react-scroll-parallax";
+import Articles from "@/components/sections/homepage/articles/Articles";
+import GynaguardPromise from "@/components/elements/GynaguardPromise/GynaguardPromise";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -18,12 +21,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="pb-14">
-        <HomePageHero />
-        <div className="mt-8 mx-8">
-          <Products />
-        </div>
-      </main>
+      <ParallaxProvider>
+        <main className="">
+          <HomePageHero />
+          <div className="mt-8 mx-8">
+            <Products />
+          </div>
+          <div className="mt-16">
+            <FeminineHygiene />
+          </div>
+          <div className="mt-1">
+            <Articles />
+          </div>
+          <div>
+            <GynaguardPromise />
+          </div>
+        </main>
+      </ParallaxProvider>
     </>
   );
 }
