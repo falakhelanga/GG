@@ -8,7 +8,7 @@ export default function Title({
 }: {
   children: React.ReactNode;
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "md2" | "lg" | "xl" | "2xl";
 }) {
   if (size === "sm") {
     return (
@@ -24,9 +24,30 @@ export default function Title({
       </div>
     );
   }
+  if (size === "md2") {
+    return (
+      <div {...rest} className={`${className}  font-extrabold text-[1.75rem]`}>
+        {children}
+      </div>
+    );
+  }
   if (size === "lg") {
     return (
       <div {...rest} className={`${className}  font-semibold text-4xl`}>
+        {children}
+      </div>
+    );
+  }
+  if (size === "xl") {
+    return (
+      <div {...rest} className={`${className}  font-semibold text-[2.75rem]`}>
+        {children}
+      </div>
+    );
+  }
+  if (size === "2xl") {
+    return (
+      <div {...rest} className={`${className}  font-extrabold text-[3.35rem]`}>
         {children}
       </div>
     );
