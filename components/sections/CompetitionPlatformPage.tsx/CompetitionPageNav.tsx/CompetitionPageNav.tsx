@@ -8,19 +8,29 @@ const CompetitionPageNav = () => {
   const router = useRouter();
   return (
     <div className="">
-      <div className="md:h-[70vh] h-[50vh]  relative flex items-end  ">
-        <div className="h-full overflow-hidden  w-full absolute top-[0rem] md:left-[6rem] z-[2]">
+      <div className="md:h-[75vh] h-[70vh]  relative flex items-end  ">
+        <div className="h-full overflow-hidden hidden md:block  w-full absolute top-[0rem] md:left-[6rem] z-[2]">
           <div className="h-full bg-[url(/images/comp_desktop_header_2.png)] bg-contain  bg-no-repeat w-full absolute md:top-[8rem] top-[20rem] "></div>
         </div>
 
-        <div className="h-full bg-[url(/images/comp_desktop_header_bg.png)] bg-cover bg-no-repeat w-full absolute top-0 right-0"></div>
+        <div className="h-full bg-[url(/images/comp_mobile_header_bg.png)] md:bg-[url(/images/comp_desktop_header_bg.png)] bg-cover  bg-no-repeat w-full absolute top-0 right-0"></div>
         <div className="w-full flex items-center justify-center relative -mb-10">
           <div className="md:w-[40%] w-[80%] ">
             <img
-              className="h-full w-full z-[4] relative max-sm:ml-3"
+              className="h-full w-full z-[4] relative max-sm:ml-3 md:block hidden"
               src="/images/comp_desktop_header_1.png"
               alt=""
             />
+            <img
+              className="h-full w-full z-[4] relative max-sm:ml-3 block md:hidden"
+              src="/images/comp_mobile_header_1.png"
+              alt=""
+            />
+            {/* <img
+              className="h-full w-full z-[4] relative max-sm:ml-3 block md:hidden"
+              src="/images/comp_mobile_header_bg (1).png"
+              alt=""
+            /> */}
           </div>
         </div>
       </div>

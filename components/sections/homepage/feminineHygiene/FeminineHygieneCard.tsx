@@ -42,7 +42,7 @@ const FeminineHygieneCard = ({
   return (
     <div className={` ${className} `}>
       <div className={`${bgColor} w-full h-10 rounded-t-md `}></div>
-      <div className="bg-[rgb(255,255,255,0.9)] p-6">
+      <div className="md:bg-[rgb(255,255,255,0.9)] bg-white p-6">
         <Title className="uppercase text-black font-semibold">
           feminine hygiene for
         </Title>

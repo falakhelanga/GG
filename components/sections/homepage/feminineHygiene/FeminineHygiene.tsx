@@ -10,7 +10,7 @@ const FeminineHygiene = () => {
     opacity: [1, 0],
   });
   return (
-    <div className="bg-[url(/images/desktop_fem_hyg_bg.png)] bg-cover bg-center h-[90vh] relative bg-no-repeat overflow-hidden">
+    <div className="md:bg-[url(/images/desktop_fem_hyg_bg.png)] bg-[url(/images/mobile_fem_hyg_bg.png)]  bg-cover bg-center md:h-[90vh] h-auto relative bg-no-repeat md:overflow-hidden">
       <Parallax
         translateX={["150px", "-10px"]}
         translateY={["-130px", "0px"]}
@@ -19,6 +19,7 @@ const FeminineHygiene = () => {
         easing="easeInQuad"
         speed={20}
         opacity={[1, 0]}
+        className="md:block hidden"
       >
         <Image
           src="/images/desktop_fem_hyg_bg_parallax_1.png"
@@ -27,29 +28,29 @@ const FeminineHygiene = () => {
           width={2000}
         />
       </Parallax>
-
+      {/* 
       <Image
         src="/images/desktop_fem_hyg_bg_parallax_1.png"
         alt=""
         height={2000}
         width={2000}
-      />
+      /> */}
       <div
         ref={ref}
-        className="bg-[url(/images/desktop_fem_hyg_bg_parallax_1.png)] bg-contain bg-center h-full absolute top-0 w-full left-0 bg-no-repeat"
+        className="bg-[url(/images/desktop_fem_hyg_bg_parallax_1.png)] md:block  hidden bg-contain md:bg-contain bg-center h-full absolute top-0 w-full left-0 bg-no-repeat"
       ></div>
       {/* CONTENT START */}
-      <div className="absolute top-0 right-0 flex flex-col items-center w-full pt-14 text-white  h-full">
+      <div className="md:absolute top-0 right-0 flex flex-col items-center w-full md:pt-14 max-sm:py-8 text-white  h-full">
         <ContentWrap>
           <div className="text-5xl flex flex-col items-center mb-4">
             <div
               className="
-        md:text-5xl text-4xl uppercase text-white
+        md:text-5xl text-2xl uppercase text-white
         "
             >
               why <span className="text-pink">feminine hygiene</span> is
             </div>
-            <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+            <div className="font-paul text-green md:text-8xl text-6xl -mt-6">
               so important
             </div>
           </div>
@@ -68,8 +69,8 @@ const FeminineHygiene = () => {
             </p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
-          <div className="absolute bottom-0 w-full flex-1 justify-center flex left-0 ">
-            <ContentWrap className="grid grid-cols-3 gap-6  justify-center  w-full">
+          <div className="md:absolute bottom-0 w-full flex-1 justify-center flex left-0 max-sm:h-full ">
+            <div className="mx-auto w-full md:max-w-7xl md:px-8 grid md:grid-cols-3 gap-6  justify-center  w-full max-sm:h-full max-sm:pb-8">
               <FeminineHygieneCard
                 color="lightPink"
                 title="teenage girls"
@@ -85,7 +86,7 @@ const FeminineHygiene = () => {
                 title="menopausal women"
                 body=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt odit voluptates, tenetur veritatis nesciunt amet."
               />
-            </ContentWrap>
+            </div>
           </div>
         </ContentWrap>
       </div>

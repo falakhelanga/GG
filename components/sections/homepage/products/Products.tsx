@@ -30,7 +30,7 @@ const Products = () => {
   return (
     <div className=" relative">
       <div
-        className=" absolute top-[20%] left-[15rem] z-[3] cursor-pointer "
+        className=" absolute top-[20%] left-[15rem] z-[3] cursor-pointer md:block hidden "
         ref={(node) => setPrevEl(node)}
       >
         <Image
@@ -43,7 +43,7 @@ const Products = () => {
 
       <div
         ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] right-[15rem] z-[3] cursor-pointer"
+        className=" absolute top-[20%] right-[15rem] z-[3] cursor-pointer md:block hidden"
       >
         <Image
           alt="arrow-left"
@@ -54,6 +54,14 @@ const Products = () => {
       </div>
 
       <Swiper
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+        }}
         slidesPerView={5}
         navigation={{ prevEl, nextEl }}
         spaceBetween={90}

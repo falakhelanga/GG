@@ -40,15 +40,17 @@ const articles = [
 const Articles = () => {
   return (
     <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14 ">
-      <div className="h-[50vh] w-full bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat bg-center bg-fixed ">
-        <ContentWrap className="grid grid-cols-2 h-full  items-end">
-          <div className="pb-10">
+      <div className="md:h-[60vh] w-full bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat bg-center md:bg-fixed ">
+        <ContentWrap className="grid md:grid-cols-2 h-full  items-end ">
+          <div className="pb-10 max-sm:mt-6">
             <div className="">
               <Logo />
-              <div className="text-8xl text-pink font-semibold">
+              <div className="md:text-8xl text-4xl text-pink font-semibold">
                 Free to <span className="font-paul text-green">just be</span>
               </div>
-              <div className="text-8xl font-bold text-white">HUB</div>
+              <div className="md:text-8xl font-bold text-white text-5xl">
+                HUB
+              </div>
             </div>
           </div>
           <div>
@@ -81,7 +83,7 @@ const Articles = () => {
       </div>
       {/* articles */}
       <div className="">
-        <ContentWrap className="grid grid-cols-3 mt-10 gap-7">
+        <ContentWrap className="md:grid flex flex-col  md:grid-cols-3 mt-10 gap-7">
           {articles.map((article) => (
             <ArticleCard {...article} key={article.id} />
           ))}
