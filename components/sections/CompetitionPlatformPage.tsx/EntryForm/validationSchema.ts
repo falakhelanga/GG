@@ -11,6 +11,9 @@ export const entryFormValidationSchema = Yup.object().shape({
     .max(70, "Too Long!")
     .required("Please enter your surname."),
   phone: Yup.string().required("Please enter your mobile number."),
+  photoURL: Yup.string().required(
+    "Please upload a photo of you with your product."
+  ),
   email: Yup.string()
     .email("Please enter a valid email address.")
     .required("Please enter your email address."),

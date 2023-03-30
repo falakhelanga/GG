@@ -1,14 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ContentWrap from "./ContentWrap";
 import Logo from "../Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/pro-solid-svg-icons";
+import { useMenu } from "@/context/menu";
+import { Transition } from "@headlessui/react";
+import ProductRange from "../navigation/nav/flyout/ProductRange";
+import Link from "next/link";
+import MegaMenu from "../navigation/nav/desktop/MegaMenu";
 const NAV_ITEMS = [
-  {
-    lightText: "product",
-    boldText: "range",
-    link: "#",
-  },
   {
     lightText: "what is",
     boldText: "feminine hygiene?",
@@ -27,31 +27,63 @@ const NAV_ITEMS = [
 ];
 
 const NavBar = () => {
+  const menu = useMenu();
+
   return (
-    <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex items-center z-[10]">
+    <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex items-center z-[100]">
       <ContentWrap className="flex justify-between items-center">
-        <Logo />
-        <div className="flex gap-[5rem] text-sm">
+        <div onMouseEnter={menu.hideMenu}>
+          <Logo />
+        </div>
+        <div className="md:flex md:gap-[5rem] hidden text-sm">
+          <div className="z-0">
+            <div
+              className="flex flex-col items-start text-white uppercase cursor-pointer"
+              onMouseEnter={() => {
+                menu.showMenu();
+              }}
+              onClick={() => {
+                menu.lockMenu();
+              }}
+            >
+              <div className="text-[#f5f5f5] ">
+                <span className="">Product</span>
+              </div>
+              <div className="font-bold uppercase">Range</div>
+            </div>
+            <MegaMenu menu={menu}>
+              <ProductRange />
+            </MegaMenu>
+          </div>
+
           {NAV_ITEMS.map((item, idx) => {
             return (
-              <div
+              <Link
+                href={item.link}
+                onMouseEnter={menu.hideMenu}
                 key={idx}
                 className="flex flex-col items-start text-white  uppercase"
               >
                 <div className="text-[#f5f5f5]">{item.lightText}</div>
                 <div className="font-bold">{item.boldText}</div>
-              </div>
+              </Link>
             );
           })}
-          <div className="flex flex-col items-start text-white  ">
+          <Link href={"#"} className="flex flex-col items-start text-white  ">
             <div className="text-[#f5f5f5] ">
               <span>Free to</span>{" "}
               <span className="font-paul lowercase  ">just be</span>
             </div>
             <div className="font-bold uppercase">hub</div>
-          </div>
+          </Link>
         </div>
-        <FontAwesomeIcon icon={faBars} color="white" size="xl" />
+
+        <FontAwesomeIcon
+          icon={faBars}
+          color="white"
+          size="xl"
+          className="md:cursor-pointer"
+        />
       </ContentWrap>
     </div>
   );

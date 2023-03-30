@@ -13,6 +13,7 @@ interface SelectInputPropType {
   options?: OptionsOrGroups<any, GroupBase<any>> | undefined;
   defaultValue?: any;
   isMulti?: boolean;
+  isSearchable?: boolean;
 }
 
 const SelectInput = ({
@@ -22,7 +23,7 @@ const SelectInput = ({
   inputClassNames,
   containerClassNames,
   labelClassNames,
-
+  isSearchable = false,
   type = "select",
   options,
   defaultValue,
@@ -40,7 +41,16 @@ const SelectInput = ({
       <div>
         <Select
           placeholder={placeholder}
+          isSearchable={isSearchable}
           styles={{
+            input: (styles) => {
+              return {
+                ...styles,
+                outline: "none",
+                border: "none",
+              };
+            },
+
             container: (styles) => ({
               ...styles,
               height: "100%",
@@ -52,18 +62,18 @@ const SelectInput = ({
               ...styles,
               backgroundColor: "white",
               padding: "0.6rem 0",
-
-              borderBottom: "1px solid rgb(209 213 219)",
-              borderTop: "none",
-              borderRight: "none",
-              borderLeft: "none",
+              boxShadow: "none",
+              border: "none",
               borderRadius: "0.375rem",
               outline: "none",
+            }),
+            dropdownIndicator: (styles) => ({
+              ...styles,
+              color: "#E9608A",
             }),
           }}
           defaultValue={defaultValue}
           onChange={(value) => {
-            console.log(value, "values");
             helpers.setValue(
               Array.isArray(value)
                 ? value.map((item) => item.value)
@@ -72,17 +82,21 @@ const SelectInput = ({
           }}
           isMulti={isMulti}
           options={options}
-          className="basic-multi-select "
+          className="basic-multi-select outline "
           classNamePrefix="select"
           name={name}
           // value={value}
         />
 
-        {meta.touched && meta.error && (
-          <div className="text-red-600 text-sm p-2  bg-opacity-10 mt-[-1.2rem]">
-            {meta.error}
+        {
+          <div
+            className={`${
+              meta.touched && meta.error ? "opacity-1" : "opacity-0"
+            } text-red-600 text-sm    bg-opacity-10`}
+          >
+            {meta.error ? meta.error : "dd"}
           </div>
-        )}
+        }
       </div>
     </InputWrapper>
   );

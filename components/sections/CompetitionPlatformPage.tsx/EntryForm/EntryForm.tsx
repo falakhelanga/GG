@@ -59,8 +59,8 @@ const EntryForm = () => {
     try {
       await createEntry({
         ...values,
-        firstName: values.firstName.toLowerCase(),
-        lastName: values.lastName.toLowerCase(),
+        firstName: values.firstName.toLowerCase().trim(),
+        lastName: values.lastName.toLowerCase().trim(),
       });
       setSubmitted(true);
     } catch (error) {
@@ -72,17 +72,21 @@ const EntryForm = () => {
 
   return (
     <div className=" w-full flex items-center pt-24 flex-col bg-[#EEE0E6] pb-14">
-      <h1 className=" text-5xl text-pink uppercase mb-12">
+      <h1 className=" md:text-5xl text-4xl text-pink uppercase mb-12">
         {" "}
         <span className="font-extrabold">entry</span> form
       </h1>
-      <ContentWrap className="flex justify-center w-full ">
-        {submitted && (
-          <div className="flex flex-col items-center">
-            <div className="bg-[url(/images/paint_stroke.png)] bg-center h-full bg-contain bg-no-repeat flex w-full flex-col font-paul items-center text-[5em] text-green">
+
+      {submitted && (
+        <div className="flex flex-col items-center">
+          <div className="w-full max-sm:px-[0rem] h-full px-[3rem] ">
+            <div className="bg-[url(/images/paint_stroke.png)] bg-center  h-full md:py-8  bg-cover  md:bg-contain bg-no-repeat flex  w-full flex-col font-paul items-center md:text-[5em] text-6xl text-green">
               <div className="text-brown">Thank you for</div>
-              <div className="-mt-[4rem]">your entry</div>
+              <div className="md:-mt-[1.6rem]">your entry!</div>
             </div>
+          </div>
+
+          <ContentWrap className="flex flex-col items-center">
             <div className="text-center mt-6">
               {`Approved entries will appear in the contestant gallery within 48
 hours. If you don't see your entry after that period, you can
@@ -115,43 +119,60 @@ submit a query and request a second entry by sending an email to:`}
                 />
               </div>
             </div>
-          </div>
-        )}
-
+          </ContentWrap>
+        </div>
+      )}
+      <ContentWrap className="flex justify-center w-full ">
         {!submitted && (
           <Form
-            containerClassName=" w-full flex-1 px-[10rem] "
+            containerClassName=" w-full flex-1 md:px-[10rem] "
             initialValues={initialValues}
             onSubmit={submitEntry}
             validationSchema={entryFormValidationSchema}
           >
-            <div className="grid grid-cols-2 gap-5 w-full ">
+            <div className="grid grid-cols-2  gap-x-4 w-full ">
               <TextInput
-                containerClassNames=""
+                containerClassNames="md:col-span-1 col-span-2"
                 name="firstName"
                 placeholder="Name"
               />
-              <TextInput name="lastName" placeholder="Surname" />
-              <TextInput placeholder="Mobile Number" name="phone" />
-              <TextInput name="email" placeholder="Email Address" />
-              <DatePicker name="dateOfBirth" placeholder="Date of Birth" />
+              <TextInput
+                containerClassNames="md:col-span-1 col-span-2"
+                name="lastName"
+                placeholder="Surname"
+              />
+              <TextInput
+                containerClassNames="md:col-span-1 col-span-2"
+                placeholder="Mobile Number"
+                name="phone"
+              />
+              <TextInput
+                containerClassNames="md:col-span-1 col-span-2"
+                name="email"
+                placeholder="Email Address"
+              />
+              <DatePicker
+                containerClassNames="md:col-span-1 col-span-2"
+                name="dateOfBirth"
+                placeholder="Date of Birth"
+                iconClassName="text-pink"
+                withIcon
+              />
               <SelectInput
+                containerClassNames="md:col-span-1 col-span-2"
                 name="location"
                 options={provinces}
                 placeholder="Location"
+                isSearchable={true}
               />
               <TextAreaInput
                 placeholder="Tell us which GynaGuard product you bought, and what your experience was using it!"
                 name="bio"
-                containerClassNames="col-span-2"
+                containerClassNames="col-span-2 "
                 rows="5"
               />
-              <div className="flex col-span-2 justify-center gap-6">
-                <Checkbox
-                  inputClassNames=""
-                  name="isSubscribed"
-                  label="Subscribe to GynaGuard"
-                />
+              <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
+                <Checkbox name="isSubscribed" label="Subscribe to GynaGuard" />
                 <Checkbox
                   showError={false}
                   name="acceptedTsAndCs"
@@ -167,11 +188,11 @@ submit a query and request a second entry by sending an email to:`}
               )}
             </div>
             <div className="flex flex-col items-center w-full">
-              <div className="px-16 mt-7 mb-4">
+              <div className="md:px-16 mt-7 mb-4">
                 <ImageUploader containerClassNames="w-full" name="photoURL" />
               </div>
               <div>
-                <Button className="rounded-full" variant="green" type="submit">
+                <Button className="rounded-full " variant="green" type="submit">
                   {!submitting ? "SUBMIT MY ENTRY!" : "SUBMITTING..."}
                 </Button>
               </div>
