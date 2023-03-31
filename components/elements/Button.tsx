@@ -23,7 +23,7 @@ const Button = ({
       {...rest}
       onClick={onClick}
       type={type}
-      className={` rounded-full transition transition-all ease-in-out  duration-500 ${
+      className={` rounded-full transition-all ease-in-out  duration-500 ${
         fullWidth && "w-full"
       } text-pink    px-12 py-2 ${
         variant === "outline" &&
