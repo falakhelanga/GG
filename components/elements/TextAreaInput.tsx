@@ -37,6 +37,9 @@ const TextAreaInput = ({
         {({ field, form, meta }: { field: any; form: any; meta: any }) => (
           <div>
             <textarea
+              style={{
+                resize: "none",
+              }}
               className={`outline-none w-full rounded bg-white py-3 px-2 ${inputClassNames}`}
               type={type}
               {...field}

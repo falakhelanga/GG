@@ -107,7 +107,7 @@ const ImageUploader = ({
         {uploadedProgress && uploadedProgress == 100 && uploaded && (
           <div>
             <div className="flex flex-col text-pink items-center">
-              <div className="font-bold">success!</div>
+              <div className="font-bold">Success!</div>
               <div>Click the SUBMIT button below</div>
             </div>
           </div>

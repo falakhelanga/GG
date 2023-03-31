@@ -38,7 +38,7 @@ const HowToEnter = () => {
               A FIAT 500
             </h1>
             <div className=" md:text-3xl text-2xl">
-              + <span className="font-bold ">RIO0 000</span> IN PRIZES!*
+              + <span className="font-bold ">R100 000</span> IN PRIZES!*
             </div>
             <div className="text-md mt-2">
               <div>Prizes include:</div>
@@ -55,7 +55,7 @@ const HowToEnter = () => {
                 </li>
                 <li>
                   {" "}
-                  <span className="font-bold"> Covergirl</span>on a I magazine +
+                  <span className="font-bold"> Cover girl</span> on a magazine +
                   more
                 </li>
               </ul>

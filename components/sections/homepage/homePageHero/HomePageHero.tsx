@@ -35,6 +35,7 @@ const links = [
 const HomePageHero = () => {
   const router = useRouter();
   const description = links.find((link) => link.link === router.route);
+
   return (
     <div className="">
       <Swiper
@@ -63,7 +64,14 @@ const HomePageHero = () => {
               className="h-full md:h-[80vh] h-[80vh] w-full "
             >
               <div className="flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end bg-[url(/images/home_mobile_slider_img_1.png)] md:bg-[url(/images/home_desktop_slider_img_1.png)] bg-cover bg-no-repeat bg-center">
-                <Button className="uppercase mb-14">find out more</Button>
+                <Button
+                  onClick={() => {
+                    router.push("/entry");
+                  }}
+                  className="uppercase mb-14"
+                >
+                  find out more
+                </Button>
               </div>
             </SwiperSlide>
           );
