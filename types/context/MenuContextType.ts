@@ -1,8 +1,8 @@
 export type MenuContextType = {
-  unlockMenu: () => void;
-  showMenu: () => void;
-  lockMenu: () => void;
+  unlockMenu: (index) => void;
+  showMenu: (index) => void;
+  lockMenu: (index) => void;
   hideMenu: () => void;
-  unlockAndHideMenu: () => void;
-  menuOpen: boolean;
+  unlockAndHideMenu: (index) => void;
+  menuIndex: any;
 };
