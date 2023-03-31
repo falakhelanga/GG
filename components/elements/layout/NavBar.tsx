@@ -2,12 +2,14 @@ import React, { Fragment } from "react";
 import ContentWrap from "./ContentWrap";
 import Logo from "../Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/pro-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/pro-solid-svg-icons";
 import { useMenu } from "@/context/menu";
 import { Transition } from "@headlessui/react";
 import ProductRange from "../navigation/nav/flyout/ProductRange";
 import Link from "next/link";
 import MegaMenu from "../navigation/nav/desktop/MegaMenu";
+import BurgerMenu from "../navigation/nav/flyout/BurgerMenu";
+
 const NAV_ITEMS = [
   {
     lightText: "what is",
@@ -40,18 +42,18 @@ const NavBar = () => {
             <div
               className="flex flex-col items-start text-white uppercase cursor-pointer"
               onMouseEnter={() => {
-                menu.showMenu();
+                menu.showMenu(0);
               }}
-              onClick={() => {
-                menu.lockMenu();
-              }}
+              // onClick={() => {
+              //   menu.lockMenu(0);
+              // }}
             >
               <div className="text-[#f5f5f5] ">
                 <span className="">Product</span>
               </div>
               <div className="font-bold uppercase">Range</div>
             </div>
-            <MegaMenu menu={menu}>
+            <MegaMenu menu={menu} index={0}>
               <ProductRange />
             </MegaMenu>
           </div>
@@ -77,13 +79,32 @@ const NavBar = () => {
             <div className="font-bold uppercase">hub</div>
           </Link>
         </div>
+        <div>
+          <div
+            onClick={() => {
+              console.log(menu.menuIndex);
+              if (menu.menuIndex === true) {
+                menu.showMenu(-1);
+              } else {
+                menu.showMenu(1);
+                menu.lockMenu(true);
+              }
+            }}
+          >
+            <div className="w-16 h-16 flex justify-center items-center">
+              <FontAwesomeIcon
+                icon={menu.menuIndex === true ? faClose : faBars}
+                color="white"
+                size="xl"
+                className="md:cursor-pointer"
+              />
+            </div>
+          </div>
 
-        <FontAwesomeIcon
-          icon={faBars}
-          color="white"
-          size="xl"
-          className="md:cursor-pointer"
-        />
+          <MegaMenu menu={menu} index={1} mouseLeave={false}>
+            <BurgerMenu />
+          </MegaMenu>
+        </div>
       </ContentWrap>
     </div>
   );

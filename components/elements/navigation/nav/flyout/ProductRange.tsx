@@ -89,15 +89,10 @@ const ProductRange = () => {
         },
       ],
     },
-    {
-      title: "all products",
-      subtitle: null,
-      links: [],
-    },
   ];
 
   return (
-    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] ">
+    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[2.9vh] ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-8 flex justify-between">
           <div className=" ">
@@ -192,8 +187,17 @@ const ProductRange = () => {
                 </div>
               );
             })}
+            <Link href={"/#"} className="w-64 space-y-1 pb-5">
+              <div className="uppercase font-bold text-gray-500 hover:text-pink cursor-pointer">
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className="text-pink pr-2"
+                />
+                All Products
+              </div>
+            </Link>
           </div>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

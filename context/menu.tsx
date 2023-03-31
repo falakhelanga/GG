@@ -5,29 +5,29 @@ import { Context, createContext, ReactNode, useContext, useState } from "react";
 const MenuContext: Context<MenuContextType> = createContext(null as any);
 
 export const MenuProvider = ({ children }: { children: ReactNode }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showMobile, setShowMobile] = useState(true);
+  const [menuIndex, setMenuIndex] = useState(-1);
   const [lock, setLock] = useState(false);
 
-  const showMenu = () => {
-    setMenuOpen(true);
+  const showMenu = (index) => {
+    setMenuIndex(index);
   };
 
-  const lockMenu = () => {
+  const lockMenu = (index) => {
     setLock(true);
+    setMenuIndex(index);
   };
 
   const unlockMenu = () => {
     setLock(false);
   };
 
-  const unlockAndHideMenu = () => {
+  const unlockAndHideMenu = (index) => {
     setLock(false);
   };
 
   const hideMenu = () => {
     if (!lock) {
-      setMenuOpen(false);
+      setMenuIndex(-1);
     }
   };
 
@@ -39,7 +39,7 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
         unlockAndHideMenu,
         hideMenu,
         showMenu,
-        menuOpen,
+        menuIndex,
       }}
     >
       {children}

@@ -130,6 +130,18 @@ swiper-container {
   overflow: visible !important;
 }
 
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background-color: #cfb9bb !important;
+  padding: 0.4rem;
+  border: 3px solid #cfb9bb;
+  pointer-events: all !important;
+}
+.swiper-pagination-bullet-active {
+  border: 3px solid #cfb9bb;
+  background-color: #de2e64 !important;
+}
+
 /* .my-custom-pagination-div {
   display: flex;
   gap: 4rem;

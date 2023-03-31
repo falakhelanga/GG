@@ -2,6 +2,7 @@ import { Field, useField } from "formik";
 import React, { useState } from "react";
 import InputWrapper from "./InputWrapper";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CheckBoxPropType {
   name: string;
@@ -12,6 +13,7 @@ interface CheckBoxPropType {
   labelClassNames?: string;
   type?: React.HTMLInputTypeAttribute | undefined;
   showError?: boolean;
+  link?: string;
 }
 
 const Checkbox = ({
@@ -21,6 +23,7 @@ const Checkbox = ({
   inputClassNames,
   containerClassNames,
   labelClassNames,
+  link = null,
   showError = true,
   type = "text",
 }: CheckBoxPropType) => {
@@ -61,7 +64,8 @@ const Checkbox = ({
           )}
         </div>
       </div>
-      <label htmlFor={name}>{label}</label>
+      {link && <Link href={link}>{label}</Link>}
+      {!link && <label htmlFor={name}>{label}</label>}
     </div>
   );
 };

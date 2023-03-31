@@ -23,7 +23,9 @@ const Products = () => {
     clickable: true,
     renderBullet: function (index, className) {
       return ReactDOMServer.renderToStaticMarkup(
-        <div className="bg-pink h-4 w-4 flex gap-4 rounded-full"></div>
+        <div
+          className={`${className} bg-pink h-4 w-4 flex gap-4 rounded-full`}
+        ></div>
       );
     },
   };
@@ -68,19 +70,11 @@ const Products = () => {
         //   slidesPerGroup={5}
         loop={true}
         //  loopFillGroupWithBlank={true}
-        pagination={{
-          el: ".my-custom-pagination-div",
-          clickable: true,
-          renderBullet: function (index, className) {
-            return ReactDOMServer.renderToStaticMarkup(
-              <div className="bg-[#EBE4E3]  h-full flex gap-4 rounded-full "></div>
-            );
-          },
-        }}
+        pagination={pagination}
         modules={[Pagination, Navigation]}
         className="mySwiper flex h-full "
       >
-        {[...Array(20)].map((_, idx) => {
+        {[...Array(10)].map((_, idx) => {
           return (
             <SwiperSlide key={idx} className="h-full ">
               <Product />
@@ -96,7 +90,7 @@ const Products = () => {
           ></div>
         ))}
       </div> */}
-      <div className="my-custom-pagination-div flex gap-2 justify-center " />
+      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 mt-6 " />
     </div>
   );
 };

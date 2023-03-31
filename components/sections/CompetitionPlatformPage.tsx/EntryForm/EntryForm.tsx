@@ -87,7 +87,7 @@ const EntryForm = () => {
           </div>
 
           <ContentWrap className="flex flex-col items-center">
-            <div className="text-center mt-6">
+            <div className="text-center mt-6 md:w-[60%]">
               {`Approved entries will appear in the contestant gallery within 48
 hours. If you don't see your entry after that period, you can
 submit a query and request a second entry by sending an email to:`}
@@ -95,7 +95,7 @@ submit a query and request a second entry by sending an email to:`}
             <div className="text-pink">help@gynaquard.co.za</div>
             <div className="flex gap-4 my-6">
               <div
-                className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink
+                className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer
               "
               >
                 <FontAwesomeIcon
@@ -104,14 +104,14 @@ submit a query and request a second entry by sending an email to:`}
                   size="xl"
                 />
               </div>
-              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink">
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   size="xl"
                   className="text-pink"
                 />
               </div>
-              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink">
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer">
                 <FontAwesomeIcon
                   icon={faTiktok}
                   size="xl"
@@ -168,24 +168,31 @@ submit a query and request a second entry by sending an email to:`}
               <TextAreaInput
                 placeholder="Tell us which GynaGuard product you bought, and what your experience was using it!"
                 name="bio"
-                containerClassNames="col-span-2 "
+                containerClassNames="col-span-2 mb-4"
                 rows="5"
               />
-              <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
-                <Checkbox name="isSubscribed" label="Subscribe to GynaGuard" />
-                <Checkbox
-                  showError={false}
-                  name="acceptedTsAndCs"
-                  label="Accept T's & C's"
-                />
-              </div>
-              {showTermsError && (
-                <div className="text-red-600 text-sm p-2  bg-opacity-10 col-span-2 text-center">
-                  Please tick the box above to confirm that you agree to comply
-                  with terms and conditions of becoming a participating member
-                  in GYNAGaurd competition.
+
+              <div className="flex flex-col col-span-2 md:items-center">
+                <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
+                  <Checkbox
+                    name="isSubscribed"
+                    label="Subscribe to GynaGuard"
+                  />
+                  <Checkbox
+                    showError={false}
+                    name="acceptedTsAndCs"
+                    label="Accept T's & C's"
+                    link="#"
+                  />
                 </div>
-              )}
+                {showTermsError && (
+                  <div className="text-red-600 text-sm p-2  bg-opacity-10 col-span-2 text-center md:w-[50%] ">
+                    Please tick the box above to confirm that you agree to
+                    comply with terms and conditions of becoming a participating
+                    member in GYNAGaurd competition.
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex flex-col items-center w-full">
               <div className="md:px-16 mt-7 mb-4">

@@ -10,7 +10,7 @@ const FeminineHygiene = () => {
     opacity: [1, 0],
   });
   return (
-    <div className="md:bg-[url(/images/desktop_fem_hyg_bg.png)] bg-[url(/images/mobile_fem_hyg_bg.png)]  bg-cover bg-center md:h-[90vh] h-auto relative bg-no-repeat md:overflow-hidden">
+    <div className="md:bg-[url(/images/desktop_fem_hyg_bg.png)] bg-[url(/images/mobile_fem_hyg_bg.png)]  bg-cover bg-center  h-auto relative bg-no-repeat md:overflow-hidden">
       <Parallax
         translateX={["150px", "-10px"]}
         translateY={["-130px", "0px"]}
@@ -62,9 +62,9 @@ const FeminineHygiene = () => {
             </p>{" "}
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 text-sm">
             <p>
-              finish off the sentiment by talking to the fact that all AGES need
+              Finish off the sentiment by talking to the fact that ALL AGES need
               this feminine
             </p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
