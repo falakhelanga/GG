@@ -8,7 +8,7 @@ const CompetitionPageNav = () => {
   const router = useRouter();
   return (
     <div className="">
-      <div className="md:h-[75vh] h-[70vh]  relative flex items-end  ">
+      <div className="md:h-[80vh] h-[80vh]  relative flex items-end  ">
         <div className="h-full overflow-hidden hidden md:block  w-full absolute top-[0rem] md:left-[6rem] z-[2]">
           <div className="h-full bg-[url(/images/comp_desktop_header_2.png)] bg-contain  bg-no-repeat w-full absolute md:top-[8rem] top-[20rem] "></div>
         </div>
