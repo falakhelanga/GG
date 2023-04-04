@@ -18,6 +18,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { entryFormValidationSchema } from "./validationSchema";
+import { FieldMetaProps } from "formik";
 
 const initialValues: EntryValues = {
   firstName: "",
@@ -47,13 +48,12 @@ const provinces = [
 
 const EntryForm = () => {
   const { createEntry } = useFirebase();
+  const [TsAndCsCheckBoxMeta, setTsAndCsCheckboxMeta] =
+    useState<FieldMetaProps<any>>();
   const [showTermsError, setShowTermsError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const submitEntry = async (values: any) => {
-    if (!values.acceptedTsAndCs) {
-      return setShowTermsError(true);
-    }
     if (submitting) return;
     setSubmitting(true);
     try {
@@ -179,19 +179,27 @@ submit a query and request a second entry by sending an email to:`}
                     label="Subscribe to GynaGuard"
                   />
                   <Checkbox
+                    setTsAndCsCheckboxMeta={setTsAndCsCheckboxMeta}
                     showError={false}
                     name="acceptedTsAndCs"
                     label="Accept T's & C's"
                     link="#"
                   />
                 </div>
-                {showTermsError && (
+                {TsAndCsCheckBoxMeta &&
+                  TsAndCsCheckBoxMeta?.touched &&
+                  TsAndCsCheckBoxMeta?.error && (
+                    <div className="text-red-600 text-sm p-2  bg-opacity-10 text-center">
+                      {TsAndCsCheckBoxMeta.error}
+                    </div>
+                  )}
+                {/* {showTermsError && (
                   <div className="text-red-600 text-sm p-2  bg-opacity-10 col-span-2 text-center md:w-[50%] ">
                     Please tick the box above to confirm that you agree to
                     comply with terms and conditions of becoming a participating
                     member in GYNAGaurd competition.
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             <div className="flex flex-col items-center w-full">

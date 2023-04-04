@@ -40,8 +40,8 @@ export const entryFormValidationSchema = Yup.object().shape({
     .required(
       "Tell us which GynaGuard product you bought, and what your experience was using it in less than 500 characters"
     ),
-  //   acceptedTsAndCs: Yup.bool().oneOf(
-  //     [true],
-  //     "Please tick the box above to confirm that you agree to comply with terms and conditions of becoming a participating member in GYNAGaurd competition. "
-  //   ),
+  acceptedTsAndCs: Yup.bool().oneOf(
+    [true],
+    "Please tick the box above to confirm that you agree to comply with terms and conditions of becoming a participating member in GYNAGaurd competition. "
+  ),
 });
