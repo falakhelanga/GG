@@ -32,7 +32,7 @@ const Products = () => {
   return (
     <div className=" relative">
       <div
-        className=" absolute top-[20%] left-[15rem] z-[3] cursor-pointer md:block hidden "
+        className=" absolute top-[20%] md:left-[15rem] left-0 z-[3] cursor-pointer  "
         ref={(node) => setPrevEl(node)}
       >
         <Image
@@ -45,7 +45,7 @@ const Products = () => {
 
       <div
         ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] right-[15rem] z-[3] cursor-pointer md:block hidden"
+        className=" absolute top-[20%] md:right-[15rem] right-0 z-[3] cursor-pointer "
       >
         <Image
           alt="arrow-left"

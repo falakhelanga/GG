@@ -1,5 +1,5 @@
-import { Field, useField } from "formik";
-import React, { useState } from "react";
+import { Field, FieldMetaProps, useField } from "formik";
+import React, { useEffect, useState } from "react";
 import InputWrapper from "./InputWrapper";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +14,9 @@ interface CheckBoxPropType {
   type?: React.HTMLInputTypeAttribute | undefined;
   showError?: boolean;
   link?: string;
+  setTsAndCsCheckboxMeta?: React.Dispatch<
+    React.SetStateAction<FieldMetaProps<any>>
+  >;
 }
 
 const Checkbox = ({
@@ -26,10 +29,23 @@ const Checkbox = ({
   link = null,
   showError = true,
   type = "text",
+  setTsAndCsCheckboxMeta,
 }: CheckBoxPropType) => {
   const [field, meta, helpers] = useField(name);
+  const { error, touched } = meta;
   const { value } = field;
   const [checkBoxValue, setCheckBoxValue] = useState(false);
+  useEffect(() => {
+    if (touched && error) {
+      if (setTsAndCsCheckboxMeta) {
+        setTsAndCsCheckboxMeta(meta);
+      }
+    } else {
+      if (setTsAndCsCheckboxMeta) {
+        setTsAndCsCheckboxMeta(null);
+      }
+    }
+  }, [touched, error]);
   return (
     <div className={`${containerClassNames}  flex gap-3 items-center`}>
       <div>
@@ -51,12 +67,7 @@ const Checkbox = ({
               />
             )}
           </div>
-          {/* <input
-              className={`checkbox outline-none w-full  bg-white  border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
-              type="checkbox"
-              {...field}
-              placeholder={placeholder}
-            /> */}
+
           {showError && meta.touched && meta.error && (
             <div className="text-red-600 text-sm p-2  bg-opacity-10">
               {meta.error}

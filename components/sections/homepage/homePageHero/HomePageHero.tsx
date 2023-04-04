@@ -9,33 +9,62 @@ import * as ReactDOMServer from "react-dom/server";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
-import React from "react";
+import { Pagination, Navigation, Autoplay } from "swiper";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@/components/elements/Button";
 
 const links = [
   {
     name: "comfort",
-    link: "/",
+    link: "comfort",
     text: `Gentle enough for everyday use to support a healthy, ideal pH
     balance for ultimate comfort in the v-zone`,
+    index: -1,
   },
   {
     name: "control",
-    link: "/control",
+    link: "control",
     text: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
+    index: 0,
   },
   {
     name: "intimate",
-    link: "/intimate",
+    link: "intimate",
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
+    index: 1,
   },
 ];
-
+const sliderWidth = 7;
 const HomePageHero = () => {
   const router = useRouter();
-  const description = links.find((link) => link.link === router.route);
+  const { page } = router.query;
+  const description = links.find((link) => link.link === page) || links[0];
+  const [sliderPosition, setSliderPosition] = useState(0);
+  const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
+  const [activeTab, setActiveTab] = useState(1);
+  const containerRef = useRef(1);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const moveSlider = (index) => {
+    setSliderPosition(190 * index);
+  };
+  ////// set tab index on page mount
+  useEffect(() => {
+    if (router.isReady) {
+      const tab = links.find((link) => link.link === page);
+      if (tab) {
+        setSlideCurrentIndex(tab.index);
+        setActiveTab(tab.index);
+      } else {
+        setSlideCurrentIndex(-1);
+        setActiveTab(-1);
+      }
+    }
+  }, [router, page]);
 
+  /////// move the tab slider when the index change
+  useEffect(() => {
+    moveSlider(slideCurrentIndex);
+  }, [slideCurrentIndex]);
   return (
     <div className="">
       <Swiper
@@ -52,9 +81,14 @@ const HomePageHero = () => {
         // spaceBetween={90}
         //   slidesPerGroup={5}
         loop={true}
-        //  loopFillGroupWithBlank={true}
-        pagination={true}
-        modules={[Pagination, Navigation]}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper flex md:h-[80vh] h-[80vh] w-full"
       >
         {[...Array(3)].map((_, idx) => {
@@ -82,27 +116,43 @@ const HomePageHero = () => {
       <ContentWrap className=" flex flex-col items-center ">
         <div className="flex max-sm:flex-col max-sm:items-center gap-3 items-end justify-center md:my-12 my-5">
           <Logo color="pink" height={300} width={300} />
-          <h1 className="text-pink font-medium md:text-[2.5em] text-2xl uppercase  flex items-end h-full leading-10">
+          <h1 className="text-pink font-medium md:text-[2.5em] text-4xl uppercase  flex items-end h-full leading-10">
             product range
           </h1>
         </div>
         <div className="flex flex-col md:w-[50%]">
-          <div className=" flex gap-12 uppercase w-full  justify-center max-sm:text-center text-black md:text-lg text-sm border-b border-b-green ">
-            {links.map((item) => {
-              return (
-                <Link
-                  key={item.name}
-                  href={item.link}
-                  className={`${
-                    router.route === item.link &&
-                    "border-b border-b-8 border-b-green text-green "
-                  }  `}
-                  scroll={false}
-                >
-                  <span className="font-bold">{item.name}</span>
-                </Link>
-              );
-            })}
+          <div className="flex flex-col uppercase w-full   items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
+            <div className="flex max-sm:gap-4  ">
+              {links.map((item, idx) => {
+                return (
+                  <Link
+                    key={item.name}
+                    href={`?page=${item.name}`}
+                    onMouseEnter={() => {
+                      setSlideCurrentIndex(item.index);
+                      // if (router.route === item.link) return;
+                    }}
+                    onMouseLeave={() => {
+                      setSlideCurrentIndex(activeTab);
+                    }}
+                    className={`${
+                      router.route === item.link &&
+                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8"
+                    } relative md:px-12 px-5 `}
+                    scroll={false}
+                  >
+                    <span className="font-bold">{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+            <div
+              style={{
+                transform: `translateX(${sliderPosition}px)`,
+                width: `${sliderWidth}rem`,
+              }}
+              className="bg-green h-2 transition-all duration-700 ease-out md:block hidden"
+            ></div>
           </div>
           <div className="text-brown text-center my-5">{description.text}</div>
         </div>

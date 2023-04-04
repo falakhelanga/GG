@@ -63,7 +63,7 @@ const ImageUploader = ({
           <div>
             <label
               htmlFor={name}
-              className={`bg-pink   rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer hover:opacity-75`}
+              className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
             >
               <span className="text-white  max-sm:text-xs">
                 UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
@@ -78,6 +78,7 @@ const ImageUploader = ({
           </div>
         )}
         {/* {uploadedProgress === 100 && !uploaded && <Spinner />} */}
+
         {uploadedProgress &&
           uploadedProgress > 0 &&
           // uploadedProgress !== 100 &&
@@ -85,14 +86,14 @@ const ImageUploader = ({
             <>
               <label
                 htmlFor={name}
-                className={`bg-pink opacity-0  rounded-full text-center py-2 px-4 font-semibold md:cursor-pointer `}
+                className={`bg-pink opacity-0  rounded-full text-center  px-4 font-semibold md:cursor-pointer `}
               >
                 <span className="text-white">
                   UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
                 </span>
               </label>
-              <div className="-mt-8">
-                <div className="text-pink uppercase font-bold text-center mb-0">
+              <div className="-mt-10 w-full py-0">
+                <div className="text-pink uppercase font-bold text-center mb-0 ">
                   uploading, please wait...
                 </div>
                 <ProgressBar
@@ -105,7 +106,7 @@ const ImageUploader = ({
           )}
 
         {uploadedProgress && uploadedProgress == 100 && uploaded && (
-          <div>
+          <div className="-mt-2 ">
             <div className="flex flex-col text-pink items-center">
               <div className="font-bold">Success!</div>
               <div>Click the SUBMIT button below</div>
