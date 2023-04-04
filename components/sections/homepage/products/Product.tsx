@@ -16,7 +16,7 @@ const Product = () => {
     setShowDropDown(false);
   });
   return (
-    <div className=" cursor-pointer relative h-auto">
+    <div className=" md:cursor-pointer relative h-auto">
       <Image
         height={200}
         width={200}

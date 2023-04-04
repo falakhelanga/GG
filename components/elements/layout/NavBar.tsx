@@ -38,7 +38,7 @@ const NavBar = () => {
           <Logo />
         </div>
         <div className="md:flex md:gap-[5rem] hidden text-sm">
-          <div className="z-0">
+          <Link href="/products-range" className="z-0">
             <div
               className="flex flex-col items-start text-white uppercase cursor-pointer"
               onMouseEnter={() => {
@@ -56,7 +56,7 @@ const NavBar = () => {
             <MegaMenu menu={menu} index={0}>
               <ProductRange />
             </MegaMenu>
-          </div>
+          </Link>
 
           {NAV_ITEMS.map((item, idx) => {
             return (

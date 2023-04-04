@@ -52,4 +52,10 @@ export default function Title({
       </div>
     );
   }
+
+  return (
+    <div {...rest} className={`${className} text-lg`}>
+      {children}
+    </div>
+  );
 }
