@@ -4,11 +4,11 @@ export function getStrapiURL(path = "") {
   return `${
     process.env.NEXT_PUBLIC_STRAPI_URL
       ? process.env.NEXT_PUBLIC_STRAPI_URL
-      : "http://localhost:3109"
+      : "http://127.0.0.1:1337"
   }${path}`;
 }
 
-export async function fetchAPI(path, urlParamsObject = {}, options = {}) {
+export async function fetchAPI(path: any, urlParamsObject = {}, options = {}) {
   const mergedOptions = {
     headers: {
       "Content-Type": "application/json",

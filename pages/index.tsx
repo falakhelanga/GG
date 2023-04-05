@@ -10,9 +10,14 @@ import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/Femi
 import { ParallaxProvider } from "react-scroll-parallax";
 import Articles from "@/components/sections/homepage/articles/Articles";
 import GynaguardPromise from "@/components/elements/GynaguardPromise/GynaguardPromise";
-const inter = Inter({ subsets: ["latin"] });
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import axios from "axios";
+import { fetchAPI } from "@/lib/api";
 
-export default function Home() {
+export default function Home({
+  data,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  console.log(data, "data");
   return (
     <>
       <Head>
@@ -41,3 +46,21 @@ export default function Home() {
     </>
   );
 }
+export const getStaticProps: GetStaticProps<{
+  data: any;
+}> = async (ctx) => {
+  // const { data } = await axios.get(
+  //   `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/basic-pages/1?populate=deep`
+  // );
+  const data = await fetchAPI(
+    `/basic-pages/1?populate[hero][populate]=*
+  `,
+    {}
+  );
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
