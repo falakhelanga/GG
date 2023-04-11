@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import WhatsNewCard from "../elements/WhatsNewCard";
 
 const ProductRange = () => {
   const MENU_ITEMS_COL_1: {
@@ -197,6 +198,25 @@ const ProductRange = () => {
               </div>
             </Link>
           </div>
+        </div>
+      </div>
+      <div className="mx-auto w-full max-w-7xl px-8 flex flex-col justify-between pb-10">
+        <div className="uppercase font-bold text-green pb-3">
+          What&apos;s New
+        </div>
+        <div className="grid grid-cols-2">
+          <WhatsNewCard
+            title={"Unscented Regular Pantyliners"}
+            text={
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquatempor incididunt ut labore et dolore magna aliqua..."
+            }
+          />
+          <WhatsNewCard
+            title={"Unscented Regular Pantyliners"}
+            text={
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquatempor incididunt ut labore et dolore magna aliqua..."
+            }
+          />
         </div>
       </div>
     </div>
