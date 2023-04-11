@@ -1,5 +1,4 @@
 import { MenuContextType } from "@/types/context/MenuContextType";
-import { useRouter } from "next/router";
 import {
   Context,
   createContext,
@@ -18,34 +17,41 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   const promiseRef = useRef(null);
   const productsRef = useRef(null);
   const [menuIndex, setMenuIndex] = useState(-1);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(-1);
   const [lock, setLock] = useState(false);
 
-  const showMenu = (index) => {
+  const showMenu = (index: number) => {
     setMenuIndex(index);
   };
 
-  const lockMenu = (index) => {
+  const lockMenu = (index: any) => {
     setLock(true);
-    setMenuIndex(index);
+    setMobileMenuOpen(index);
   };
 
   const unlockMenu = () => {
     setLock(false);
   };
 
-  const unlockAndHideMenu = (index) => {
+  const unlockAndHideMenu = (index: number) => {
     setLock(false);
   };
 
   const hideMenu = () => {
-    if (!lock) {
-      setMenuIndex(-1);
-    }
+    setMenuIndex(-1);
   };
 
   const scrollToSection = (ref: MutableRefObject<null>) => {
     window.scrollTo({
       top: ref?.current?.offsetTop,
+
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToMobileSection = (ref: MutableRefObject<null>) => {
+    window.scrollTo({
+      top: ref?.current?.offsetTop - 100,
 
       behavior: "smooth",
     });
@@ -60,11 +66,13 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
         hideMenu,
         showMenu,
         menuIndex,
+        mobileMenuOpen,
         arcticlesRef,
         productsRef,
         promiseRef,
         feminineHygieneRef,
         scrollToSection,
+        scrollToMobileSection,
       }}
     >
       {children}

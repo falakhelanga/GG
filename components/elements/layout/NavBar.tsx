@@ -7,8 +7,9 @@ import { useMenu } from "@/context/menu";
 import { Transition } from "@headlessui/react";
 import ProductRange from "../navigation/nav/flyout/ProductRange";
 import Link from "next/link";
-import MegaMenu from "../navigation/nav/desktop/MegaMenu";
+import MegaMenu from "../navigation/nav/MegaMenu";
 import BurgerMenu from "../navigation/nav/flyout/BurgerMenu";
+import MobileBurgerMenu from "../navigation/nav/flyout/MobileBurgerMenu";
 
 const NavBar = () => {
   const menu = useMenu();
@@ -53,18 +54,17 @@ const NavBar = () => {
               onMouseEnter={() => {
                 menu.showMenu(0);
               }}
-              // onClick={() => {
-              //   menu.lockMenu(0);
-              // }}
             >
-              <div className="text-[#f5f5f5] ">
+              <div className="text-[#f5f5f5]  ">
                 <span className="">Product</span>
               </div>
-              <div className="font-bold uppercase">Range</div>
+              <div className="font-bold uppercase ">Range</div>
             </div>
-            <MegaMenu menu={menu} index={0}>
-              <ProductRange />
-            </MegaMenu>
+            <div className="hidden md:block">
+              <MegaMenu menu={menu} index={0}>
+                <ProductRange />
+              </MegaMenu>
+            </div>
           </Link>
 
           {NAV_ITEMS.map((item, idx) => {
@@ -96,11 +96,13 @@ const NavBar = () => {
             <div className="font-bold uppercase">hub</div>
           </div>
         </div>
-        <div>
+
+        {/* Desktop */}
+        <div className="hidden md:block">
           <div
             onClick={() => {
               console.log(menu.menuIndex);
-              if (menu.menuIndex === true) {
+              if (menu.menuIndex === 1) {
                 menu.showMenu(-1);
               } else {
                 menu.showMenu(1);
@@ -110,7 +112,7 @@ const NavBar = () => {
           >
             <div className="w-16 h-16 flex justify-center items-center">
               <FontAwesomeIcon
-                icon={menu.menuIndex === true ? faClose : faBars}
+                icon={menu.menuIndex === 1 ? faClose : faBars}
                 color="white"
                 size="xl"
                 className="md:cursor-pointer"
@@ -120,6 +122,34 @@ const NavBar = () => {
 
           <MegaMenu menu={menu} index={1} mouseLeave={false}>
             <BurgerMenu />
+          </MegaMenu>
+        </div>
+
+        {/* Mobile */}
+        <div className="md:hidden block">
+          <div
+            onClick={() => {
+              console.log(menu.menuIndex);
+              if (menu.menuIndex === 2) {
+                menu.showMenu(-1);
+              } else {
+                menu.showMenu(2);
+                menu.lockMenu(true);
+              }
+            }}
+          >
+            <div className="w-16 h-16 flex justify-center items-center">
+              <FontAwesomeIcon
+                icon={menu.menuIndex === 2 ? faClose : faBars}
+                color="white"
+                size="xl"
+                className="md:cursor-pointer"
+              />
+            </div>
+          </div>
+
+          <MegaMenu menu={menu} index={2} mouseLeave={false}>
+            <MobileBurgerMenu />
           </MegaMenu>
         </div>
       </ContentWrap>

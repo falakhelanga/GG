@@ -5,7 +5,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const BurgerMenu = () => {
   return (
-    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[1.5vh] ">
+    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[1.5vh] md:block hidden ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-16 flex justify-end">
           <div className="">
