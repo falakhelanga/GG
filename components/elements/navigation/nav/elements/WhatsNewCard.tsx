@@ -1,6 +1,5 @@
 import { faAngleRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import React from "react";
 
 const WhatsNewCard = ({ title, text }: { title: string; text: string }) => {
