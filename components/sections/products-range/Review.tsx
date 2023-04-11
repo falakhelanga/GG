@@ -5,17 +5,21 @@ import React from "react";
 
 interface ReviewPropType {
   review: ReviewType;
-  reviews: ReviewType[];
 }
 
-const Review = ({ review, reviews }: ReviewPropType) => {
+const Review = ({ review }: ReviewPropType) => {
   return (
-    <div>
-      <div className="italic text-black">&quot;{review.content}&quot;</div>
+    <div className="h-full  flex-col flex">
+      <div
+        className="italic text-black flex-1
+      "
+      >
+        &quot;{review.content}&quot;
+      </div>
       <Title className="text-green capitalize my-6" size="md">
         {review.author}
       </Title>
-      <ReviewStars reviews={reviews} />
+      <ReviewStars avgRating={review.rating} />
     </div>
   );
 };

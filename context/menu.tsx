@@ -1,10 +1,22 @@
 import { MenuContextType } from "@/types/context/MenuContextType";
 import { useRouter } from "next/router";
-import { Context, createContext, ReactNode, useContext, useState } from "react";
+import {
+  Context,
+  createContext,
+  MutableRefObject,
+  ReactNode,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 
 const MenuContext: Context<MenuContextType> = createContext(null as any);
 
 export const MenuProvider = ({ children }: { children: ReactNode }) => {
+  const arcticlesRef = useRef(null);
+  const feminineHygieneRef = useRef(null);
+  const promiseRef = useRef(null);
+  const productsRef = useRef(null);
   const [menuIndex, setMenuIndex] = useState(-1);
   const [lock, setLock] = useState(false);
 
@@ -31,6 +43,14 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const scrollToSection = (ref: MutableRefObject<null>) => {
+    window.scrollTo({
+      top: ref?.current?.offsetTop,
+
+      behavior: "smooth",
+    });
+  };
+
   return (
     <MenuContext.Provider
       value={{
@@ -40,6 +60,11 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
         hideMenu,
         showMenu,
         menuIndex,
+        arcticlesRef,
+        productsRef,
+        promiseRef,
+        feminineHygieneRef,
+        scrollToSection,
       }}
     >
       {children}

@@ -12,35 +12,35 @@ export default function Title({
 }) {
   if (size === "sm") {
     return (
-      <div {...rest} className={`${className} text-lg`}>
+      <div {...rest} className={` text-lg ${className}`}>
         {children}
       </div>
     );
   }
   if (size === "md") {
     return (
-      <div {...rest} className={`${className}  font-semibold text-2xl`}>
+      <div {...rest} className={` font-semibold text-2xl ${className} `}>
         {children}
       </div>
     );
   }
   if (size === "md2") {
     return (
-      <div {...rest} className={`${className}  font-extrabold text-[1.75rem]`}>
+      <div {...rest} className={` font-extrabold text-[1.75rem] ${className} `}>
         {children}
       </div>
     );
   }
   if (size === "lg") {
     return (
-      <div {...rest} className={`${className}  font-semibold text-4xl`}>
+      <div {...rest} className={`  font-semibold text-4xl ${className}`}>
         {children}
       </div>
     );
   }
   if (size === "xl") {
     return (
-      <div {...rest} className={`${className}  font-semibold text-[2.75rem]`}>
+      <div {...rest} className={` font-semibold text-[2.75rem] ${className} `}>
         {children}
       </div>
     );
@@ -54,7 +54,7 @@ export default function Title({
   }
 
   return (
-    <div {...rest} className={`${className} text-lg`}>
+    <div {...rest} className={` text-lg ${className}`}>
       {children}
     </div>
   );

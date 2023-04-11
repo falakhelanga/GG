@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 import ContentWrap from "./ContentWrap";
 import Logo from "../Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,26 +10,35 @@ import Link from "next/link";
 import MegaMenu from "../navigation/nav/desktop/MegaMenu";
 import BurgerMenu from "../navigation/nav/flyout/BurgerMenu";
 
-const NAV_ITEMS = [
-  {
-    lightText: "what is",
-    boldText: "feminine hygiene?",
-    link: "#",
-  },
-  {
-    lightText: "our",
-    boldText: "promise",
-    link: "#",
-  },
-  // {
-  //   lightText: "free to just be",
-  //   boldText: "hub",
-  //   link: "#",
-  // },
-];
-
 const NavBar = () => {
   const menu = useMenu();
+  const {
+    arcticlesRef,
+    scrollToSection,
+    feminineHygieneRef,
+    productsRef,
+    promiseRef,
+  } = menu;
+  const NAV_ITEMS = useMemo(
+    () => [
+      {
+        lightText: "what is",
+        boldText: "feminine hygiene?",
+        link: feminineHygieneRef,
+      },
+      {
+        lightText: "our",
+        boldText: "promise",
+        link: promiseRef,
+      },
+      // {
+      //   lightText: "free to just be",
+      //   boldText: "hub",
+      //   link: "#",
+      // },
+    ],
+    [feminineHygieneRef, promiseRef]
+  );
 
   return (
     <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex items-center z-[100]">
@@ -60,24 +69,32 @@ const NavBar = () => {
 
           {NAV_ITEMS.map((item, idx) => {
             return (
-              <Link
-                href={item.link}
+              <div
+                // href={item.link}
+                onClick={() => {
+                  scrollToSection(item.link);
+                }}
                 onMouseEnter={menu.hideMenu}
                 key={idx}
-                className="flex flex-col items-start text-white  uppercase"
+                className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
               >
                 <div className="text-[#f5f5f5]">{item.lightText}</div>
                 <div className="font-bold">{item.boldText}</div>
-              </Link>
+              </div>
             );
           })}
-          <Link href={"#"} className="flex flex-col items-start text-white  ">
+          <div
+            onClick={() => {
+              scrollToSection(arcticlesRef);
+            }}
+            className="flex flex-col items-start text-white cursor-pointer  "
+          >
             <div className="text-[#f5f5f5] ">
               <span>Free to</span>{" "}
               <span className="font-paul lowercase  ">just be</span>
             </div>
             <div className="font-bold uppercase">hub</div>
-          </Link>
+          </div>
         </div>
         <div>
           <div

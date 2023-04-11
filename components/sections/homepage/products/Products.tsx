@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import Product from "./Product";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import * as ReactDOMServer from "react-dom/server";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/pro-solid-svg-icons";
 import Image from "next/image";
+import { ProductType } from "@/types/products";
 
-const Products = () => {
+const Products = ({ products }: { products: ProductType[] }) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
   const pagination = {
     el: ".my-custom-pagination-div",
     clickable: true,
-    renderBullet: function (index, className) {
+    renderBullet: function (index: number, className: string) {
       return ReactDOMServer.renderToStaticMarkup(
         <div
           className={`${className} bg-pink h-4 w-4 flex gap-4 rounded-full`}
@@ -32,7 +26,7 @@ const Products = () => {
   return (
     <div className=" relative">
       <div
-        className=" absolute top-[20%] md:left-[15rem] left-0 z-[3] cursor-pointer  "
+        className=" absolute top-[20%] md:left-[15rem] -left-6 z-[3] cursor-pointer  "
         ref={(node) => setPrevEl(node)}
       >
         <Image
@@ -45,7 +39,7 @@ const Products = () => {
 
       <div
         ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] md:right-[15rem] right-0 z-[3] cursor-pointer "
+        className=" absolute top-[20%] md:right-[15rem] -right-6 z-[3] cursor-pointer "
       >
         <Image
           alt="arrow-left"
@@ -61,36 +55,30 @@ const Products = () => {
             slidesPerView: 1,
           },
           1024: {
+            slidesPerView: 4,
+          },
+          1685: {
             slidesPerView: 5,
           },
         }}
         slidesPerView={5}
         navigation={{ prevEl, nextEl }}
         spaceBetween={90}
-        //   slidesPerGroup={5}
         loop={true}
-        //  loopFillGroupWithBlank={true}
         pagination={pagination}
         modules={[Pagination, Navigation]}
-        className="mySwiper flex h-full "
+        className="mySwiper  "
       >
-        {[...Array(10)].map((_, idx) => {
+        {products.map((product, idx) => {
           return (
-            <SwiperSlide key={idx} className="h-full ">
-              <Product />
+            <SwiperSlide key={idx} className="">
+              <Product isCarousel product={product} />
             </SwiperSlide>
           );
         })}
       </Swiper>
-      {/* <div className="flex gap-2 mx-4  mt-10 justify-center">
-        {[...Array(20)].map((_, index) => (
-          <div
-            key={index}
-            className=" rounded-full bg-pink h-5 w-5  features_dot  "
-          ></div>
-        ))}
-      </div> */}
-      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 mt-6 " />
+
+      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[5rem] mt-[9rem] " />
     </div>
   );
 };

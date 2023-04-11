@@ -4,35 +4,33 @@ import ContentWrap from "@/components/elements/layout/ContentWrap";
 import ProductsRange from "@/components/sections/products-range/ProductsRange";
 import Reviews from "@/components/sections/products-range/Reviews";
 import Tips from "@/components/sections/products-range/Tips";
+import { fetchAPI } from "@/lib/api";
+import { ApiProductsRangeProductsRange } from "@/schemas";
+import { CategoryType, ProductType, ReviewType } from "@/types/products";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-
-const links = [
-  {
-    name: "comfort",
-    link: "comfort",
-    text: `Gentle enough for everyday use to support a healthy, ideal pH
-      balance for ultimate comfort in the v-zone`,
-    index: -1,
-  },
-  {
-    name: "control",
-    link: "control",
-    text: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
-    index: 0,
-  },
-  {
-    name: "intimate",
-    link: "intimate",
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
-    index: 1,
-  },
-];
+import React, { useEffect, useMemo, useState } from "react";
 
 const sliderWidth = 7;
-const ProductRangePage = () => {
+
+const ProductRangePage = ({
+  data,
+  products,
+  categories,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const links: {
+    name: string;
+    link: string;
+    text: string;
+    index: number;
+  }[] = categories.map((category, idx) => ({
+    name: category.name,
+    link: category.name,
+    text: category.description,
+    index: idx - 1,
+  }));
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
@@ -40,9 +38,39 @@ const ProductRangePage = () => {
   const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
 
+  const pageProducts = useMemo(() => {
+    return products.filter((item: any) => {
+      return item.category.data.attributes.name === page;
+    });
+  }, [products, data]);
+
+  const reviews = pageProducts.map((product: any) => {
+    return product.reviews;
+  });
+
+  const reviewsArray = reviews
+    .reduce((acc: any, curr: any) => {
+      return acc.concat(curr);
+    }, [])
+    .reduce((acc: any, curr: any) => {
+      for (const review of curr.data) {
+        acc.push(review);
+      }
+      return acc;
+    }, [])
+    .map((review: any) => ({ ...review.attributes, id: review.id }));
+
   const moveSlider = (index: number) => {
     setSliderPosition(190 * index);
   };
+
+  //////if router.query.page === undefined, push the page to ?page=comfort
+  useEffect(() => {
+    if (!page) {
+      router.push("?page=comfort");
+    }
+  }, []);
+
   ////// set tab index on page mount
   useEffect(() => {
     if (router.isReady) {
@@ -61,6 +89,7 @@ const ProductRangePage = () => {
   useEffect(() => {
     moveSlider(slideCurrentIndex);
   }, [slideCurrentIndex]);
+
   return (
     <>
       <Head>
@@ -124,10 +153,10 @@ const ProductRangePage = () => {
         </div>
 
         {/* products range */}
-        <ContentWrap className="mt-14">
-          <ProductsRange />
-          <div className="mt-16">
-            <Reviews />
+        <ContentWrap className="mt-14 overflow-hidden">
+          <ProductsRange products={pageProducts} />
+          <div className="mt-[5rem]">
+            <Reviews reviews={reviewsArray} />
           </div>
         </ContentWrap>
         <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] w-full py-8 mt-14">
@@ -139,4 +168,31 @@ const ProductRangePage = () => {
   );
 };
 
+export const getStaticProps: GetStaticProps<{
+  data: ApiProductsRangeProductsRange;
+  products: ProductType[];
+  categories: CategoryType[];
+}> = async (ctx) => {
+  const pagePopulate = [
+    "products.products.image",
+    "products.products",
+    "products.products.reviews",
+    "products.products.category",
+  ];
+  const { data } = await fetchAPI("products-range", pagePopulate);
+  const { data: categories } = await fetchAPI("categories");
+  const products: ProductType[] = data.attributes.products.products.data.map(
+    (product: any) => ({ ...product.attributes, id: product.id })
+  );
+  return {
+    props: {
+      data,
+      products,
+      categories: categories.map((category: any) => ({
+        ...category.attributes,
+        id: category.id,
+      })),
+    },
+  };
+};
 export default ProductRangePage;

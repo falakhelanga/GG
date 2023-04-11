@@ -13,11 +13,30 @@ import GynaguardPromise from "@/components/elements/GynaguardPromise/GynaguardPr
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import axios from "axios";
 import { fetchAPI } from "@/lib/api";
+import { ApiHomePageHomePage } from "@/schemas";
+import { useMemo, useRef } from "react";
+import { CategoryType, ProductType } from "@/types/products";
+import { useMenu } from "@/context/menu";
 
 export default function Home({
-  data,
+  products,
+  hero,
+  categories,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(data, "data");
+  const { arcticlesRef, productsRef, promiseRef, feminineHygieneRef } =
+    useMenu();
+  const links: {
+    name: string;
+    link: string;
+    text: string;
+    index: number;
+  }[] = categories.map((category, idx) => ({
+    name: category.name,
+    link: category.name,
+    text: category.description,
+    index: idx - 1,
+  }));
+
   return (
     <>
       <Head>
@@ -28,17 +47,17 @@ export default function Home({
       </Head>
       <ParallaxProvider>
         <main className="">
-          <HomePageHero />
-          <div className="mt-8 mx-8">
-            <Products />
+          <HomePageHero heroData={hero} links={links} />
+          <div ref={productsRef} className="mt-8 mx-8">
+            <Products products={products} />
           </div>
-          <div className="mt-16">
+          <div ref={feminineHygieneRef} className="md:mt-16 mt-4">
             <FeminineHygiene />
           </div>
-          <div className="mt-1">
+          <div ref={arcticlesRef} className="mt-1">
             <Articles />
           </div>
-          <div>
+          <div ref={promiseRef}>
             <GynaguardPromise />
           </div>
         </main>
@@ -47,20 +66,37 @@ export default function Home({
   );
 }
 export const getStaticProps: GetStaticProps<{
-  data: any;
+  products: ProductType[];
+  hero: any;
+  categories: CategoryType[];
 }> = async (ctx) => {
-  // const { data } = await axios.get(
-  //   `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/basic-pages/1?populate=deep`
-  // );
-  const data = await fetchAPI(
-    `/basic-pages/1?populate[hero][populate]=*
-  `,
-    {}
+  const pagePopulate = [
+    "hero",
+    "hero.desktopImages",
+    "hero.mobileImages",
+    "hero.button",
+    "hero.button.button_variant",
+    "hero.button.color",
+    "products",
+    "products.image",
+    // "products.products",
+  ];
+  const { data } = await fetchAPI("home-page", pagePopulate);
+  const { data: categories } = await fetchAPI("categories");
+  const products: ProductType[] = data.attributes.products.data.map(
+    (product: any) => ({ ...product.attributes, id: product.id })
   );
+
+  const hero = data.attributes.hero;
 
   return {
     props: {
-      data,
+      products,
+      categories: categories.map((category: any) => ({
+        ...category.attributes,
+        id: data.id,
+      })),
+      hero,
     },
   };
 };

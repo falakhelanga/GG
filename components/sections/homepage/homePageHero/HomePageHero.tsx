@@ -12,30 +12,21 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import React, { useEffect, useRef, useState } from "react";
 import Button from "@/components/elements/Button";
+import { LayoutHero } from "@/schemas";
 
-const links = [
-  {
-    name: "comfort",
-    link: "comfort",
-    text: `Gentle enough for everyday use to support a healthy, ideal pH
-    balance for ultimate comfort in the v-zone`,
-    index: -1,
-  },
-  {
-    name: "control",
-    link: "control",
-    text: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
-    index: 0,
-  },
-  {
-    name: "intimate",
-    link: "intimate",
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci quidem sint expedita soluta molestiae.",
-    index: 1,
-  },
-];
 const sliderWidth = 7;
-const HomePageHero = () => {
+const HomePageHero = ({
+  heroData,
+  links,
+}: {
+  heroData: any;
+  links: {
+    name: string;
+    link: string;
+    text: string;
+    index: number;
+  }[];
+}) => {
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
@@ -44,7 +35,7 @@ const HomePageHero = () => {
   const [activeTab, setActiveTab] = useState(1);
   const containerRef = useRef(1);
   const [containerWidth, setContainerWidth] = useState(0);
-  const moveSlider = (index) => {
+  const moveSlider = (index: number) => {
     setSliderPosition(190 * index);
   };
   ////// set tab index on page mount
@@ -91,7 +82,7 @@ const HomePageHero = () => {
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper flex md:h-[80vh] h-[80vh] w-full"
       >
-        {[...Array(3)].map((_, idx) => {
+        {heroData.desktopImages.data.map((image: any, idx: number) => {
           return (
             <SwiperSlide
               key={idx}
@@ -99,12 +90,13 @@ const HomePageHero = () => {
             >
               <div className="flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end bg-[url(/images/home_mobile_slider_img_1.png)] md:bg-[url(/images/home_desktop_slider_img_1.png)] bg-cover bg-no-repeat bg-center">
                 <Button
-                  onClick={() => {
-                    router.push("/entry");
-                  }}
+                  link={heroData.button.link}
+                  variant={
+                    heroData.button.button_variant.data.attributes.variant
+                  }
                   className="uppercase mb-14"
                 >
-                  find out more
+                  {heroData.button.text}
                 </Button>
               </div>
             </SwiperSlide>
