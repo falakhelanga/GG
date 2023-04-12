@@ -131,9 +131,9 @@ const NavBar = () => {
         <div className="md:hidden block">
           <div
             onClick={() => {
-              console.log(menu.menuIndex);
               if (menu.menuIndex === 2) {
                 menu.showMenu(-1);
+                menu.showMobileMegaMenu(-1);
               } else {
                 menu.showMenu(2);
                 menu.lockMenu(true);
