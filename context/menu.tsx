@@ -17,16 +17,20 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   const promiseRef = useRef(null);
   const productsRef = useRef(null);
   const [menuIndex, setMenuIndex] = useState(-1);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(-1);
+  const [mobileMenuIndex, setMobileMenuIndex] = useState(-1);
   const [lock, setLock] = useState(false);
 
   const showMenu = (index: number) => {
     setMenuIndex(index);
   };
 
+  const showMobileMegaMenu = (index: number) => {
+    setMobileMenuIndex(index);
+    console.log(index);
+  };
+
   const lockMenu = (index: any) => {
     setLock(true);
-    setMobileMenuOpen(index);
   };
 
   const unlockMenu = () => {
@@ -39,6 +43,10 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
 
   const hideMenu = () => {
     setMenuIndex(-1);
+  };
+
+  const hideMobileMegaMenu = () => {
+    setMobileMenuIndex(-1);
   };
 
   const scrollToSection = (ref: MutableRefObject<null>) => {
@@ -60,19 +68,21 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MenuContext.Provider
       value={{
+        showMobileMegaMenu,
         unlockMenu,
         lockMenu,
         unlockAndHideMenu,
         hideMenu,
         showMenu,
         menuIndex,
-        mobileMenuOpen,
+        mobileMenuIndex,
         arcticlesRef,
         productsRef,
         promiseRef,
         feminineHygieneRef,
         scrollToSection,
         scrollToMobileSection,
+        hideMobileMegaMenu,
       }}
     >
       {children}
