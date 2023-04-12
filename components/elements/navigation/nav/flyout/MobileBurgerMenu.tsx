@@ -107,12 +107,12 @@ const MobileBurgerMenu = () => {
   ];
 
   return (
-    <div className="absolute bg-pink bg-opacity-90 z-[100] w-full h-screen ">
+    <div className="absolute bg-pink bg-opacity-90 z-[100] w-full h-screen min-h-full overflow-auto ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl  flex justify-start">
           <div className=" space-y-10">
             <MobileMegaMenu index={1} menu={menu}>
-              <div className="h-screen pt-5 pl-5">
+              <div className=" pt-5 pl-5">
                 <div
                   className="flex justify-between items-center pb-4"
                   onClick={() => menu.hideMobileMegaMenu()}
