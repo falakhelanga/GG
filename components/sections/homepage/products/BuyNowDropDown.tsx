@@ -36,7 +36,9 @@ const BuyNowDropDown = ({ isCarousel = false }: { isCarousel?: boolean }) => {
           className={` ${
             showDropDown ? "flex" : "hidden"
           }  w-full  flex-col items-center mt-2  right-0 absolute ${
-            isCarousel ? "-bottom-[8.7rem]" : "-bottom-[7.7rem]"
+            isCarousel
+              ? "-bottom-[5rem] -2xl:bottom-[3rem]"
+              : "-bottom-[7.7rem]"
           }  transition transition-all duration-300 ease `}
         >
           <div

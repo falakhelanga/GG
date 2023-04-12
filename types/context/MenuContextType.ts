@@ -16,6 +16,5 @@ export type MenuContextType = {
   feminineHygieneRef: MutableRefObject<null>;
   promiseRef: MutableRefObject<null>;
   productsRef: MutableRefObject<null>;
-  scrollToSection: (ref: MutableRefObject<null>) => void;
   scrollToMobileSection: (ref: MutableRefObject<null>) => void;
 };

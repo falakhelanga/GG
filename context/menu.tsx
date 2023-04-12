@@ -41,14 +41,6 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     setMenuIndex(-1);
   };
 
-  const scrollToSection = (ref: MutableRefObject<null>) => {
-    window.scrollTo({
-      top: ref?.current?.offsetTop,
-
-      behavior: "smooth",
-    });
-  };
-
   const scrollToMobileSection = (ref: MutableRefObject<null>) => {
     window.scrollTo({
       top: ref?.current?.offsetTop - 100,
@@ -71,7 +63,6 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
         productsRef,
         promiseRef,
         feminineHygieneRef,
-        scrollToSection,
         scrollToMobileSection,
       }}
     >

@@ -16,6 +16,7 @@ import ReactMarkdown from "react-markdown";
 import { default as _ReactPlayer } from "react-player/youtube";
 import { ReactPlayerProps } from "react-player/types/lib";
 import Link from "next/link";
+import truncate from "@/helpers.tsx/textTruncate";
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 const IndividualProduct = ({
   product,
@@ -36,7 +37,7 @@ const IndividualProduct = ({
 
       <div>
         <ContentWrap className="mt-[7rem]">
-          <div className="uppercase flex items-center gap-2 text-sm text-black">
+          <div className="uppercase flex items-center gap-2 text-sm text-black max-sm:text-xs">
             <Link className="hover:text-pink" href="/products-range">
               products
             </Link>
@@ -54,10 +55,14 @@ const IndividualProduct = ({
               icon={faChevronRight}
               className="text-pink text-xs"
             />
-            <span className="font-bold">{product.name}</span>
+            <span className="font-bold md:hidden block">
+              {" "}
+              {truncate(15, product.name)}{" "}
+            </span>
+            <span className="font-bold md:block hidden"> {product.name} </span>
           </div>
 
-          <div className="grid grid-cols-2 mt-12 gap-4">
+          <div className="grid md:grid-cols-2 mt-12 gap-4">
             <div className="h-full w-full">
               <Image
                 className="h-full w-full"
@@ -68,10 +73,10 @@ const IndividualProduct = ({
               />
             </div>
             <div className="h-full w-full ">
-              <div className="text-pink uppercase font-normal text-4xl">
+              <div className="text-pink uppercase font-normal text-3xl md:text-4xl">
                 Gynaguard
               </div>
-              <ReactMarkdown className="text-green text-5xl font-semibold mt-3 prose">
+              <ReactMarkdown className="text-green md:text-5xl text-4xl font-semibold mt-3 prose">
                 {product.name}
               </ReactMarkdown>
               <ReactMarkdown className=" my-6 font-bold text-black prose">
@@ -86,26 +91,29 @@ const IndividualProduct = ({
               <ReactMarkdown className="   text-black mb-6 prose -ml-3">
                 {product.subContentBullets}
               </ReactMarkdown>
-              <div className="w-[50%] relative">
+              <div className="md:w-[50%] relative">
                 <BuyNowDropDown />
               </div>
             </div>
           </div>
-          <div className="my-[5rem] ">
+          <div className="md:my-[5rem] my-[3rem] ">
             <Reviews reviews={reviews} />
           </div>
         </ContentWrap>
-        <div className="  w-full flex-1 flex flex-col items-center justify-center bg-[#f2f1f0] object-cover h-[65vh] relative mt-[8rem]">
-          <ReactPlayer
-            className="react-player aspect-video -mt-[5rem]"
-            height={"100%"}
-            width={"50%"}
-            url={"https://youtu.be/YkLm5cUR0aM"}
-            controls
-          />
-          <div className="w-full text-center text-green font-bold text-lg my-8">
-            {product.name}
+        <div className="  w-full flex-1 flex flex-col items-center justify-center bg-[#f2f1f0] object-cover md:h-[65vh] h-auto relative md:mt-[8rem]">
+          <div className="md:w-[50%] w-full  md:-mt-[3rem] h-full">
+            <ReactPlayer
+              className="react-player aspect-video "
+              height={"100%"}
+              width={"100%"}
+              url={"https://youtu.be/YkLm5cUR0aM"}
+              controls
+            />
           </div>
+
+          <ContentWrap className="w-full text-center text-green font-bold md:text-lg md:my-8 my-4">
+            {product.name}
+          </ContentWrap>
         </div>
         <div>
           <GynaguardPromise />

@@ -14,16 +14,19 @@ const Footer = () => {
     <div className="bg-pink pt-14 ">
       <ContentWrap className="grid grid-cols-3 text-white">
         <div className=" col-span-3 md:col-span-1 flex flex-col items-center mb-6  md:items-start gap-4 md:pb-[10rem]">
-          <Link href="/home" className="uppercase hover:opacity-80 ">
+          <Link href="/" className="uppercase hover:opacity-80 ">
             home <span className="font-bold">page</span>
           </Link>
-          <Link href="/product-range" className="uppercase hover:opacity-80 ">
+          <Link href="/products-range" className="uppercase hover:opacity-80 ">
             product <span className="font-bold">range</span>
           </Link>
-          <Link href="/promise" className="uppercase hover:opacity-80 ">
+          <Link
+            href="/?section=promise"
+            className="uppercase hover:opacity-80 "
+          >
             our <span className="font-bold">promise</span>
           </Link>
-          <Link href="/home" className=" hover:opacity-80 ">
+          <Link href="/?section=hub" className=" hover:opacity-80 ">
             Free to <span className="font-paul">just be</span>{" "}
             <span className="font-bold uppercase">HUB</span>
           </Link>
@@ -33,13 +36,13 @@ const Footer = () => {
             <Logo />
           </div>
           <div className="flex gap-4 my-6">
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 cursor-pointer">
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer">
               <FontAwesomeIcon icon={faFacebookF} color="white" size="xl" />
             </div>
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 cursor-pointer">
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer">
               <FontAwesomeIcon icon={faInstagram} size="xl" />
             </div>
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 cursor-pointer">
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer">
               <FontAwesomeIcon icon={faTiktok} size="xl" />
             </div>
           </div>

@@ -70,7 +70,9 @@ const Product = ({
             />
           </Link>
         </div>
-        <BuyNowDropDown isCarousel={isCarousel} />
+        <div>
+          <BuyNowDropDown isCarousel={isCarousel} />
+        </div>
       </div>
     </div>
   );

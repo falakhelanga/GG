@@ -14,17 +14,20 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import axios from "axios";
 import { fetchAPI } from "@/lib/api";
 import { ApiHomePageHomePage } from "@/schemas";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { CategoryType, ProductType } from "@/types/products";
 import { useMenu } from "@/context/menu";
+import { useRouter } from "next/router";
 
 export default function Home({
   products,
   hero,
   categories,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { arcticlesRef, productsRef, promiseRef, feminineHygieneRef } =
-    useMenu();
+  const arcticlesRef = useRef(null);
+  const feminineHygieneRef = useRef(null);
+  const promiseRef = useRef(null);
+  const productsRef = useRef(null);
   const links: {
     name: string;
     link: string;
@@ -36,6 +39,33 @@ export default function Home({
     text: category.description,
     index: idx - 1,
   }));
+
+  const router = useRouter();
+  const { section } = router.query;
+
+  useEffect(() => {
+    if (section === "hub") {
+      window.scrollTo({
+        top: arcticlesRef?.current?.offsetTop,
+
+        behavior: "smooth",
+      });
+    }
+    if (section === "promise") {
+      window.scrollTo({
+        top: promiseRef?.current?.offsetTop,
+
+        behavior: "smooth",
+      });
+    }
+    if (section === "feminine") {
+      window.scrollTo({
+        top: feminineHygieneRef?.current?.offsetTop,
+
+        behavior: "smooth",
+      });
+    }
+  }, [section]);
 
   return (
     <>

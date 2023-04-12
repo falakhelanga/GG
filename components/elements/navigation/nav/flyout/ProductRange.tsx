@@ -93,7 +93,7 @@ const ProductRange = () => {
   ];
 
   return (
-    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[2.9vh] ">
+    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[0] ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-8 flex justify-between">
           <div className=" ">
@@ -189,7 +189,7 @@ const ProductRange = () => {
               );
             })}
             <Link href={"/#"} className="w-64 space-y-1 pb-5">
-              <div className="uppercase font-bold text-gray-500 hover:text-pink cursor-pointer">
+              <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer">
                 <FontAwesomeIcon
                   icon={faAngleRight}
                   className="text-pink pr-2"

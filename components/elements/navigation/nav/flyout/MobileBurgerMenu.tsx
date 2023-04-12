@@ -8,7 +8,7 @@ const MobileBurgerMenu = () => {
   const menu = useMenu();
   const {
     arcticlesRef,
-    scrollToSection,
+
     scrollToMobileSection,
     feminineHygieneRef,
     productsRef,
@@ -20,13 +20,18 @@ const MobileBurgerMenu = () => {
       {
         lightText: "what is",
         boldText: "feminine hygiene?",
-        link: feminineHygieneRef,
+        link: "feminine",
       },
       {
         lightText: "our",
         boldText: "promise",
-        link: promiseRef,
+        link: "promise",
       },
+      // {
+      //   lightText: "free to just be",
+      //   boldText: "hub",
+      //   link: "#",
+      // },
     ],
     [feminineHygieneRef, promiseRef]
   );
@@ -44,10 +49,9 @@ const MobileBurgerMenu = () => {
             </Link>
             {NAV_ITEMS.map((item, idx) => {
               return (
-                <div
-                  // href={item.link}
+                <Link
+                  href={`/?section=${item.link}`}
                   onClick={() => {
-                    scrollToMobileSection(item.link);
                     menu.hideMenu();
                   }}
                   key={idx}
@@ -55,22 +59,22 @@ const MobileBurgerMenu = () => {
                 >
                   <div className="text-[#f5f5f5]">{item.lightText}</div>
                   <div className="font-bold">{item.boldText}</div>
-                </div>
+                </Link>
               );
             })}
-            <div
+            <Link
+              href="/?section=hub"
               onClick={() => {
-                scrollToMobileSection(arcticlesRef);
                 menu.hideMenu();
               }}
-              className="flex flex-col items-start text-white cursor-pointer  "
+              className="flex flex-col items-start text-white md:cursor-pointer  "
             >
               <div className="text-[#f5f5f5] ">
                 <span>Free to</span>
                 <span className="font-paul lowercase  ">just be</span>
               </div>
               <div className="font-bold uppercase">hub</div>
-            </div>
+            </Link>
             <Link
               href={"/#"}
               className="flex flex-col items-start text-white  uppercase md:cursor-pointer"

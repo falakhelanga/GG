@@ -47,7 +47,7 @@ const GallerySortDropDown = ({
             className="border gallery-dropdown-triangle"
           ></div>
 
-          <div className="w-full rounded-md overflow-hidden cursor-pointer">
+          <div className="w-full rounded-md overflow-hidden md:cursor-pointer">
             {options.map((item, idx) => {
               return (
                 <div
