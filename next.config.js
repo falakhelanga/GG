@@ -4,7 +4,8 @@ const nextConfig = {
     domains: [
       "res.cloudinary.com",
       "127.0.0.1",
-      "tiresome-moldy-hook.media.strapiapp.com",
+
+      "gynaguard.hosting.bigbrave.digital",
     ],
   },
   reactStrictMode: true,

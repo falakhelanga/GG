@@ -18,6 +18,7 @@ const Product = ({
   product: ProductType;
   isCarousel?: boolean;
 }) => {
+  console.log(product.image.data.attributes.url, "kdkd");
   return (
     <div
       className={` md:cursor-pointer relative ${
