@@ -11,7 +11,7 @@ export default function MobileMegaMenu({
   index: any;
 }) {
   return (
-    <div>
+    <div className=" overflow-auto">
       <Transition
         as={Fragment}
         show={index == menu.mobileMenuIndex}
@@ -22,8 +22,10 @@ export default function MobileMegaMenu({
         leaveFrom="opacity-100 translate-x-0"
         leaveTo="opacity-0 -translate-x-1"
       >
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-screen  pl-6 sm:px-0 p-0 z-0">
-          <div className="absolute z-0 w-screen bg-white">{children}</div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-screen  pl-6 sm:px-0 p-0 z-0 ">
+          <div className="absolute z-0 w-screen bg-white top-0 ">
+            {children}
+          </div>
         </div>
       </Transition>
     </div>

@@ -4,9 +4,15 @@ import ContentWrap from "@/components/elements/layout/ContentWrap";
 import ProductsRange from "@/components/sections/products-range/ProductsRange";
 import Reviews from "@/components/sections/products-range/Reviews";
 import Tips from "@/components/sections/products-range/Tips";
+import { useSubCategories } from "@/context/subCategories";
 import { fetchAPI } from "@/lib/api";
 import { ApiProductsRangeProductsRange } from "@/schemas";
-import { CategoryType, ProductType, ReviewType } from "@/types/products";
+import {
+  CategoryType,
+  ProductType,
+  ReviewType,
+  SubCategoryType,
+} from "@/types/products";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -19,6 +25,8 @@ const ProductRangePage = ({
   data,
   products,
   categories,
+  subcategories,
+  newProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const links: {
     name: string;
@@ -63,7 +71,11 @@ const ProductRangePage = ({
   const moveSlider = (index: number) => {
     setSliderPosition(190 * index);
   };
-
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
     if (!page) {
@@ -172,6 +184,8 @@ export const getStaticProps: GetStaticProps<{
   data: ApiProductsRangeProductsRange;
   products: ProductType[];
   categories: CategoryType[];
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
 }> = async (ctx) => {
   const pagePopulate = [
     "products.products.image",
@@ -180,17 +194,33 @@ export const getStaticProps: GetStaticProps<{
     "products.products.category",
   ];
   const { data } = await fetchAPI("products-range", pagePopulate);
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
   const { data: categories } = await fetchAPI("categories");
   const products: ProductType[] = data.attributes.products.products.data.map(
     (product: any) => ({ ...product.attributes, id: product.id })
   );
+  const newProducts = products.filter((product) => product.isNew);
+  products.sort((a, b) => {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
   return {
     props: {
       data,
       products,
+      newProducts,
       categories: categories.map((category: any) => ({
         ...category.attributes,
         id: category.id,
+      })),
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
       })),
     },
   };

@@ -5,26 +5,47 @@ import ContentWrap from "@/components/elements/layout/ContentWrap";
 import BuyNowDropDown from "@/components/sections/homepage/products/BuyNowDropDown";
 import Reviews from "@/components/sections/products-range/Reviews";
 import { fetchAPI } from "@/lib/api";
-import { CategoryType, ProductType } from "@/types/products";
+import {
+  CategoryType,
+  GynaguardPromiseType,
+  ProductType,
+  SubCategoryType,
+} from "@/types/products";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { default as _ReactPlayer } from "react-player/youtube";
 import { ReactPlayerProps } from "react-player/types/lib";
 import Link from "next/link";
 import truncate from "@/helpers.tsx/textTruncate";
+import { useSubCategories } from "@/context/subCategories";
 const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
 const IndividualProduct = ({
   product,
+  subcategories,
+  newProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const reviews = product.reviews.data.map((review: any) => ({
     ...review.attributes,
     id: review.id,
   }));
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
+  console.log(product.gynaguard_promise, "dd");
+  const gynaguardPromise: GynaguardPromiseType | null = product
+    .gynaguard_promise.data
+    ? {
+        ...product.gynaguard_promise.data.attributes,
+        id: product.gynaguard_promise.id,
+      }
+    : null;
 
   return (
     <>
@@ -63,14 +84,32 @@ const IndividualProduct = ({
           </div>
 
           <div className="grid md:grid-cols-2 mt-12 gap-4">
-            <div className="h-full w-full">
+            <div className="h-full w-full relative">
               <Image
                 className="h-full w-full"
-                alt=""
+                alt={product.name}
                 height={1000}
                 width={1000}
-                src={`${product.image.data.attributes.url}`}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${product.image.data.attributes.url}`}
               />
+              {gynaguardPromise && (
+                <>
+                  <Image
+                    className="absolute top-0 right-8 md:block hidden"
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${gynaguardPromise.badge.data.attributes.url}`}
+                    alt={gynaguardPromise.text}
+                    height={170}
+                    width={170}
+                  />
+                  <Image
+                    className="absolute top-0 right-8 md:hidden block"
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${gynaguardPromise.badge.data.attributes.url}`}
+                    alt={gynaguardPromise.text}
+                    height={100}
+                    width={100}
+                  />
+                </>
+              )}
             </div>
             <div className="h-full w-full ">
               <div className="text-pink uppercase font-normal text-3xl md:text-4xl">
@@ -92,7 +131,7 @@ const IndividualProduct = ({
                 {product.subContentBullets}
               </ReactMarkdown>
               <div className="md:w-[50%] relative">
-                <BuyNowDropDown />
+                <BuyNowDropDown product={product} />
               </div>
             </div>
           </div>
@@ -141,16 +180,45 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps<{ product: ProductType }> = async (
-  ctx
-) => {
-  const pagePopulate = ["image", "reviews", "category"];
+export const getStaticProps: GetStaticProps<{
+  product: ProductType;
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
+}> = async (ctx) => {
+  const pagePopulate = [
+    "image",
+    "reviews",
+    "category",
+    "gynaguard_promise",
+    "gynaguard_promise.badge",
+  ];
+
   const productId = ctx?.params?.product_id;
   const { data } = await fetchAPI(`products/${productId}`, pagePopulate);
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  // const { data: gynaguardPromises } = await fetchAPI("gynaguard-promises", [
+  //   "badge",
+  // ]);
+  const productPopulate = ["products.products.image", "products.products"];
+  const { data: productsData } = await fetchAPI(
+    "products-range",
+    productPopulate
+  );
+  const products: ProductType[] =
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
+      id: product.id,
+    }));
+  const newProducts = products.filter((product) => product.isNew);
   const product = data.attributes;
   return {
     props: {
+      newProducts,
       product,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
     },
   };
 };

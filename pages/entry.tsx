@@ -1,10 +1,22 @@
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import EntryForm from "@/components/sections/CompetitionPlatformPage.tsx/EntryForm/EntryForm";
 import HowToEnter from "@/components/sections/CompetitionPlatformPage.tsx/EntryForm/HowToEnter";
+import { useSubCategories } from "@/context/subCategories";
+import { fetchAPI } from "@/lib/api";
+import { ProductType, SubCategoryType } from "@/types/products";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
-const entry = () => {
+const Entry = ({
+  newProducts,
+  subcategories,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   return (
     <>
       <Head>
@@ -23,4 +35,31 @@ const entry = () => {
   );
 };
 
-export default entry;
+export const getStaticProps: GetStaticProps<{
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
+}> = async (ctx) => {
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  const productPopulate = ["products.products.image", "products.products"];
+  const { data: productsData } = await fetchAPI(
+    "products-range",
+    productPopulate
+  );
+  const products: ProductType[] =
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
+      id: product.id,
+    }));
+  const newProducts = products.filter((product) => product.isNew);
+  return {
+    props: {
+      newProducts,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
+    },
+  };
+};
+
+export default Entry;

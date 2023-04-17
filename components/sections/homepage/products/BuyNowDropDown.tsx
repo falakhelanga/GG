@@ -4,9 +4,16 @@ import React, { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutSide";
 import Button from "@/components/elements/Button";
 import Image from "next/image";
+import { ProductType } from "@/types/products";
 const options = ["newest", "oldest"];
 
-const BuyNowDropDown = ({ isCarousel = false }: { isCarousel?: boolean }) => {
+const BuyNowDropDown = ({
+  isCarousel = false,
+  product,
+}: {
+  isCarousel?: boolean;
+  product: ProductType;
+}) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const buyNowBtnRef = useRef(null);
   useClickOutside(buyNowBtnRef, () => {
@@ -33,13 +40,9 @@ const BuyNowDropDown = ({ isCarousel = false }: { isCarousel?: boolean }) => {
 
       <div>
         <div
-          className={` ${
+          className={`  ${
             showDropDown ? "flex" : "hidden"
-          }  w-full  flex-col items-center mt-2  right-0 absolute ${
-            isCarousel
-              ? "-bottom-[5rem] -2xl:bottom-[3rem]"
-              : "-bottom-[7.7rem]"
-          }  transition transition-all duration-300 ease `}
+          }  w-full  flex-col items-center mt-2  right-0 absolute mt-[0.4rem]   transition transition-all duration-300 ease z-10 `}
         >
           <div
             style={{
@@ -52,30 +55,35 @@ const BuyNowDropDown = ({ isCarousel = false }: { isCarousel?: boolean }) => {
             className="border gallery-dropdown-triangle -mt-1"
           ></div>
           <div className="rounded-md overflow-hidden  w-full">
-            <div className="bg-pink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center hover:bg-darkPink">
-              <Image
-                height={110}
-                width={110}
-                src="/images/Clicks SVG.svg"
-                alt=""
-              />
-            </div>
-            <div className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center">
-              <Image
-                height={80}
-                width={80}
+            <a
+              href={product.clicksLink}
+              target="_blank"
+              className="bg-pink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center hover:bg-darkPink"
+            >
+              <img src="/images/Clicks SVG.svg" alt="" className=" w-[8rem]" />
+            </a>
+            <a
+              target="_blank"
+              href={product.dischemLink}
+              className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center"
+            >
+              <img
                 src="/images/Dischem SVG.svg"
                 alt=""
+                className=" w-[8rem] h-[0.9rem]"
               />
-            </div>
-            <div className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center">
-              <Image
-                height={80}
-                width={80}
+            </a>
+            <a
+              target="_blank"
+              href={product.checkersLink}
+              className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center"
+            >
+              <img
                 src="/images/Checkers SVG.svg"
                 alt=""
+                className=" w-[8rem] h-[0.9rem]"
               />
-            </div>
+            </a>
           </div>
         </div>
       </div>

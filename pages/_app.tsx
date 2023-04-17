@@ -6,6 +6,7 @@ import DataProvider from "@/context/data";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 config.autoAddCss = false;
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DataProvider>

@@ -18,7 +18,6 @@ const Product = ({
   product: ProductType;
   isCarousel?: boolean;
 }) => {
-  console.log(product, "l");
   return (
     <div
       className={` md:cursor-pointer relative ${
@@ -30,7 +29,7 @@ const Product = ({
           height={200}
           width={200}
           alt="gynaguard product"
-          src={product.image.data.attributes.url}
+          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${product.image.data.attributes.url}`}
           className="h-full w-full"
         />
       </Link>
@@ -71,7 +70,7 @@ const Product = ({
           </Link>
         </div>
         <div>
-          <BuyNowDropDown isCarousel={isCarousel} />
+          <BuyNowDropDown product={product} isCarousel={isCarousel} />
         </div>
       </div>
     </div>

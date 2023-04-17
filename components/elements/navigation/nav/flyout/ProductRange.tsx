@@ -3,94 +3,73 @@ import Link from "next/link";
 import React from "react";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import WhatsNewCard from "../elements/WhatsNewCard";
+import { useSubCategories } from "@/context/subCategories";
+import { ProductType } from "@/types/products";
+
+const productsFormatter = (products: any): ProductType[] => {
+  return products?.data.map((item: any) => ({
+    ...item.attributes,
+    id: item.id,
+  })) as ProductType[];
+};
 
 const ProductRange = () => {
+  const { subcategories, newProducts } = useSubCategories();
+
   const MENU_ITEMS_COL_1: {
     title: string;
     subtitle: string;
     links: Array<{ text: string; link: string }>;
-  }[] = [
-    {
-      title: "essential wash",
-      subtitle: "(Odour & irritation control)",
-      links: [{ text: "Essential Daily Comfort Intimate Wash", link: "#" }],
-    },
-    {
-      title: "ultimate wash",
-      subtitle: "(Odour & irritation control)",
-      links: [{ text: "Essential Daily Comfort Intimate Wash", link: "#" }],
-    },
-  ];
+  }[] = subcategories
+    .filter(
+      (subcategory) =>
+        subcategory.name === "essential wash" ||
+        subcategory.name === "ultimate wash"
+    )
+    .map((item) => ({
+      title: item.name,
+      links: productsFormatter(item.products).map((product) => ({
+        text: product.name,
+        link: `/products-range/${product.id}`,
+      })),
+      subtitle: item.description || "",
+    }));
 
   const MENU_ITEMS_COL_2: {
     title: string;
-    subtitle: string | null;
+    subtitle: string;
     links: Array<{ text: string; link: string }>;
-  }[] = [
-    {
-      title: "teen washes",
-      subtitle: null,
-      links: [
-        {
-          text: "Lightly Fragranced Moisturising Daily Gentle Intimate Body Wash",
-          link: "#",
-        },
-        {
-          text: "Lightly Fragranced Moisturising Daily Gentle Intimate Body Wash",
-          link: "#",
-        },
-      ],
-    },
-    {
-      title: "foam baths",
-      subtitle: null,
-      links: [
-        {
-          text: "Lightly Fragranced Foam Bath",
-          link: "#",
-        },
-        {
-          text: "Fragrance Free Foam Bath",
-          link: "#",
-        },
-      ],
-    },
-  ];
+  }[] = subcategories
+    .filter(
+      (subcategory) =>
+        subcategory.name === "teen washes" || subcategory.name === "foam baths"
+    )
+    .map((item) => ({
+      title: item.name,
+      links: productsFormatter(item.products).map((product) => ({
+        text: product.name,
+        link: `/products-range/${product.id}`,
+      })),
+      subtitle: item.description || "",
+    }));
 
   const MENU_ITEMS_COL_3: {
     title: string;
-    subtitle: string | null;
+    subtitle: string;
     links: Array<{ text: string; link: string }>;
-  }[] = [
-    {
-      title: "comfort range",
-      subtitle: null,
-      links: [
-        {
-          text: "Intimate cleansing pH Bar",
-          link: "#",
-        },
-        {
-          text: "Unscented Regular Pantyliners",
-          link: "#",
-        },
-        {
-          text: "Daily Comfort Sensitive Wipes",
-          link: "#",
-        },
-      ],
-    },
-    {
-      title: "lubricant",
-      subtitle: null,
-      links: [
-        {
-          text: "Lubricating Moisturising Gel",
-          link: "#",
-        },
-      ],
-    },
-  ];
+  }[] = subcategories
+    .filter(
+      (subcategory) =>
+        subcategory.name === "comfort range" || subcategory.name === "lubricant"
+    )
+    .map((item) => ({
+      title: item.name,
+      links: productsFormatter(item.products).map((product) => ({
+        text: product.name,
+        link: `/products-range/${product.id}`,
+      })),
+      subtitle: item.description || "",
+    }));
 
   return (
     <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[0] ">
@@ -188,7 +167,7 @@ const ProductRange = () => {
                 </div>
               );
             })}
-            <Link href={"/#"} className="w-64 space-y-1 pb-5">
+            <Link href={"/products-range"} className="w-64 space-y-1 pb-5">
               <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer">
                 <FontAwesomeIcon
                   icon={faAngleRight}
@@ -204,19 +183,18 @@ const ProductRange = () => {
         <div className="uppercase font-bold text-green pb-3">
           What&apos;s New
         </div>
-        <div className="grid grid-cols-2">
-          <WhatsNewCard
-            title={"Unscented Regular Pantyliners"}
-            text={
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquatempor incididunt ut labore et dolore magna aliqua..."
-            }
-          />
-          <WhatsNewCard
-            title={"Unscented Regular Pantyliners"}
-            text={
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquatempor incididunt ut labore et dolore magna aliqua..."
-            }
-          />
+        <div className="grid grid-cols-2 gap-[5rem]">
+          {newProducts.map((product) => {
+            return (
+              <WhatsNewCard
+                id={product.id}
+                image={product.image}
+                key={product.id}
+                title={product.name}
+                text={product.description}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

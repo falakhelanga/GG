@@ -7,8 +7,19 @@ import MegaMenu from "../MegaMenu";
 import ProductsRange from "@/components/sections/products-range/ProductsRange";
 import MobileMegaMenu from "../MobileMegaMenu";
 import { faBars, faClose } from "@fortawesome/pro-solid-svg-icons";
+import { useSubCategories } from "@/context/subCategories";
+import { ProductType } from "@/types/products";
+
+const productsFormatter = (products: any): ProductType[] => {
+  return products?.data.map((item: any) => ({
+    ...item.attributes,
+    id: item.id,
+  })) as ProductType[];
+};
 
 const MobileBurgerMenu = () => {
+  const { subcategories, newProducts } = useSubCategories();
+  console.log(subcategories, "subcategories");
   const menu = useMenu();
   const {
     arcticlesRef,
@@ -42,74 +53,16 @@ const MobileBurgerMenu = () => {
     title: string;
     subtitle: string;
     links: Array<{ text: string; link: string }>;
-  }[] = [
-    {
-      title: "essential wash",
-      subtitle: "(Odour & irritation control)",
-      links: [{ text: "Essential Daily Comfort Intimate Wash", link: "#" }],
-    },
-    {
-      title: "ultimate wash",
-      subtitle: "(Odour & irritation control)",
-      links: [{ text: "Essential Daily Comfort Intimate Wash", link: "#" }],
-    },
-    {
-      title: "teen washes",
-      subtitle: "",
-      links: [
-        {
-          text: "Lightly Fragranced Moisturising Daily Gentle Intimate Body Wash",
-          link: "#",
-        },
-        {
-          text: "Lightly Fragranced Moisturising Daily Gentle Intimate Body Wash",
-          link: "#",
-        },
-      ],
-    },
-    {
-      title: "foam baths",
-      subtitle: "null",
-      links: [
-        {
-          text: "Lightly Fragranced Foam Bath",
-          link: "#",
-        },
-        {
-          text: "Fragrance Free Foam Bath",
-          link: "#",
-        },
-      ],
-    },
-    {
-      title: "comfort range",
-      subtitle: "",
-      links: [
-        {
-          text: "Intimate cleansing pH Bar",
-          link: "#",
-        },
-        {
-          text: "Unscented Regular Pantyliners",
-          link: "#",
-        },
-        {
-          text: "Daily Comfort Sensitive Wipes",
-          link: "#",
-        },
-      ],
-    },
-    {
-      title: "lubricant",
-      subtitle: "",
-      links: [
-        {
-          text: "Lubricating Moisturising Gel",
-          link: "#",
-        },
-      ],
-    },
-  ];
+  }[] = subcategories.map((subcategory) => {
+    return {
+      title: subcategory.name,
+      subtitle: subcategory.description,
+      links: productsFormatter(subcategory.products).map((product) => ({
+        text: product.name,
+        link: `/products-range/${product.id}`,
+      })),
+    };
+  });
 
   return (
     <div className="absolute bg-pink bg-opacity-90 z-[100] w-full h-screen min-h-full overflow-auto ">
@@ -163,7 +116,11 @@ const MobileBurgerMenu = () => {
                     </div>
                   );
                 })}
-                <Link href={"/#"} className="w-64 space-y-1 pb-5">
+                <Link
+                  onClick={() => menu.hideMenu()}
+                  href={"/products-range"}
+                  className="w-64 space-y-1 pb-5"
+                >
                   <div className="uppercase font-bold text-gray-500 hover:text-pink cursor-pointer">
                     <FontAwesomeIcon
                       icon={faAngleRight}

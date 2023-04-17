@@ -52,7 +52,10 @@ const NavBar = () => {
         <div className="md:flex  md:gap-[5rem] hidden text-sm">
           <Link href="/products-range" className="z-0 ">
             <div
-              className="flex flex-col items-start text-white uppercase md:cursor-pointer transition duration-200 transition-all ease-in-out  duration-500 hover:border-b hover:border-b-white hover:border-b-8  h-full"
+              className={`flex flex-col items-start text-white uppercase md:cursor-pointer transition duration-200 transition-all ease-in-out  duration-500 hover:border-b ${
+                router.route === "/products-range" &&
+                "border-b-white border-b-8 border-b"
+              }hover:border-b-white hover:border-b-8  h-full`}
               onMouseEnter={() => {
                 menu.showMenu(0);
               }}
@@ -91,11 +94,11 @@ const NavBar = () => {
               section === "hub" && "border-b border-b-white border-b-[10px] "
             } `}
           >
-            <div className="text-[#f5f5f5] ">
+            <div className="text-[#f5f5f5]  relative -top-3">
               <span>Free to</span>{" "}
-              <span className="font-paul lowercase  ">just be</span>
+              <span className="font-paul lowercase text-3xl ">just be</span>
             </div>
-            <div className="font-bold uppercase">hub</div>
+            <div className="font-bold uppercase relative -top-4">hub</div>
           </Link>
         </div>
 
@@ -112,7 +115,7 @@ const NavBar = () => {
               }
             }}
           >
-            <div className="w-16 h-16 flex justify-center items-center">
+            <div className="w-16 h-16 flex justify-center relative bottom-[1.2rem] items-center">
               <FontAwesomeIcon
                 icon={menu.menuIndex === 1 ? faClose : faBars}
                 color="white"
@@ -121,10 +124,11 @@ const NavBar = () => {
               />
             </div>
           </div>
-
-          <MegaMenu menu={menu} index={1} mouseLeave={false}>
-            <BurgerMenu />
-          </MegaMenu>
+          <div className="-mt-6">
+            <MegaMenu menu={menu} index={1} mouseLeave={false}>
+              <BurgerMenu />
+            </MegaMenu>
+          </div>
         </div>
 
         {/* Mobile */}

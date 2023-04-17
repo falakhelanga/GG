@@ -15,15 +15,23 @@ import axios from "axios";
 import { fetchAPI } from "@/lib/api";
 import { ApiHomePageHomePage } from "@/schemas";
 import { useEffect, useMemo, useRef } from "react";
-import { CategoryType, ProductType } from "@/types/products";
+import { CategoryType, ProductType, SubCategoryType } from "@/types/products";
 import { useMenu } from "@/context/menu";
 import { useRouter } from "next/router";
+import { useSubCategories } from "@/context/subCategories";
 
 export default function Home({
   products,
   hero,
   categories,
+  subcategories,
+  newProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories]);
   const arcticlesRef = useRef(null);
   const feminineHygieneRef = useRef(null);
   const promiseRef = useRef(null);
@@ -99,6 +107,8 @@ export const getStaticProps: GetStaticProps<{
   products: ProductType[];
   hero: any;
   categories: CategoryType[];
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
 }> = async (ctx) => {
   const pagePopulate = [
     "hero",
@@ -113,10 +123,11 @@ export const getStaticProps: GetStaticProps<{
   ];
   const { data } = await fetchAPI("home-page", pagePopulate);
   const { data: categories } = await fetchAPI("categories");
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
   const products: ProductType[] = data.attributes.products.data.map(
     (product: any) => ({ ...product.attributes, id: product.id })
   );
-
+  const newProducts = products.filter((product) => product.isNew);
   const hero = data.attributes.hero;
 
   return {
@@ -127,6 +138,11 @@ export const getStaticProps: GetStaticProps<{
         id: data.id,
       })),
       hero,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
+      newProducts,
     },
   };
 };

@@ -78,7 +78,7 @@ const Products = ({ products }: { products: ProductType[] }) => {
         })}
       </Swiper>
 
-      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[5rem] mt-[9rem] " />
+      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[4rem] mt-[5rem] " />
     </div>
   );
 };

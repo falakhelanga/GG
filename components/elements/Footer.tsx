@@ -27,7 +27,7 @@ const Footer = () => {
             our <span className="font-bold">promise</span>
           </Link>
           <Link href="/?section=hub" className=" hover:opacity-80 ">
-            Free to <span className="font-paul">just be</span>{" "}
+            Free to <span className="font-paul text-3xl">just be</span>{" "}
             <span className="font-bold uppercase">HUB</span>
           </Link>
         </div>
