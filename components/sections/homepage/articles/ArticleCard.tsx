@@ -12,7 +12,7 @@ interface ArticleCardPropTypes {
 
 const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
   return (
-    <div className="rounded-md overflow-hidden bg-white hover:shadow-2xl shadow transition duration-100 ease-in-out">
+    <div className="rounded-md overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] shadow transition duration-100 ease-in-out">
       <div className="h-[12rem]">
         <Image
           src={image}

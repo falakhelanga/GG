@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Button from "@/components/elements/Button";
 import { LayoutHero } from "@/schemas";
 
@@ -30,6 +30,8 @@ const HomePageHero = ({
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
+  const [fadeNavBottomBarClass, setFadeNavBottomBarClass] =
+    useState("-bottom-4");
   const [sliderPosition, setSliderPosition] = useState(0);
   const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
@@ -38,6 +40,11 @@ const HomePageHero = ({
   const moveSlider = (index: number) => {
     setSliderPosition(190 * index);
   };
+
+  const handleFadeNavBottomBarClass = useCallback(
+    (className: string) => setFadeNavBottomBarClass(className),
+    []
+  );
   ////// set tab index on page mount
   useEffect(() => {
     if (router.isReady) {
@@ -68,9 +75,7 @@ const HomePageHero = ({
           },
         }}
         slidesPerView={1}
-        // navigation={{ prevEl, nextEl }}
-        // spaceBetween={90}
-        //   slidesPerGroup={5}
+        speed={600}
         loop={true}
         autoplay={{
           delay: 5000,
@@ -113,7 +118,7 @@ const HomePageHero = ({
           </h1>
         </div>
         <div className="flex flex-col md:w-[50%]">
-          <div className="flex flex-col uppercase w-full   items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
+          <div className="overflow-hidden flex flex-col uppercase w-full    items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
             <div className="flex max-sm:gap-4  ">
               {links.map((item, idx) => {
                 return (
@@ -121,20 +126,23 @@ const HomePageHero = ({
                     key={item.name}
                     href={`?page=${item.name}`}
                     onMouseEnter={() => {
+                      if (page === item.link) return;
+                      handleFadeNavBottomBarClass("-bottom-0");
                       setSlideCurrentIndex(item.index);
-                      // if (router.route === item.link) return;
                     }}
                     onMouseLeave={() => {
-                      setSlideCurrentIndex(activeTab);
+                      if (router.route === item.link) return;
+                      handleFadeNavBottomBarClass("-bottom-4");
+                      // setSlideCurrentIndex(activeTab);
                     }}
-                    className={`hover:text-green ${
+                    className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
                       page === item.link &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8"
+                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] "
                     } ${
                       !page &&
                       idx === 0 &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8 "
-                    } relative md:px-12 px-5 `}
+                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] transition duration-200 transition-all ease-in-out"
+                    } relative md:px-12 px-5 pb-2  `}
                     scroll={false}
                   >
                     <span
@@ -144,6 +152,15 @@ const HomePageHero = ({
                     >
                       {item.name}
                     </span>
+                    <div
+                      style={{
+                        // transform: `translateX(${sliderPosition}px)`,
+                        width: `${sliderWidth}rem`,
+                      }}
+                      className={`${
+                        page === item.link && "md:block"
+                      } bg-green h-2 transition-all duration-700 ease-out  hidden absolute -bottom-[0.3rem] translate-x-[-10px]`}
+                    ></div>
                   </Link>
                 );
               })}
@@ -153,7 +170,7 @@ const HomePageHero = ({
                 transform: `translateX(${sliderPosition}px)`,
                 width: `${sliderWidth}rem`,
               }}
-              className="bg-green h-2 transition-all duration-700 ease-out md:block hidden"
+              className={`bg-green h-2  transition-all duration-700 ease-out md:block hidden relative   ${fadeNavBottomBarClass}`}
             ></div>
           </div>
           <div className="text-brown text-center my-5">{description.text}</div>

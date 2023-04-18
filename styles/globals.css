@@ -38,6 +38,11 @@ body {
   background-color: #e9608a !important;
 }
 
+.nav-link-container:hover .nav-link {
+  transform: translateY(3px);
+  transition: all ease-in-out 300ms;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
 
@@ -142,11 +147,16 @@ swiper-container {
 
 .swiper-pagination-bullet {
   opacity: 1 !important;
-  background-color: #cfb9bb !important;
+  background-color: #d8d8d8 !important;
   padding: 0.4rem;
-  border: 3px solid #cfb9bb;
+  border: 3px solid #d8d8d8;
   pointer-events: all !important;
 }
+.swiper-pagination-bullet:hover {
+  background-color: #de2e64 !important;
+  border: 3px solid #cfb9bb;
+}
+
 .swiper-pagination-bullet-active {
   border: 3px solid #cfb9bb;
   background-color: #de2e64 !important;

@@ -17,7 +17,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 const sliderWidth = 7;
 
@@ -44,6 +44,8 @@ const ProductRangePage = ({
   const description = links.find((link) => link.link === page) || links[0];
   const [sliderPosition, setSliderPosition] = useState(0);
   const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
+  const [fadeNavBottomBarClass, setFadeNavBottomBarClass] =
+    useState("-bottom-2");
   const [activeTab, setActiveTab] = useState(1);
 
   const pageProducts = useMemo(() => {
@@ -102,6 +104,10 @@ const ProductRangePage = ({
     moveSlider(slideCurrentIndex);
   }, [slideCurrentIndex]);
 
+  const handleFadeNavBottomBarClass = useCallback(
+    (className: string) => setFadeNavBottomBarClass(className),
+    []
+  );
   return (
     <>
       <Head>
@@ -118,7 +124,7 @@ const ProductRangePage = ({
           </h1>
         </div>
         <div className="flex flex-col w-full ">
-          <div className="flex flex-col uppercase w-full   items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
+          <div className="flex flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
             <div className="flex max-sm:gap-4  ">
               {links.map((item, idx) => {
                 return (
@@ -126,20 +132,23 @@ const ProductRangePage = ({
                     key={item.name}
                     href={`?page=${item.name}`}
                     onMouseEnter={() => {
+                      if (page === item.link) return;
+                      handleFadeNavBottomBarClass("bottom-0");
                       setSlideCurrentIndex(item.index);
-                      // if (router.route === item.link) return;
                     }}
                     onMouseLeave={() => {
-                      setSlideCurrentIndex(activeTab);
+                      if (router.route === item.link) return;
+                      handleFadeNavBottomBarClass("-bottom-2");
+                      // setSlideCurrentIndex(activeTab);
                     }}
-                    className={`hover:text-green ${
+                    className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
                       page === item.link &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8"
+                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] "
                     } ${
                       !page &&
                       idx === 0 &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8 "
-                    } relative md:px-12 px-5 `}
+                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] transition duration-200 transition-all ease-in-out"
+                    } relative md:px-12 px-5 pb-2  `}
                     scroll={false}
                   >
                     <span
@@ -149,6 +158,15 @@ const ProductRangePage = ({
                     >
                       {item.name}
                     </span>
+                    <div
+                      style={{
+                        // transform: `translateX(${sliderPosition}px)`,
+                        width: `${sliderWidth}rem`,
+                      }}
+                      className={`${
+                        page === item.link && "md:block"
+                      } bg-green h-2 transition-all duration-700 ease-out  hidden absolute -bottom-[0.4rem] translate-x-[-10px]`}
+                    ></div>
                   </Link>
                 );
               })}
@@ -158,7 +176,7 @@ const ProductRangePage = ({
                 transform: `translateX(${sliderPosition}px)`,
                 width: `${sliderWidth}rem`,
               }}
-              className="bg-green h-2 transition-all duration-700 ease-out md:block hidden"
+              className={`bg-green h-2  transition-all duration-700 ease-out md:block hidden relative   ${fadeNavBottomBarClass}`}
             ></div>
           </div>
           <div className="text-brown text-center my-5">{description.text}</div>

@@ -72,7 +72,7 @@ const ProductRange = () => {
     }));
 
   return (
-    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[0] ">
+    <div className=" w-screen bg-white bg-opacity-90 z-[100] mt-[0]  ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-8 flex justify-between">
           <div className=" ">

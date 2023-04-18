@@ -5,7 +5,7 @@ import * as ReactDOMServer from "react-dom/server";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Autoplay } from "swiper";
 import Image from "next/image";
 import { ProductType } from "@/types/products";
 
@@ -26,7 +26,7 @@ const Products = ({ products }: { products: ProductType[] }) => {
   return (
     <div className=" relative">
       <div
-        className=" absolute top-[20%] md:left-[15rem] -left-6 z-[3] md:cursor-pointer  "
+        className=" absolute top-[20%] md:left-[20rem] -left-6 z-[3] md:cursor-pointer  "
         ref={(node) => setPrevEl(node)}
       >
         <Image
@@ -39,7 +39,7 @@ const Products = ({ products }: { products: ProductType[] }) => {
 
       <div
         ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] md:right-[15rem] -right-6 z-[3] md:cursor-pointer "
+        className=" absolute top-[20%] md:right-[20rem] -right-6 z-[3] md:cursor-pointer "
       >
         <Image
           alt="arrow-left"
@@ -64,9 +64,14 @@ const Products = ({ products }: { products: ProductType[] }) => {
         slidesPerView={5}
         navigation={{ prevEl, nextEl }}
         spaceBetween={90}
+        // speed={6000}
         loop={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         pagination={pagination}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper  "
       >
         {products.map((product, idx) => {

@@ -56,7 +56,7 @@ const Articles = () => {
           <div>
             <div className="text-end text-white font-bold">
               <div>
-                <span className="font-paul text-xl">latest </span>
+                <span className="font-paul text-2xl font-thin">latest </span>
                 <span className="uppercase">article</span>
               </div>
             </div>
