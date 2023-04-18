@@ -2,44 +2,89 @@ import { faChevronDown } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutSide";
+import Button from "@/components/elements/Button";
+import Image from "next/image";
+import { ProductType } from "@/types/products";
 const options = ["newest", "oldest"];
 
-const BuyNowDropDown = () => {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [showDropdown, setShowDropDown] = useState(false);
-
-  const dropDownRef = useRef(null);
-  useClickOutside(dropDownRef, () => {
+const BuyNowDropDown = ({
+  isCarousel = false,
+  product,
+}: {
+  isCarousel?: boolean;
+  product: ProductType;
+}) => {
+  const [showDropDown, setShowDropDown] = useState(false);
+  const buyNowBtnRef = useRef(null);
+  useClickOutside(buyNowBtnRef, () => {
     setShowDropDown(false);
   });
 
   return (
-    <div className="flex flex-col relative items-center md:mt-0 mt-2 ">
-      <div className="flex flex-col md:w-[15rem] w-full items-center absolute md:left-7 top-10 z-[5]">
-        <div
+    <div className="">
+      <div ref={buyNowBtnRef}>
+        <Button
           style={{
-            width: 0,
-            height: 0,
-            borderWidth: "0 8px 8px 8px",
-            borderColor: "transparent transparent red transparent",
-            borderStyle: "solid",
+            backgroundColor: showDropDown && "#DD2E64",
           }}
-          className="border gallery-dropdown-triangle"
-        ></div>
+          onClick={() => {
+            setShowDropDown((currState) => !currState);
+          }}
+          fullWidth
+          variant="outline"
+          className={`uppercase   ${showDropDown && "bg-darkPink text-white"}`}
+        >
+          buy now
+        </Button>
+      </div>
 
-        <div className="w-full rounded-md overflow-hidden cursor-pointer">
-          {options.map((item, idx) => {
-            return (
-              <div key={idx} className={`w-full flex flex-col items-center  }`}>
-                <div
-                  className={`${idx === 0 && "first-drop-down-item-gallery"}
-                   hover:bg-[#f1ecee] bg-white h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize`}
-                >
-                  {item}
-                </div>
-              </div>
-            );
-          })}
+      <div>
+        <div
+          className={`  ${
+            showDropDown ? "flex" : "hidden"
+          }  w-full  flex-col items-center mt-2  right-0 absolute mt-[0.4rem]   transition transition-all duration-300 ease z-10 `}
+        >
+          <div
+            style={{
+              width: 0,
+              height: 0,
+              borderWidth: "0 8px 8px 8px",
+              borderColor: "transparent transparent #E9608A transparent",
+              borderStyle: "solid",
+            }}
+            className="border gallery-dropdown-triangle -mt-1"
+          ></div>
+          <div className="rounded-md overflow-hidden  w-full">
+            <a
+              href={product.clicksLink}
+              target="_blank"
+              className="bg-pink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center hover:bg-darkPink"
+            >
+              <img src="/images/Clicks SVG.svg" alt="" className=" w-[8rem]" />
+            </a>
+            <a
+              target="_blank"
+              href={product.dischemLink}
+              className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center"
+            >
+              <img
+                src="/images/Dischem SVG.svg"
+                alt=""
+                className=" w-[8rem] h-[0.9rem]"
+              />
+            </a>
+            <a
+              target="_blank"
+              href={product.checkersLink}
+              className="bg-pink hover:bg-darkPink py-3 border-b border-b-gray-[#d9d9d9] border-b-1 flex justify-center"
+            >
+              <img
+                src="/images/Checkers SVG.svg"
+                alt=""
+                className=" w-[8rem] h-[0.9rem]"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

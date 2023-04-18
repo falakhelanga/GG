@@ -95,7 +95,7 @@ submit a query and request a second entry by sending an email to:`}
             <div className="text-pink">help@gynaquard.co.za</div>
             <div className="flex gap-4 my-6">
               <div
-                className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer
+                className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 md:cursor-pointer
               "
               >
                 <FontAwesomeIcon
@@ -104,14 +104,14 @@ submit a query and request a second entry by sending an email to:`}
                   size="xl"
                 />
               </div>
-              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer">
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 md:cursor-pointer">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   size="xl"
                   className="text-pink"
                 />
               </div>
-              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 cursor-pointer">
+              <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-pink hover:opacity-80 md:cursor-pointer">
                 <FontAwesomeIcon
                   icon={faTiktok}
                   size="xl"

@@ -50,7 +50,7 @@ const FeminineHygieneCard = ({
           {title}
         </Title>
         <div className="text-black my-6">{body}</div>
-        <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more cursor-pointer ">
+        <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer ">
           <span className="">find out more</span>{" "}
           <FontAwesomeIcon
             icon={faChevronRight}

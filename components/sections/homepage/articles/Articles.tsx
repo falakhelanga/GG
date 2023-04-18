@@ -39,8 +39,8 @@ const articles = [
 
 const Articles = () => {
   return (
-    <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14 ">
-      <div className="md:h-auto pt-14 w-full bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat bg-center md:bg-fixed ">
+    <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 ">
+      <div className="md:h-auto md:pt-14 w-full bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat bg-center  ">
         <ContentWrap className="grid md:grid-cols-2 h-full  items-end ">
           <div className="pb-10 max-sm:mt-6">
             <div className="">
@@ -56,7 +56,7 @@ const Articles = () => {
           <div>
             <div className="text-end text-white font-bold">
               <div>
-                <span className="font-paul text-xl">latest </span>
+                <span className="font-paul text-2xl font-thin">latest </span>
                 <span className="uppercase">article</span>
               </div>
             </div>

@@ -13,12 +13,13 @@ const GalleryCard = ({ entry }: EntryPropType) => {
       layout
       className="bg-white gallery-card overflow-hidden rounded-md shadow-lg border border-white border-2"
     >
-      <div className="h-[16rem] overflow-hidden">
-        <div
-          style={{
-            backgroundImage: `url(${entry?.photoURL})`,
-          }}
-          className={`gallery-card-image h-full  w-full  bg-no-repeat bg-cover bg-center`}
+      <div className="h-[20rem] w-auto overflow-hidden relative">
+        <Image
+          width={400}
+          height={600}
+          src={entry?.photoURL}
+          alt=""
+          className={`gallery-card-image h-full w-full    bg-no-repeat bg-cover bg-center object-cover`}
         />
       </div>
 

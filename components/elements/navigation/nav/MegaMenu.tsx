@@ -1,7 +1,17 @@
 import { Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 
-export default function MegaMenu({ menu, children, index, mouseLeave = true }) {
+export default function MegaMenu({
+  menu,
+  children,
+  index,
+  mouseLeave = true,
+}: {
+  menu?: any;
+  children?: any;
+  index?: any;
+  mouseLeave?: any;
+}) {
   return (
     <div>
       <Transition
@@ -15,12 +25,12 @@ export default function MegaMenu({ menu, children, index, mouseLeave = true }) {
         leaveTo="opacity-0 -translate-y-1"
       >
         <div
-          className="absolute left-1/2 transform -translate-x-1/2 px-2 w-screen sm:px-0 p-0 z-0"
-          onMouseLeave={mouseLeave ? () => menu.unlockAndHideMenu() : null}
+          className="absolute left-1/2 transform -translate-x-1/2 w-screen sm:px-0 p-0 z-0"
+          onMouseLeave={mouseLeave ? () => menu.unlockAndHideMenu() : undefined}
         >
           <div
             className="absolute z-0 w-screen bg-white"
-            onMouseLeave={mouseLeave ? () => menu.hideMenu() : null}
+            onMouseLeave={mouseLeave ? () => menu.hideMenu() : undefined}
           >
             {children}
           </div>

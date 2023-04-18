@@ -1,9 +1,22 @@
 import ContentWrap from "@/components/elements/layout/ContentWrap";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
+import { useSubCategories } from "@/context/subCategories";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
-const TermsAndConditions = () => {
+import { ProductType, SubCategoryType } from "@/types/products";
+import { fetchAPI } from "@/lib/api";
+
+const TermsAndConditions = ({
+  subcategories,
+  newProducts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   return (
     <>
       <Head>
@@ -12,85 +25,111 @@ const TermsAndConditions = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    
-    <div className=" ">
-      <CompetitionPageNav />
-      <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14">
-        <ContentWrap className="pt-14 flex-col items-center ">
-          <div className="text-5xl flex flex-col items-center">
-            <div
-              className="
+
+      <div className=" ">
+        <CompetitionPageNav />
+        <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14">
+          <ContentWrap className="pt-14 flex-col items-center ">
+            <div className="text-5xl flex flex-col items-center">
+              <div
+                className="
   md:text-5xl uppercase text-pink text-4xl
   "
-            >
-              terms &
+              >
+                terms &
+              </div>
+              <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+                conditions
+              </div>
             </div>
-            <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
-              conditions
+            <div className="mt-14 text-brown text-center">
+              <p className="text-left mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                voluptate tempora labore cupiditate? Corrupti dolor molestias
+                veniam repudiandae expedita. Dolore quos odit repellendus nobis
+                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
+                earum, dolor at aliquam asperiores architecto in harum beatae
+                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+                placeat exercitationem! Ut eligendi quas, voluptas laborum non
+                quaerat aperiam, illum inventore placeat adipisci odio pariatur
+                officiis possimus ab quasi eius distinctio repudiandae amet iste
+                eum maiores eos deserunt!
+              </p>
+              <p className="text-left mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                voluptate tempora labore cupiditate? Corrupti dolor molestias
+                veniam repudiandae expedita. Dolore quos odit repellendus nobis
+                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
+                earum, dolor at aliquam asperiores architecto in harum beatae
+                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+                placeat exercitationem! Ut eligendi quas, voluptas laborum non
+                quaerat aperiam,
+              </p>
+              <p className="text-left mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                voluptate tempora labore cupiditate? Corrupti dolor molestias
+                veniam repudiandae expedita. Dolore quos odit repellendus nobis
+                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
+                earum, dolor at aliquam asperiores architecto in harum beatae
+                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+                placeat exercitationem! Ut eligendi quas, voluptas laborum non
+                quaerat aperiam, illum inventore placeat adipisci odio pariatur
+                officiis possimus ab quasi eius distinctio repudiandae amet iste
+                eum maiores eos deserunt!
+              </p>
+              <p className="text-left mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                voluptate tempora labore cupiditate? Corrupti dolor molestias
+                veniam repudiandae expedita. Dolore quos odit repellendus nobis
+                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
+                earum, dolor at aliquam asperiores architecto in harum beatae
+                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+              </p>
+              <p className="text-left mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+                voluptate tempora labore cupiditate? Corrupti dolor molestias
+                veniam repudiandae expedita. Dolore quos odit repellendus nobis
+                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
+                earum, dolor at aliquam asperiores architecto in harum beatae
+                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+                placeat exercitationem! Ut eligendi quas, voluptas laborum non
+                quaerat aperiam, illum inventore placeat adipisci odio pariatur
+                officiis possimus ab quasi eius distinctio repudiandae amet iste
+                eum maiores eos deserunt!
+              </p>
             </div>
-          </div>
-          <div className="mt-14 text-brown text-center">
-            <p className="text-left mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-              voluptate tempora labore cupiditate? Corrupti dolor molestias
-              veniam repudiandae expedita. Dolore quos odit repellendus nobis
-              in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-              earum, dolor at aliquam asperiores architecto in harum beatae
-              saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-              placeat exercitationem! Ut eligendi quas, voluptas laborum non
-              quaerat aperiam, illum inventore placeat adipisci odio pariatur
-              officiis possimus ab quasi eius distinctio repudiandae amet iste
-              eum maiores eos deserunt!
-            </p>
-            <p className="text-left mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-              voluptate tempora labore cupiditate? Corrupti dolor molestias
-              veniam repudiandae expedita. Dolore quos odit repellendus nobis
-              in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-              earum, dolor at aliquam asperiores architecto in harum beatae
-              saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-              placeat exercitationem! Ut eligendi quas, voluptas laborum non
-              quaerat aperiam,
-            </p>
-            <p className="text-left mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-              voluptate tempora labore cupiditate? Corrupti dolor molestias
-              veniam repudiandae expedita. Dolore quos odit repellendus nobis
-              in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-              earum, dolor at aliquam asperiores architecto in harum beatae
-              saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-              placeat exercitationem! Ut eligendi quas, voluptas laborum non
-              quaerat aperiam, illum inventore placeat adipisci odio pariatur
-              officiis possimus ab quasi eius distinctio repudiandae amet iste
-              eum maiores eos deserunt!
-            </p>
-            <p className="text-left mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-              voluptate tempora labore cupiditate? Corrupti dolor molestias
-              veniam repudiandae expedita. Dolore quos odit repellendus nobis
-              in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-              earum, dolor at aliquam asperiores architecto in harum beatae
-              saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-            </p>
-            <p className="text-left mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-              voluptate tempora labore cupiditate? Corrupti dolor molestias
-              veniam repudiandae expedita. Dolore quos odit repellendus nobis
-              in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-              earum, dolor at aliquam asperiores architecto in harum beatae
-              saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-              placeat exercitationem! Ut eligendi quas, voluptas laborum non
-              quaerat aperiam, illum inventore placeat adipisci odio pariatur
-              officiis possimus ab quasi eius distinctio repudiandae amet iste
-              eum maiores eos deserunt!
-            </p>
-          </div>
-        </ContentWrap>
+          </ContentWrap>
+        </div>
       </div>
-    </div>
     </>
-   
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
+}> = async (ctx) => {
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  const productPopulate = ["products.products.image", "products.products"];
+  const { data: productsData } = await fetchAPI(
+    "products-range",
+    productPopulate
+  );
+  const products: ProductType[] =
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
+      id: product.id,
+    }));
+  const newProducts = products.filter((product) => product.isNew);
+  return {
+    props: {
+      newProducts,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
+    },
+  };
 };
 
 export default TermsAndConditions;

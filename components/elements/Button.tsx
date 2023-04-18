@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface ButtonPropType {
@@ -7,6 +8,8 @@ interface ButtonPropType {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   variant?: "outline" | "pink" | "green";
   fullWidth?: boolean;
+  link?: string;
+  [x: string]: any;
 }
 
 const Button = ({
@@ -16,19 +19,22 @@ const Button = ({
   onClick,
   variant = "pink",
   fullWidth = false,
+  link,
   ...rest
 }: ButtonPropType) => {
   return (
-    <button
-      {...rest}
-      onClick={onClick}
-      type={type}
-      className={` rounded-full transition-all ease-in-out  duration-500 ${
-        fullWidth && "w-full"
-      } text-pink    px-12 py-2 ${
-        variant === "outline" &&
-        `bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink ${className}`
-      } 
+    <>
+      {!link && (
+        <button
+          {...rest}
+          onClick={onClick}
+          type={type}
+          className={` rounded-full transition-all ease-in-out  duration-500 ${
+            fullWidth && "w-full"
+          } text-pink    px-12 py-2 ${
+            variant === "outline" &&
+            `bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink ${className}`
+          } 
       ${
         variant === "pink" && `text-white bg-pink hover:opacity-75 ${className}`
       }
@@ -37,9 +43,34 @@ const Button = ({
         `bg-green hover:opacity-75 text-white ${className}`
       }
       font-bold  ${className} `}
-    >
-      {children}
-    </button>
+        >
+          {children}
+        </button>
+      )}
+      {link && (
+        <Link
+          href={link}
+          {...rest}
+          type={type}
+          className={` rounded-full transition-all ease-in-out  duration-500 ${
+            fullWidth && "w-full"
+          } text-pink    px-12 py-2 ${
+            variant === "outline" &&
+            `bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink ${className}`
+          } 
+      ${
+        variant === "pink" && `text-white bg-pink hover:opacity-75 ${className}`
+      }
+      ${
+        variant === "green" &&
+        `bg-green hover:opacity-75 text-white ${className}`
+      }
+      font-bold  ${className} `}
+        >
+          {children}
+        </Link>
+      )}
+    </>
   );
 };
 

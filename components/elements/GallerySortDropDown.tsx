@@ -28,7 +28,7 @@ const GallerySortDropDown = ({
         onClick={() => {
           setShowDropDown(true);
         }}
-        className="md:w-[18rem] w-full h-10 bg-white rounded-md items-center flex justify-around "
+        className="md:w-[18rem] w-full h-10 bg-white rounded-md items-center flex justify-around md:cursor-pointer"
       >
         <span className="">Sort by:</span>
         <span className="capitalize text-pink ">{sortValue}</span>
@@ -47,7 +47,7 @@ const GallerySortDropDown = ({
             className="border gallery-dropdown-triangle"
           ></div>
 
-          <div className="w-full rounded-md overflow-hidden cursor-pointer">
+          <div className="w-full rounded-md overflow-hidden md:cursor-pointer">
             {options.map((item, idx) => {
               return (
                 <div
@@ -58,7 +58,9 @@ const GallerySortDropDown = ({
                   className={`w-full flex flex-col items-center  }`}
                 >
                   <div
-                    className={`${idx === 0 && "first-drop-down-item-gallery"}
+                    className={`${
+                      idx === 0 && "first-drop-down-item-gallery"
+                    } ${sortValue === item && "bg-[#f1ecee]"}
                    hover:bg-[#f1ecee] bg-white h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize`}
                   >
                     {item}

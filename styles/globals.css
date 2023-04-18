@@ -19,7 +19,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
-  background-color: #f2f1f0;
+  background-color: white;
 }
 
 .gallery-card-image {
@@ -36,6 +36,11 @@ body {
 } */
 .react-datepicker__header {
   background-color: #e9608a !important;
+}
+
+.nav-link-container:hover .nav-link {
+  transform: translateY(3px);
+  transition: all ease-in-out 300ms;
 }
 
 body {
@@ -60,7 +65,14 @@ a {
   background-color: red;
   margin-bottom: 10rem;
 } */
-
+.underline-gradient {
+  background-color: rgb(233, 96, 138);
+  background: linear-gradient(
+    90deg,
+    rgba(236, 96, 138, 1) 0%,
+    rgba(46, 184, 180, 1) 100%
+  );
+}
 .scroll_to_top.chevron_container {
   animation-name: moveup;
   animation-duration: 1s;
@@ -110,6 +122,9 @@ a {
   transition: margin ease 0.5s;
 }
 
+.find-out-more {
+  cursor: pointer;
+}
 .find-out-more:hover .find-out-more-chevron {
   margin-left: 0.2rem;
 }
@@ -132,11 +147,16 @@ swiper-container {
 
 .swiper-pagination-bullet {
   opacity: 1 !important;
-  background-color: #cfb9bb !important;
+  background-color: #d8d8d8 !important;
   padding: 0.4rem;
-  border: 3px solid #cfb9bb;
+  border: 3px solid #d8d8d8;
   pointer-events: all !important;
 }
+.swiper-pagination-bullet:hover {
+  background-color: #de2e64 !important;
+  border: 3px solid #cfb9bb;
+}
+
 .swiper-pagination-bullet-active {
   border: 3px solid #cfb9bb;
   background-color: #de2e64 !important;

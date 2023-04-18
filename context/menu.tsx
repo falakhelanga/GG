@@ -1,45 +1,79 @@
 import { MenuContextType } from "@/types/context/MenuContextType";
-import { useRouter } from "next/router";
-import { Context, createContext, ReactNode, useContext, useState } from "react";
+import {
+  Context,
+  createContext,
+  MutableRefObject,
+  ReactNode,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 
 const MenuContext: Context<MenuContextType> = createContext(null as any);
 
 export const MenuProvider = ({ children }: { children: ReactNode }) => {
+  const arcticlesRef = useRef(null);
+  const feminineHygieneRef = useRef(null);
+  const promiseRef = useRef(null);
+  const productsRef = useRef(null);
   const [menuIndex, setMenuIndex] = useState(-1);
+  const [mobileMenuIndex, setMobileMenuIndex] = useState(-1);
   const [lock, setLock] = useState(false);
 
-  const showMenu = (index) => {
+  const showMenu = (index: number) => {
     setMenuIndex(index);
   };
 
-  const lockMenu = (index) => {
+  const showMobileMegaMenu = (index: number) => {
+    setMobileMenuIndex(index);
+    console.log(index);
+  };
+
+  const lockMenu = (index: any) => {
     setLock(true);
-    setMenuIndex(index);
   };
 
   const unlockMenu = () => {
     setLock(false);
   };
 
-  const unlockAndHideMenu = (index) => {
+  const unlockAndHideMenu = (index: number) => {
     setLock(false);
   };
 
   const hideMenu = () => {
-    if (!lock) {
-      setMenuIndex(-1);
-    }
+    setMenuIndex(-1);
+  };
+
+  const hideMobileMegaMenu = () => {
+    setMobileMenuIndex(-1);
+  };
+
+  const scrollToMobileSection = (ref: MutableRefObject<null>) => {
+    window.scrollTo({
+      top: ref?.current?.offsetTop - 100,
+
+      behavior: "smooth",
+    });
   };
 
   return (
     <MenuContext.Provider
       value={{
+        showMobileMegaMenu,
         unlockMenu,
         lockMenu,
         unlockAndHideMenu,
         hideMenu,
         showMenu,
         menuIndex,
+        mobileMenuIndex,
+        arcticlesRef,
+        productsRef,
+        promiseRef,
+        feminineHygieneRef,
+        scrollToMobileSection,
+        hideMobileMegaMenu,
       }}
     >
       {children}

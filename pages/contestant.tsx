@@ -1,10 +1,22 @@
 import ContentWrap from "@/components/elements/layout/ContentWrap";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import GalleryGrid from "@/components/sections/CompetitionPlatformPage.tsx/gallery/GalleryGrid";
+import { useSubCategories } from "@/context/subCategories";
+import { fetchAPI } from "@/lib/api";
+import { ProductType, SubCategoryType } from "@/types/products";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 
-const contestant = () => {
+const Contestant = ({
+  subcategories,
+  newProducts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   return (
     <>
       <Head>
@@ -46,4 +58,31 @@ group of ideas`}
   );
 };
 
-export default contestant;
+export const getStaticProps: GetStaticProps<{
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
+}> = async (ctx) => {
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  const productPopulate = ["products.products.image", "products.products"];
+  const { data: productsData } = await fetchAPI(
+    "products-range",
+    productPopulate
+  );
+  const products: ProductType[] =
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
+      id: product.id,
+    }));
+  const newProducts = products.filter((product) => product.isNew);
+  return {
+    props: {
+      newProducts,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
+    },
+  };
+};
+
+export default Contestant;

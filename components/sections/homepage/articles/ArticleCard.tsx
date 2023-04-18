@@ -1,6 +1,7 @@
 import Title from "@/components/elements/Title";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import React from "react";
 interface ArticleCardPropTypes {
   id: number;
@@ -11,13 +12,17 @@ interface ArticleCardPropTypes {
 
 const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
   return (
-    <div className="rounded-md overflow-hidden bg-white hover:shadow-2xl shadow transition duration-100 ease-in-out">
-      <div
-        style={{
-          backgroundImage: `url(${image})`,
-        }}
-        className="h-[12rem] w-full bg-cover bg-no-repeat bg-center"
-      />
+    <div className="rounded-md overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] shadow transition duration-100 ease-in-out">
+      <div className="h-[12rem]">
+        <Image
+          src={image}
+          height={300}
+          width={300}
+          alt=""
+          className="h-full object-cover w-full bg-cover bg-no-repeat bg-center"
+        />
+      </div>
+
       <div className="p-6">
         <Title size="md" className="uppercase text-green my-6">
           {title}

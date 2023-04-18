@@ -43,7 +43,7 @@ const GynaguardPromise = () => {
             promise
           </h1>
         </div>
-        <div className="md:my-16 my-10 text-center">
+        <div className="md:my-16 my-10 md:text-lg text-center md:mx-[10rem]">
           Our promise to you is that every GynaGuard product is made with the
           highest quality ingredient, which is why we have 6 core benefits that
           ensure the health of your V-zone.
@@ -53,11 +53,11 @@ const GynaguardPromise = () => {
             <Badge {...badge} key={badge.image} />
           ))}
         </div>
-        <div className="my-10 text-center w-full text-sm text-brown flex justify-center">
-          <div className="md:w-[50%] w-full">
-            GynaGuard Lubricating Moisturizing Gel. GynaGuard Intimate Comfort
-            Gel. GynaGuard Ultimate intimate wash. GynaGuard Daily Comfort
-            Sensitive Wipes.
+        <div className="my-10 text-center w-full text-sm text-[#c9adaf] flex justify-center">
+          <div className="md:w-[50%] w-full leading-7">
+            *GynaGuard Lubricating Moisturizing Gel. **GynaGuard Intimate
+            Comfort Gel. #GynaGuard Ultimate intimate wash. ^GynaGuard Daily
+            Comfort Sensitive Wipes.
           </div>
         </div>
       </ContentWrap>
