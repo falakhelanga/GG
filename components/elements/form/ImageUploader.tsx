@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import InputWrapper from "./InputWrapper";
 import axios from "axios";
 import ProgressBar from "@ramonak/react-progress-bar";
-import Spinner from "./Spinner";
+import Spinner from "../ui/Spinner";
 interface ImageUploaderPropType {
   name: string;
   label?: string;

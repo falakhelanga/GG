@@ -1,4 +1,4 @@
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import Image from "next/image";
 import React from "react";
 import { ParallaxProvider, useParallax, Parallax } from "react-scroll-parallax";

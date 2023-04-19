@@ -1,8 +1,31 @@
-import HeaderImageUnderline from "@/components/elements/HeaderImageUnderline";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import HeaderImageUnderline from "@/components/elements/ui/HeaderImageUnderline";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+
+const NAV_LINKS = [
+  {
+    ligthText: "enter",
+    boldText: "now",
+    link: "/entry",
+  },
+  {
+    ligthText: "view",
+    boldText: "gallery",
+    link: "/contestant",
+  },
+  {
+    ligthText: "read",
+    boldText: `faq's`,
+    link: "/faq",
+  },
+  {
+    ligthText: "competition",
+    boldText: "terms",
+    link: "/terms-and-conditions",
+  },
+];
 
 const CompetitionPageNav = () => {
   const router = useRouter();
@@ -38,44 +61,20 @@ const CompetitionPageNav = () => {
       <HeaderImageUnderline />
       <ContentWrap className=" ">
         <div className=" flex gap-6 uppercase w-full justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
-          <Link
-            href="/entry"
-            className={`${
-              router.route === "/entry" && "border-b border-b-8 border-b-pink "
-            }  `}
-            scroll={false}
-          >
-            enter <span className="font-bold">now</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/contestant" &&
-              "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/contestant"
-            scroll={false}
-          >
-            view <span className="font-bold">gallery</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/faq" && "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/faq"
-            scroll={false}
-          >
-            read <span className="font-bold">{"faq's"}</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/terms-and-conditions" &&
-              "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/terms-and-conditions"
-            scroll={false}
-          >
-            competition <span className="font-bold">terms</span>
-          </Link>
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.link}
+              href={link.link}
+              className={`${
+                router.route === link.link &&
+                "border-b border-b-8 border-b-pink "
+              }  `}
+              scroll={false}
+            >
+              {link.ligthText}{" "}
+              <span className="font-bold">{link.boldText}</span>
+            </Link>
+          ))}
         </div>
       </ContentWrap>
     </div>

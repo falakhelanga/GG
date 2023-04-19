@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import GalleryCard from "./GalleryCard";
 import SearchInput from "./SearchInput";
-import SelectInput from "@/components/elements/SelectInput";
+import SelectInput from "@/components/elements/form/SelectInput";
 
 import {
   DocumentData,
@@ -18,9 +18,9 @@ import {
 import { useFirebase } from "@/context/Firebase";
 import { EntryValues } from "@/types/entry";
 import { motion } from "framer-motion";
-import Button from "@/components/elements/Button";
-import { ScrollToTop } from "@/components/elements/ScrollToTop";
-import DropDown from "@/components/elements/GallerySortDropDown";
+import Button from "@/components/elements/ui/Button";
+import { ScrollToTop } from "@/components/elements/ui/ScrollToTop";
+import DropDown from "@/components/sections/CompetitionPlatformPage.tsx/gallery/GallerySortDropDown";
 
 const ITEMS_PER_PAGE = 16;
 
@@ -50,7 +50,7 @@ const GalleryGrid = () => {
           const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
           data.push({ ...doc.data(), id: doc.id } as EntryValues);
         });
-        console.log(querySnapshot.docs[querySnapshot.docs.length - 1], "ffd");
+
         setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
         setEntries(data);
       }
@@ -74,7 +74,7 @@ const GalleryGrid = () => {
         const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
         data.push({ ...doc.data(), id: doc.id } as EntryValues);
       });
-      console.log(querySnapshot.docs[querySnapshot.docs.length - 1], "ffd");
+
       setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
       setEntries((currState) => {
         const newState = currState && [...currState, ...data];
@@ -132,7 +132,6 @@ const GalleryGrid = () => {
           data.push({ ...doc.data(), id: doc.id } as EntryValues);
         });
         setEntries(data);
-        console.log(data, "data");
       });
       return;
     }
@@ -151,7 +150,6 @@ const GalleryGrid = () => {
         data.push({ ...doc.data(), id: doc.id } as EntryValues);
       });
       setEntries(data);
-      console.log(data, "data");
     });
   };
   return (

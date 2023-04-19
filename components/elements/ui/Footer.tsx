@@ -1,5 +1,5 @@
 import React from "react";
-import ContentWrap from "./layout/ContentWrap";
+import ContentWrap from "./ContentWrap";
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

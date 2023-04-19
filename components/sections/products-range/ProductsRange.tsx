@@ -1,4 +1,4 @@
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import React from "react";
 import Product from "../homepage/products/Product";
 import { ApiProductsRangeProductsRange } from "@/schemas";

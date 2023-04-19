@@ -1,4 +1,4 @@
-import Title from "@/components/elements/Title";
+import Title from "@/components/elements/ui/Title";
 import React, { useState } from "react";
 import Review from "./Review";
 // Import Swiper React components
@@ -17,7 +17,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/pro-solid-svg-icons";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 
 const Reviews = ({ reviews }: { reviews: ReviewType[] }) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);

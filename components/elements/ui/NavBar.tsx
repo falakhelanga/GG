@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo } from "react";
 import ContentWrap from "./ContentWrap";
-import Logo from "../Logo";
+import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/pro-solid-svg-icons";
 import { useMenu } from "@/context/menu";
@@ -45,27 +45,28 @@ const NavBar = () => {
   const { section } = router.query;
   return (
     <>
-      <div className="hidden md:block fixed top-[6rem] z-[99] right-0 left-0 ">
+      <div className="hidden md:block fixed top-[9vh] z-[99] right-0 left-0 ">
         <MegaMenu menu={menu} index={0}>
           <ProductRange />
         </MegaMenu>
       </div>
-
+      <div className="hidden md:block fixed top-[8vh]  z-[99] right-0 left-0">
+        <MegaMenu menu={menu} index={1} mouseLeave={false}>
+          <BurgerMenu />
+        </MegaMenu>
+      </div>
       <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex  z-[100]">
-        <ContentWrap className="flex justify-between md:mt-7 max-sm:items-center ">
+        <ContentWrap className="flex justify-between  max-sm:items-center  h-full ">
           <div
             onMouseEnter={menu.hideMenu}
-            className="hover:translate-y-[3px] transition ease-in-out transition-duration-[3000ms] cursor-pointer"
+            className="hover:translate-y-[3px]  flex items-center transition ease-in-out transition-duration-[3000ms] cursor-pointer"
           >
             <Logo />
           </div>
-          <div className="md:flex  md:gap-[5rem] hidden text-sm">
-            <Link href="/products-range" className="z-0 ">
+          <div className="md:flex   md:gap-[5rem] hidden text-sm">
+            <Link href="/products-range" className="z-0  ">
               <div
-                className={` transition-all  transition-duration-[3000ms]flex flex-col items-start text-white uppercase md:cursor-pointer   transition-all ease-in   hover:border-b ${
-                  router.route === "/products-range" &&
-                  " border-b-white border-b-8 border-b "
-                }hover:border-b-white hover:border-b-8  h-full nav-link-container`}
+                className={`  justify-center  transition-all  transition-duration-[3000ms] flex flex-col items-start text-white uppercase md:cursor-pointer   transition-all ease-in     h-full nav-link-container`}
                 onMouseEnter={() => {
                   menu.showMenu(0);
                 }}
@@ -92,10 +93,7 @@ const NavBar = () => {
                   }}
                   onMouseEnter={menu.hideMenu}
                   key={idx}
-                  className={`flex flex-col items-start text-white  uppercase md:cursor-pointer transition duration-200 transition-all ease-in-out  duration-500 hover:border-b hover:border-b-white hover:border-b-[10px] ${
-                    section === item.link &&
-                    "border-b border-b-white border-b-[10px] "
-                  } nav-link-container`}
+                  className={`justify-center flex flex-col items-start text-white  uppercase md:cursor-pointer transition duration-200 transition-all ease-in-out  duration-500  nav-link-container`}
                 >
                   <div
                     className={`nav-link ${
@@ -113,29 +111,28 @@ const NavBar = () => {
                 pathname: "/",
                 query: { ...router.query, section: "hub" },
               }}
-              className={`flex flex-col items-start text-white md:cursor-pointer  transition duration-200 transition-all ease-in-out  duration-500 hover:border-b hover:border-b-white hover:border-b-8 ${
-                section === "hub" && "border-b border-b-white border-b-[10px] "
-              } nav-link-container`}
+              className={` justify-center flex flex-col items-start text-white md:cursor-pointer  transition duration-200 transition-all ease-in-out  duration-500   nav-link-container`}
             >
               <div
-                className={`nav-link ${
+                className={`nav-link  ${
                   section === "hub" && "translate-y-[3px]"
                 }`}
               >
-                <div className="text-[#f5f5f5]  relative -top-3">
+                <div className="text-[#f5f5f5]  relative ">
                   <span>Free to</span>{" "}
                   <span className="font-paul lowercase text-3xl ">just be</span>
                 </div>
-                <div className="font-bold uppercase relative -top-4">hub</div>
+                <div className="font-bold uppercase relative top-[-7px]">
+                  hub
+                </div>
               </div>
             </Link>
           </div>
 
           {/* Desktop */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex   items-center">
             <div
               onClick={() => {
-                console.log(menu.menuIndex);
                 if (menu.menuIndex === 1) {
                   menu.showMenu(-1);
                 } else {
@@ -144,7 +141,7 @@ const NavBar = () => {
                 }
               }}
             >
-              <div className="w-16 h-16 flex justify-center relative bottom-[0.7rem] items-center hover:translate-y-[3px] transition ease-in transition-duration-[3000ms] cursor-pointer">
+              <div className="w-16 h-16 flex justify-center  items-center hover:translate-y-[3px] transition ease-in transition-duration-[3000ms] cursor-pointer">
                 <FontAwesomeIcon
                   icon={menu.menuIndex === 1 ? faClose : faBars}
                   color="white"
@@ -152,11 +149,6 @@ const NavBar = () => {
                   className="md:cursor-pointer"
                 />
               </div>
-            </div>
-            <div className="-mt-6">
-              <MegaMenu menu={menu} index={1} mouseLeave={false}>
-                <BurgerMenu />
-              </MegaMenu>
             </div>
           </div>
 

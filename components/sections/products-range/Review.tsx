@@ -1,5 +1,5 @@
-import ReviewStars from "@/components/elements/ReviewStars";
-import Title from "@/components/elements/Title";
+import ReviewStars from "@/components/elements/ui/ReviewStars";
+import Title from "@/components/elements/ui/Title";
 import { ReviewType } from "@/types/products";
 import React from "react";
 

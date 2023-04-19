@@ -1,13 +1,13 @@
-import Button from "@/components/elements/Button";
-import Checkbox from "@/components/elements/Checkbox";
-import DatePicker from "@/components/elements/DatePicker";
-import DatePickerInput from "@/components/elements/DatePicker";
-import Form from "@/components/elements/Form";
-import ImageUploader from "@/components/elements/ImageUploader";
-import SelectInput from "@/components/elements/SelectInput";
-import TextAreaInput from "@/components/elements/TextAreaInput";
-import TextInput from "@/components/elements/TextInput";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import Button from "@/components/elements/ui/Button";
+import Checkbox from "@/components/elements/form/Checkbox";
+import DatePicker from "@/components/elements/form/DatePicker";
+import DatePickerInput from "@/components/elements/form/DatePicker";
+import Form from "@/components/elements/form/Form";
+import ImageUploader from "@/components/elements/form/ImageUploader";
+import SelectInput from "@/components/elements/form/SelectInput";
+import TextAreaInput from "@/components/elements/form/TextAreaInput";
+import TextInput from "@/components/elements/form/TextInput";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import { useFirebase } from "@/context/Firebase";
 import { EntryValues } from "@/types/entry";
 import {
@@ -64,7 +64,6 @@ const EntryForm = () => {
       });
       setSubmitted(true);
     } catch (error) {
-      console.log(error);
     } finally {
       setSubmitting(false);
     }

@@ -2,7 +2,7 @@ import { faChevronDown } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutSide";
-import Button from "@/components/elements/Button";
+import Button from "@/components/elements/ui/Button";
 import Image from "next/image";
 import { ProductType } from "@/types/products";
 const options = ["newest", "oldest"];

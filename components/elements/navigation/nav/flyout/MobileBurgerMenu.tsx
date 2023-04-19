@@ -19,7 +19,7 @@ const productsFormatter = (products: any): ProductType[] => {
 
 const MobileBurgerMenu = () => {
   const { subcategories, newProducts } = useSubCategories();
-  console.log(subcategories, "subcategories");
+
   const menu = useMenu();
   const {
     arcticlesRef,

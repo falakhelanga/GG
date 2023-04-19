@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import Title from "../../../elements/Title";
+import Title from "../../../elements/ui/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
-import Button from "../../../elements/Button";
+import Button from "../../../elements/ui/Button";
 import useClickOutside from "@/hooks/useClickOutSide";
 import ReactMarkdown from "react-markdown";
 import truncate from "@/helpers.tsx/textTruncate";
@@ -18,7 +18,6 @@ const Product = ({
   product: ProductType;
   isCarousel?: boolean;
 }) => {
-  console.log(product.image.data.attributes.url, "kdkd");
   return (
     <div
       className={` md:cursor-pointer relative ${

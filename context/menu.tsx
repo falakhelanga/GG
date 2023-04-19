@@ -26,7 +26,6 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
 
   const showMobileMegaMenu = (index: number) => {
     setMobileMenuIndex(index);
-    console.log(index);
   };
 
   const lockMenu = (index: any) => {

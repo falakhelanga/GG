@@ -1,6 +1,6 @@
-import HeaderImageUnderline from "@/components/elements/HeaderImageUnderline";
-import Logo from "@/components/elements/Logo";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import HeaderImageUnderline from "@/components/elements/ui/HeaderImageUnderline";
+import Logo from "@/components/elements/ui/Logo";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Button from "@/components/elements/Button";
+import Button from "@/components/elements/ui/Button";
 import { LayoutHero } from "@/schemas";
 
 const sliderWidth = 7;
