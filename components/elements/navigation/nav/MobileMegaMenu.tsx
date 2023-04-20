@@ -1,5 +1,12 @@
 import { Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import { motion } from "framer-motion";
+
+const mobileMegaMenuVariants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 1, x: 1000 },
+  // transition: { type: "spring", stiffness: 100 },
+};
 
 export default function MobileMegaMenu({
   menu,
@@ -11,8 +18,16 @@ export default function MobileMegaMenu({
   index: any;
 }) {
   return (
-    <div className=" overflow-auto">
-      <Transition
+    <motion.div
+      animate={index === menu.mobileMenuIndex ? "open" : "closed"}
+      variants={mobileMegaMenuVariants}
+      transition={{
+        // type: "just",
+        duration: 0.5,
+      }}
+      className=" overflow-auto absolute z-0 w-screen bg-white top-0 "
+    >
+      {/* <Transition
         as={Fragment}
         show={index == menu.mobileMenuIndex}
         enter="transition ease-out duration-300"
@@ -21,13 +36,11 @@ export default function MobileMegaMenu({
         leave="transition ease-in duration-150"
         leaveFrom="opacity-100 translate-x-0"
         leaveTo="opacity-0 -translate-x-1"
-      >
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-screen  pl-6 sm:px-0 p-0 z-0 ">
-          <div className="absolute z-0 w-screen bg-white top-0 ">
-            {children}
-          </div>
-        </div>
-      </Transition>
-    </div>
+      > */}
+
+      {children}
+
+      {/* </Transition> */}
+    </motion.div>
   );
 }

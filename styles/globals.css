@@ -145,6 +145,26 @@ swiper-container {
   overflow: visible !important;
 }
 
+.react-datepicker__day,
+.react-datepicker__month-text,
+.react-datepicker__quarter-text,
+.react-datepicker__year-text {
+  color: #676767 !important;
+}
+
+.react-datepicker__day-name,
+/* .react-datepicker__day, */
+.react-datepicker__time-name {
+  color: white !important;
+}
+.select__menu {
+  margin-top: -0.8rem !important;
+}
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: white !important;
+}
 .swiper-pagination-bullet {
   opacity: 1 !important;
   background-color: #d8d8d8 !important;

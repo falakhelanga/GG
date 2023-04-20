@@ -58,6 +58,9 @@ const SelectInput = ({
               outline: "none",
               border: "none",
             }),
+            option: (styles) => ({
+              ...styles,
+            }),
             control: (styles) => ({
               ...styles,
               backgroundColor: "white",

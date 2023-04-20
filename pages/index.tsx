@@ -19,6 +19,7 @@ import { CategoryType, ProductType, SubCategoryType } from "@/types/products";
 import { useMenu } from "@/context/menu";
 import { useRouter } from "next/router";
 import { useSubCategories } from "@/context/subCategories";
+import { query } from "firebase/firestore";
 
 export default function Home({
   products,
@@ -54,7 +55,14 @@ export default function Home({
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
     if (!page) {
-      router.push("?page=comfort");
+      router.push(
+        {
+          pathname: "/",
+          query: { ...router.query, page: "comfort" },
+        },
+        undefined,
+        { scroll: false }
+      );
     }
   }, []);
 

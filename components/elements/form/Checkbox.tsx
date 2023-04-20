@@ -13,7 +13,7 @@ interface CheckBoxPropType {
   labelClassNames?: string;
   type?: React.HTMLInputTypeAttribute | undefined;
   showError?: boolean;
-  link?: string;
+  link?: string | null;
   setTsAndCsCheckboxMeta?: React.Dispatch<
     React.SetStateAction<FieldMetaProps<any>>
   >;

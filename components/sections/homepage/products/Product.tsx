@@ -37,13 +37,14 @@ const Product = ({
       <div className="h-full flex-1 flex flex-col">
         <Title
           className={`text-green uppercase my-5 font-semibold  overflow-hidden ${
-            isCarousel && "h-[2rem]"
+            isCarousel && "md:h-[3.5rem]"
           }`}
         >
           {" "}
           <Link href={`products-range/${product.id}`}>
             <ReactMarkdown className=" overflow-hidden ">
-              {truncate(70, product.name)}
+              {product.name}
+              {/* {truncate(70, product.name)} */}
             </ReactMarkdown>
           </Link>
         </Title>
@@ -51,8 +52,8 @@ const Product = ({
         <ReactMarkdown
           // remarkPlugins={[gfm]}
           className={` ${
-            isCarousel ? "md:h-[9rem]" : "flex-1"
-          } text-brown prose  overflow-hidden`}
+            isCarousel ? "md:h-[9rem] h-[9rem]" : "flex-1"
+          } text-black prose  overflow-hidden marker:text-red-black`}
         >
           {product.subContentBullets}
         </ReactMarkdown>

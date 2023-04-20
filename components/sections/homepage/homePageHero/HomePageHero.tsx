@@ -30,39 +30,26 @@ const HomePageHero = ({
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
-  const [fadeNavBottomBarClass, setFadeNavBottomBarClass] =
-    useState("-bottom-4");
-  const [sliderPosition, setSliderPosition] = useState(0);
-  const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
-  const [activeTab, setActiveTab] = useState(1);
-  const containerRef = useRef(1);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const moveSlider = (index: number) => {
-    setSliderPosition(190 * index);
-  };
+  const [activeTabIndex, setActiveTabIndex] = useState<string | null>(null);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [showWhiteLine, setShowWhiteLine] = useState(false);
+  const tabsRef = useRef<any>([]);
 
-  const handleFadeNavBottomBarClass = useCallback(
-    (className: string) => setFadeNavBottomBarClass(className),
-    []
-  );
-  ////// set tab index on page mount
   useEffect(() => {
-    if (router.isReady) {
-      const tab = links.find((link) => link.link === page);
-      if (tab) {
-        setSlideCurrentIndex(tab.index);
-        setActiveTab(tab.index);
-      } else {
-        setSlideCurrentIndex(-1);
-        setActiveTab(-1);
-      }
+    function setTabPosition() {
+      if (!activeTabIndex) return;
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
+      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
     }
-  }, [router, page]);
 
-  /////// move the tab slider when the index change
-  useEffect(() => {
-    moveSlider(slideCurrentIndex);
-  }, [slideCurrentIndex]);
+    setTabPosition();
+    window.addEventListener("resize", setTabPosition);
+
+    return () => window.removeEventListener("resize", setTabPosition);
+  }, [activeTabIndex]);
+
   return (
     <div className="">
       <Swiper
@@ -118,31 +105,33 @@ const HomePageHero = ({
           </h1>
         </div>
         <div className="flex flex-col md:w-[50%]">
-          <div className="overflow-hidden flex flex-col uppercase w-full    items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
-            <div className="flex max-sm:gap-4  ">
+          <div
+            onMouseEnter={() => {
+              setShowWhiteLine(true);
+            }}
+            onMouseLeave={() => {
+              setShowWhiteLine(false);
+              setActiveTabIndex(null);
+            }}
+            className="overflow-hidden flex flex-col uppercase w-full   relative items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
+          >
+            <div className="flex max-sm:gap-8 gap-[4rem] ">
               {links.map((item, idx) => {
                 return (
                   <Link
                     key={item.name}
+                    ref={(el) => (tabsRef.current[item.name] = el)}
                     href={`?page=${item.name}`}
                     onMouseEnter={() => {
-                      if (page === item.link) return;
-                      handleFadeNavBottomBarClass("-bottom-0");
-                      setSlideCurrentIndex(item.index);
-                    }}
-                    onMouseLeave={() => {
-                      if (router.route === item.link) return;
-                      handleFadeNavBottomBarClass("-bottom-4");
-                      // setSlideCurrentIndex(activeTab);
+                      setActiveTabIndex(item.name);
                     }}
                     className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
-                      page === item.link &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] "
+                      page === item.link && "  translate-y-[3px] "
                     } ${
                       !page &&
                       idx === 0 &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] transition duration-200 transition-all ease-in-out"
-                    } relative md:px-12 px-5 pb-2  `}
+                      "  translate-y-[3px] transition duration-200 transition-all ease-in-out"
+                    } relative  pb-4  `}
                     scroll={false}
                   >
                     <span
@@ -152,26 +141,27 @@ const HomePageHero = ({
                     >
                       {item.name}
                     </span>
-                    <div
-                      style={{
-                        // transform: `translateX(${sliderPosition}px)`,
-                        width: `${sliderWidth}rem`,
-                      }}
-                      className={`${
-                        page === item.link && "md:block"
-                      } bg-green h-2 transition-all duration-700 ease-out  hidden absolute -bottom-[0.3rem] translate-x-[-10px]`}
-                    ></div>
                   </Link>
                 );
               })}
             </div>
-            <div
-              style={{
-                transform: `translateX(${sliderPosition}px)`,
-                width: `${sliderWidth}rem`,
-              }}
-              className={`bg-green h-2  transition-all duration-700 ease-out md:block hidden relative   ${fadeNavBottomBarClass}`}
-            ></div>
+
+            {page && (
+              <span
+                style={{
+                  left: tabsRef?.current[page as string]?.offsetLeft ?? 0,
+                  width: tabsRef?.current[page as string]?.clientWidth ?? 0,
+                }}
+                className={`absolute  block h-3 bottom-0 bg-green transition-all duration-300 `}
+              />
+            )}
+
+            <span
+              style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+              className={`absolute md:block hidden bg-green  block h-3 bg-black transition-all duration-300 ${
+                showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
+              }`}
+            />
           </div>
           <div className="text-brown text-center my-5">{description.text}</div>
         </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
+import { motion } from "framer-motion";
 interface ButtonPropType {
   children: React.ReactNode;
   className?: string;
@@ -25,7 +25,10 @@ const Button = ({
   return (
     <>
       {!link && (
-        <button
+        <motion.button
+          whileTap={{
+            scale: 0.75,
+          }}
           {...rest}
           onClick={onClick}
           type={type}
@@ -42,10 +45,10 @@ const Button = ({
         variant === "green" &&
         `bg-green hover:opacity-75 text-white ${className}`
       }
-      font-bold  ${className} `}
+      font-bold  ${className} md:cursor-pointer cursor-none`}
         >
           {children}
-        </button>
+        </motion.button>
       )}
       {link && (
         <Link

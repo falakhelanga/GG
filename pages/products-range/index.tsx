@@ -17,7 +17,13 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const sliderWidth = 7;
 
@@ -42,11 +48,28 @@ const ProductRangePage = ({
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
-  const [sliderPosition, setSliderPosition] = useState(0);
-  const [slideCurrentIndex, setSlideCurrentIndex] = useState(1);
   const [fadeNavBottomBarClass, setFadeNavBottomBarClass] =
     useState("-bottom-2");
-  const [activeTab, setActiveTab] = useState(1);
+
+  const [activeTabIndex, setActiveTabIndex] = useState<string | null>(null);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [showWhiteLine, setShowWhiteLine] = useState(false);
+  const tabsRef = useRef<any>([]);
+
+  useEffect(() => {
+    function setTabPosition() {
+      if (!activeTabIndex) return;
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
+      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
+    }
+
+    setTabPosition();
+    window.addEventListener("resize", setTabPosition);
+
+    return () => window.removeEventListener("resize", setTabPosition);
+  }, [activeTabIndex]);
 
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
@@ -70,9 +93,9 @@ const ProductRangePage = ({
     }, [])
     .map((review: any) => ({ ...review.attributes, id: review.id }));
 
-  const moveSlider = (index: number) => {
-    setSliderPosition(190 * index);
-  };
+  // const moveSlider = (index: number) => {
+  //   setSliderPosition(190 * index);
+  // };
   const { setSubCategories, setNewProducts } = useSubCategories();
   useEffect(() => {
     setNewProducts(newProducts);
@@ -85,29 +108,6 @@ const ProductRangePage = ({
     }
   }, []);
 
-  ////// set tab index on page mount
-  useEffect(() => {
-    if (router.isReady) {
-      const tab = links.find((link) => link.link === page);
-      if (tab) {
-        setSlideCurrentIndex(tab.index);
-        setActiveTab(tab.index);
-      } else {
-        setSlideCurrentIndex(-1);
-        setActiveTab(-1);
-      }
-    }
-  }, [router, page]);
-
-  /////// move the tab slider when the index change
-  useEffect(() => {
-    moveSlider(slideCurrentIndex);
-  }, [slideCurrentIndex]);
-
-  const handleFadeNavBottomBarClass = useCallback(
-    (className: string) => setFadeNavBottomBarClass(className),
-    []
-  );
   return (
     <>
       <Head>
@@ -124,60 +124,64 @@ const ProductRangePage = ({
           </h1>
         </div>
         <div className="flex flex-col w-full ">
-          <div className="flex flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
-            <div className="flex max-sm:gap-4  ">
-              {links.map((item, idx) => {
-                return (
-                  <Link
-                    key={item.name}
-                    href={`?page=${item.name}`}
-                    onMouseEnter={() => {
-                      if (page === item.link) return;
-                      handleFadeNavBottomBarClass("bottom-0");
-                      setSlideCurrentIndex(item.index);
-                    }}
-                    onMouseLeave={() => {
-                      if (router.route === item.link) return;
-                      handleFadeNavBottomBarClass("-bottom-2");
-                      // setSlideCurrentIndex(activeTab);
-                    }}
-                    className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
-                      page === item.link &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] "
-                    } ${
-                      !page &&
-                      idx === 0 &&
-                      "max-sm:border-b max-sm:border-b-green max-sm:border-b-8  translate-y-[3px] transition duration-200 transition-all ease-in-out"
-                    } relative md:px-12 px-5 pb-2  `}
-                    scroll={false}
-                  >
-                    <span
-                      className={`font-bold ${
-                        page === item.link && "text-green"
-                      } ${!page && idx === 0 && "text-green"} `}
-                    >
-                      {item.name}
-                    </span>
-                    <div
-                      style={{
-                        // transform: `translateX(${sliderPosition}px)`,
-                        width: `${sliderWidth}rem`,
+          <div
+            onMouseEnter={() => {
+              setShowWhiteLine(true);
+            }}
+            onMouseLeave={() => {
+              setShowWhiteLine(false);
+              setActiveTabIndex(null);
+            }}
+            className="flex flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
+          >
+            <div className="relative  overflow-hidden">
+              <div className="flex max-sm:gap-8 gap-[4rem] ">
+                {links.map((item, idx) => {
+                  return (
+                    <Link
+                      key={item.name}
+                      ref={(el) => (tabsRef.current[item.name] = el)}
+                      href={`?page=${item.name}`}
+                      onMouseEnter={() => {
+                        setActiveTabIndex(item.name);
                       }}
-                      className={`${
-                        page === item.link && "md:block"
-                      } bg-green h-2 transition-all duration-700 ease-out  hidden absolute -bottom-[0.4rem] translate-x-[-10px]`}
-                    ></div>
-                  </Link>
-                );
-              })}
+                      className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
+                        page === item.link && "  translate-y-[3px] "
+                      } ${
+                        !page &&
+                        idx === 0 &&
+                        "  translate-y-[3px] transition duration-200 transition-all ease-in-out"
+                      } relative  pb-4  `}
+                      scroll={false}
+                    >
+                      <span
+                        className={`font-bold ${
+                          page === item.link && "text-green"
+                        } ${!page && idx === 0 && "text-green"} `}
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+              {page && (
+                <span
+                  style={{
+                    left: tabsRef?.current[page as string]?.offsetLeft ?? 0,
+                    width: tabsRef?.current[page as string]?.clientWidth ?? 0,
+                  }}
+                  className={`absolute  block h-3 bottom-0 bg-green transition-all duration-300 `}
+                />
+              )}
+
+              <span
+                style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+                className={`absolute md:block hidden bg-green  block h-3 bg-black transition-all duration-300 ${
+                  showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
+                }`}
+              />
             </div>
-            <div
-              style={{
-                transform: `translateX(${sliderPosition}px)`,
-                width: `${sliderWidth}rem`,
-              }}
-              className={`bg-green h-2  transition-all duration-700 ease-out md:block hidden relative   ${fadeNavBottomBarClass}`}
-            ></div>
           </div>
           <div className="text-brown text-center my-5">{description.text}</div>
         </div>
