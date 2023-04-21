@@ -40,7 +40,7 @@ const FeminineHygieneCard = ({
   }, [color]);
 
   return (
-    <div className={` ${className} `}>
+    <div className={` ${className} max-sm:rounded-b-md max-sm:overflow-hidden`}>
       <div className={`${bgColor} w-full h-10 rounded-t-md `}></div>
       <div className="md:bg-[rgb(255,255,255,0.9)] bg-white p-6">
         <Title className="uppercase text-black font-semibold">
@@ -51,7 +51,7 @@ const FeminineHygieneCard = ({
         </Title>
         <div className="text-black my-6">{body}</div>
         <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer ">
-          <span className="">find out more</span>{" "}
+          <span className="font-bold">find out more</span>{" "}
           <FontAwesomeIcon
             icon={faChevronRight}
             className="text-pink find-out-more-chevron"
