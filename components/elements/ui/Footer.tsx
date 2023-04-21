@@ -12,8 +12,41 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="bg-pink pt-14 ">
-      <ContentWrap className="grid grid-cols-3 text-white">
-        <div className=" col-span-3 md:col-span-1 flex flex-col items-center mb-6  md:items-start gap-4 md:pb-[10rem]">
+      <ContentWrap className="grid md:grid-cols-3 grid-cols-2 text-white">
+        <div className=" col-span-3 md:col-span-1 flex md:hidden flex-col uppercase md:border-x border-x-white items-center mb-8">
+          <Link
+            href="/"
+            className=" hover:opacity-80 transition-all ease-in-out transition-duration-300"
+          >
+            <div className="hidden block">
+              <Logo />
+            </div>
+            <div className="md:hidden block">
+              <Logo height={300} width={300} />
+            </div>
+          </Link>
+          <div className="flex gap-4 my-6">
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+              <FontAwesomeIcon icon={faFacebookF} color="white" size="xl" />
+            </div>
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+              <FontAwesomeIcon icon={faInstagram} size="xl" />
+            </div>
+            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+              <FontAwesomeIcon icon={faTiktok} size="xl" />
+            </div>
+          </div>
+          <div className="text-center">
+            <div>CUSTOMER SERVICE</div>
+            <a
+              href="tel:0800-133-844"
+              className="font-bold cursor-pointer transition-all ease-in-out transition-duration-300"
+            >
+              0800 133 844
+            </a>
+          </div>
+        </div>
+        <div className=" col-span-1 flex flex-col mb-6  items-start gap-4 md:pb-[10rem]">
           <Link
             href="/"
             className="uppercase hover:opacity-80 transition-all ease-in-out transition-duration-300"
@@ -40,7 +73,7 @@ const Footer = () => {
             <span className="font-bold uppercase">HUB</span>
           </Link>
         </div>
-        <div className="col-span-3 md:col-span-1 flex flex-col uppercase md:border-x border-x-white items-center">
+        <div className=" col-span-3 md:col-span-1 md:flex hidden flex-col uppercase md:border-x border-x-white items-center">
           <Link
             href="/"
             className=" hover:opacity-80 transition-all ease-in-out transition-duration-300"
@@ -68,7 +101,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="col-span-3 md:col-span-1 flex flex-col uppercase items-center my-4 md:items-end gap-4">
+        <div className="col-span-1 flex flex-col uppercase  my-4 items-end gap-4">
           <Link
             href="/home"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"

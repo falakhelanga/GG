@@ -41,14 +41,17 @@ const Articles = () => {
   return (
     <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 ">
       <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">
-        <ContentWrap className="grid md:grid-cols-2 h-full  items-end md:mt-14 ">
-          <div className="pb-10 max-sm:mt-6">
+        <ContentWrap className="grid md:grid-cols-2 h-full  items-end md:mt-14 pt-14">
+          <div className="md:pb-10 max-sm:mt-[12rem]">
             <div className="">
               <Logo />
               <div className="md:text-8xl text-4xl text-pink font-semibold">
-                Free to <span className="font-paul text-green">just be</span>
+                Free to{" "}
+                <span className="font-paul text-green font-normal md:text-8xl text-5xl">
+                  just be
+                </span>
               </div>
-              <div className="md:text-8xl font-bold text-white text-5xl">
+              <div className="md:text-8xl font-bold text-white text-8xl">
                 HUB
               </div>
             </div>
@@ -88,7 +91,7 @@ const Articles = () => {
             <ArticleCard {...article} key={article.id} />
           ))}
           <div className="w-full flex justify-center  col-span-3 my-4">
-            <Button variant="outline" className="uppercase">
+            <Button variant="outline" className="uppercase max-sm:w-full">
               see all articles
             </Button>
           </div>
