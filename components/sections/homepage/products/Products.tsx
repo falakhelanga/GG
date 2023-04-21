@@ -26,7 +26,7 @@ const Products = ({ products }: { products: ProductType[] }) => {
   return (
     <div className=" relative">
       <div
-        className=" absolute top-[20%] md:left-[20rem] -left-6 z-[3] md:cursor-pointer  "
+        className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
         ref={(node) => setPrevEl(node)}
       >
         <Image
@@ -39,7 +39,7 @@ const Products = ({ products }: { products: ProductType[] }) => {
 
       <div
         ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] md:right-[20rem] -right-6 z-[3] md:cursor-pointer "
+        className=" absolute top-[20%] md:right-[0rem] md:mr-[20rem] -right-6 z-[3] md:cursor-pointer "
       >
         <Image
           alt="arrow-left"
