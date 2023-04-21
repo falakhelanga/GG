@@ -155,7 +155,7 @@ const MobileBurgerMenu = ({
                           return (
                             <Link
                               href={{
-                                pathname: "/",
+                                pathname: link,
                                 query: { ...router.query, section: link },
                               }}
                               key={idx}
