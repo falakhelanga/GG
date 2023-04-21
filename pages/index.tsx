@@ -3,13 +3,13 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
-import DropDown from "@/components/elements/GallerySortDropDown";
+import DropDown from "@/components/sections/CompetitionPlatformPage.tsx/gallery/GallerySortDropDown";
 import HomePageHero from "@/components/sections/homepage/homePageHero/HomePageHero";
 import Products from "@/components/sections/homepage/products/Products";
 import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
 import { ParallaxProvider } from "react-scroll-parallax";
 import Articles from "@/components/sections/homepage/articles/Articles";
-import GynaguardPromise from "@/components/elements/GynaguardPromise/GynaguardPromise";
+import GynaguardPromise from "@/components/sections/GynaguardPromise/GynaguardPromise";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import axios from "axios";
 import { fetchAPI } from "@/lib/api";
@@ -19,6 +19,7 @@ import { CategoryType, ProductType, SubCategoryType } from "@/types/products";
 import { useMenu } from "@/context/menu";
 import { useRouter } from "next/router";
 import { useSubCategories } from "@/context/subCategories";
+import { query } from "firebase/firestore";
 
 export default function Home({
   products,
@@ -54,7 +55,14 @@ export default function Home({
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
     if (!page) {
-      router.push("?page=comfort");
+      router.push(
+        {
+          pathname: "/",
+          query: { ...router.query, page: "comfort" },
+        },
+        undefined,
+        { scroll: false }
+      );
     }
   }, []);
 

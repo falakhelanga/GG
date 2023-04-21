@@ -43,7 +43,6 @@ const LocationInput = ({
   } = usePlacesAutocomplete();
 
   const handleSelect = async (val: any) => {
-    console.log(val, "value");
     setValue(val, false);
     clearSuggestions();
     helpers.setValue(val);

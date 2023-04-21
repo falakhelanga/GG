@@ -1,4 +1,4 @@
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import GalleryGrid from "@/components/sections/CompetitionPlatformPage.tsx/gallery/GalleryGrid";
 import { useSubCategories } from "@/context/subCategories";

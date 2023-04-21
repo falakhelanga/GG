@@ -1,7 +1,7 @@
-import Button from "@/components/elements/Button";
-import GynaguardPromise from "@/components/elements/GynaguardPromise/GynaguardPromise";
-import Title from "@/components/elements/Title";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import Button from "@/components/elements/ui/Button";
+import GynaguardPromise from "@/components/sections/GynaguardPromise/GynaguardPromise";
+import Title from "@/components/elements/ui/Title";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import BuyNowDropDown from "@/components/sections/homepage/products/BuyNowDropDown";
 import Reviews from "@/components/sections/products-range/Reviews";
 import { fetchAPI } from "@/lib/api";
@@ -38,7 +38,7 @@ const IndividualProduct = ({
     setNewProducts(newProducts);
     setSubCategories(subcategories);
   }, [setSubCategories, subcategories, setNewProducts, newProducts]);
-  console.log(product.gynaguard_promise, "dd");
+
   const gynaguardPromise: GynaguardPromiseType | null = product
     .gynaguard_promise.data
     ? {

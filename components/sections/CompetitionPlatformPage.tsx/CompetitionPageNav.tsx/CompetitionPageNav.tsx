@@ -1,11 +1,53 @@
-import HeaderImageUnderline from "@/components/elements/HeaderImageUnderline";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import HeaderImageUnderline from "@/components/elements/ui/HeaderImageUnderline";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+const NAV_LINKS = [
+  {
+    ligthText: "enter",
+    boldText: "now",
+    link: "/entry",
+  },
+  {
+    ligthText: "view",
+    boldText: "gallery",
+    link: "/contestant",
+  },
+  {
+    ligthText: "read",
+    boldText: `faq's`,
+    link: "/faq",
+  },
+  {
+    ligthText: "competition",
+    boldText: "terms",
+    link: "/terms-and-conditions",
+  },
+];
 
 const CompetitionPageNav = () => {
   const router = useRouter();
+  const [activeTabIndex, setActiveTabIndex] = useState<string | null>(null);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [showWhiteLine, setShowWhiteLine] = useState(false);
+  const tabsRef = useRef<any>([]);
+
+  useEffect(() => {
+    function setTabPosition() {
+      if (!activeTabIndex) return;
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
+      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
+    }
+
+    setTabPosition();
+    window.addEventListener("resize", setTabPosition);
+
+    return () => window.removeEventListener("resize", setTabPosition);
+  }, [activeTabIndex]);
   return (
     <div className="">
       <div className="md:h-[80vh] h-[80vh]  relative flex items-end  ">
@@ -36,46 +78,50 @@ const CompetitionPageNav = () => {
       </div>
 
       <HeaderImageUnderline />
-      <ContentWrap className=" ">
-        <div className=" flex gap-6 uppercase w-full justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
-          <Link
-            href="/entry"
-            className={`${
-              router.route === "/entry" && "border-b border-b-8 border-b-pink "
-            }  `}
-            scroll={false}
-          >
-            enter <span className="font-bold">now</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/contestant" &&
-              "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/contestant"
-            scroll={false}
-          >
-            view <span className="font-bold">gallery</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/faq" && "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/faq"
-            scroll={false}
-          >
-            read <span className="font-bold">{"faq's"}</span>
-          </Link>
-          <Link
-            className={`${
-              router.route === "/terms-and-conditions" &&
-              "border-b border-b-8 border-b-pink"
-            }  `}
-            href="/terms-and-conditions"
-            scroll={false}
-          >
-            competition <span className="font-bold">terms</span>
-          </Link>
+      <ContentWrap>
+        <div
+          onMouseEnter={() => {
+            setShowWhiteLine(true);
+          }}
+          onMouseLeave={() => {
+            setShowWhiteLine(false);
+            setActiveTabIndex(null);
+          }}
+          className="  overflow-hidden flex justify-center"
+        >
+          <div className="  w-fit overflow-hidden relative flex gap-6 uppercase  justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
+            {NAV_LINKS.map((link) => (
+              <Link
+                className="pb-4"
+                onMouseEnter={() => {
+                  setActiveTabIndex(link.link);
+                }}
+                key={link.link}
+                href={link.link}
+                ref={(el) => (tabsRef.current[link.link] = el)}
+                scroll={false}
+              >
+                {link.ligthText}{" "}
+                <span className="font-bold">{link.boldText}</span>
+              </Link>
+            ))}
+            {router.isReady && (
+              <span
+                style={{
+                  left: tabsRef?.current[router.route as string]?.offsetLeft,
+                  width: tabsRef?.current[router.route as string]?.clientWidth,
+                }}
+                className={`absolute  block h-3 bottom-0 bg-pink transition-all duration-300 `}
+              />
+            )}
+
+            <span
+              style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+              className={`absolute md:block hidden bg-pink  block h-3 bg-black transition-all duration-300 ${
+                showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
+              }`}
+            />
+          </div>
         </div>
       </ContentWrap>
     </div>

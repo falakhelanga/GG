@@ -1,11 +1,11 @@
-import Logo from "@/components/elements/Logo";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import Logo from "@/components/elements/ui/Logo";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { ParallaxProvider, useParallax, Parallax } from "react-scroll-parallax";
 import ArticleCard from "./ArticleCard";
-import Button from "@/components/elements/Button";
+import Button from "@/components/elements/ui/Button";
 
 const articles = [
   {
@@ -40,8 +40,8 @@ const articles = [
 const Articles = () => {
   return (
     <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 ">
-      <div className="md:h-auto md:pt-14 w-full bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat bg-center  ">
-        <ContentWrap className="grid md:grid-cols-2 h-full  items-end ">
+      <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">
+        <ContentWrap className="grid md:grid-cols-2 h-full  items-end md:mt-14 ">
           <div className="pb-10 max-sm:mt-6">
             <div className="">
               <Logo />

@@ -1,5 +1,5 @@
-import Footer from "@/components/elements/Footer";
-import NavBar from "@/components/elements/layout/NavBar";
+import Footer from "@/components/elements/ui/Footer";
+import NavBar from "@/components/elements/ui/NavBar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import DataProvider from "@/context/data";

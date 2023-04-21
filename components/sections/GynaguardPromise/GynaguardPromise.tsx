@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../Logo";
-import ContentWrap from "../layout/ContentWrap";
+import Logo from "../../elements/ui/Logo";
+import ContentWrap from "../../elements/ui/ContentWrap";
 import Badge from "./Badge";
 
 const badges = [

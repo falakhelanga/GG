@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import Title from "../../../elements/Title";
+import Title from "../../../elements/ui/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
-import Button from "../../../elements/Button";
+import Button from "../../../elements/ui/Button";
 import useClickOutside from "@/hooks/useClickOutSide";
 import ReactMarkdown from "react-markdown";
 import truncate from "@/helpers.tsx/textTruncate";
@@ -18,7 +18,6 @@ const Product = ({
   product: ProductType;
   isCarousel?: boolean;
 }) => {
-  console.log(product.image.data.attributes.url, "kdkd");
   return (
     <div
       className={` md:cursor-pointer relative ${
@@ -38,13 +37,14 @@ const Product = ({
       <div className="h-full flex-1 flex flex-col">
         <Title
           className={`text-green uppercase my-5 font-semibold  overflow-hidden ${
-            isCarousel && "h-[2rem]"
+            isCarousel && "md:h-[3.5rem]"
           }`}
         >
           {" "}
           <Link href={`products-range/${product.id}`}>
             <ReactMarkdown className=" overflow-hidden ">
-              {truncate(70, product.name)}
+              {product.name}
+              {/* {truncate(70, product.name)} */}
             </ReactMarkdown>
           </Link>
         </Title>
@@ -52,8 +52,8 @@ const Product = ({
         <ReactMarkdown
           // remarkPlugins={[gfm]}
           className={` ${
-            isCarousel ? "md:h-[9rem]" : "flex-1"
-          } text-brown prose  overflow-hidden`}
+            isCarousel ? "md:h-[9rem] h-[9rem]" : "flex-1"
+          } text-black prose  overflow-hidden marker:text-red-black`}
         >
           {product.subContentBullets}
         </ReactMarkdown>

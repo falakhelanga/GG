@@ -3,7 +3,8 @@ import React, { useRef, useState } from "react";
 import InputWrapper from "./InputWrapper";
 import axios from "axios";
 import ProgressBar from "@ramonak/react-progress-bar";
-import Spinner from "./Spinner";
+import Spinner from "../ui/Spinner";
+import Button from "../ui/Button";
 interface ImageUploaderPropType {
   name: string;
   label?: string;
@@ -60,39 +61,58 @@ const ImageUploader = ({
     >
       <div className="w-full flex flex-col">
         {!uploadedProgress && (
-          <div>
-            <label
-              htmlFor={name}
-              className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
-            >
-              <span className="text-white  max-sm:text-xs">
-                UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
-              </span>
-            </label>
+          <>
+            <Button type="button" className="block md:hidden">
+              <label
+                htmlFor={name}
+                className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+              >
+                <span className="text-white   uppercase">
+                  upload your photo
+                  {/* UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT */}
+                </span>
+              </label>
+            </Button>
+            <Button type="button" className="hidden md:block">
+              <label
+                htmlFor={name}
+                className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+              >
+                <span className="text-white  max-sm:text-xs capitalize">
+                  UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
+                </span>
+              </label>
+            </Button>
             {meta.touched && meta.error && (
-              <div className="text-red-600 text-sm p-2  bg-opacity-10">
+              <div className="text-red-600 text-sm p-2  bg-opacity-10 text-center">
                 {meta.error}
               </div>
             )}
-            {/* <div className="text-red-600 text-sm p-2  bg-opacity-10">hfhfh</div> */}
-          </div>
+          </>
         )}
-        {/* {uploadedProgress === 100 && !uploaded && <Spinner />} */}
 
         {uploadedProgress &&
           uploadedProgress > 0 &&
           // uploadedProgress !== 100 &&
           !uploaded && (
             <>
-              <label
-                htmlFor={name}
-                className={`bg-pink opacity-0  rounded-full text-center  px-4 font-semibold md:cursor-pointer `}
-              >
-                <span className="text-white">
-                  UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
-                </span>
-              </label>
-              <div className="-mt-10 w-full py-0">
+              <Button type="button" className="opacity-0">
+                <label
+                  htmlFor={name}
+                  className={`bg-pink    rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+                >
+                  <span className="text-white  max-sm:text-xs">
+                    UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
+                  </span>
+                </label>
+                {meta.touched && meta.error && (
+                  <div className="text-red-600 text-sm p-2  bg-opacity-10">
+                    {meta.error}
+                  </div>
+                )}
+                {/* <div className="text-red-600 text-sm p-2  bg-opacity-10">hfhfh</div> */}
+              </Button>
+              <div className="-mt-11 w-full py-0">
                 <div className="text-pink uppercase font-bold text-center mb-0 ">
                   uploading, please wait...
                 </div>

@@ -1,4 +1,4 @@
-import Title from "@/components/elements/Title";
+import Title from "@/components/elements/ui/Title";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useMemo } from "react";

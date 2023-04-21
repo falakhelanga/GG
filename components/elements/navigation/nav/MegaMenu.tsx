@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
-
+import { motion } from "framer-motion";
 export default function MegaMenu({
   menu,
   children,
@@ -12,30 +12,31 @@ export default function MegaMenu({
   index?: any;
   mouseLeave?: any;
 }) {
+  const variants = {
+    open: { opacity: 1, y: 0, display: "block" },
+    closed: {
+      opacity: 1,
+      y: -800,
+      // transitionEnd: {
+      //   display: "none",
+      // },
+    },
+  };
+
   return (
-    <div>
-      <Transition
-        as={Fragment}
-        show={index == menu.menuIndex}
-        enter="transition ease-out duration-300"
-        enterFrom="opacity-0 -translate-y-12"
-        enterTo="opacity-100 translate-y-0"
-        leave="transition ease-in duration-150"
-        leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 -translate-y-1"
-      >
-        <div
-          className="absolute left-1/2 transform -translate-x-1/2 w-screen sm:px-0 p-0 z-0"
-          onMouseLeave={mouseLeave ? () => menu.unlockAndHideMenu() : undefined}
-        >
-          <div
-            className="absolute z-0 w-screen bg-white"
-            onMouseLeave={mouseLeave ? () => menu.hideMenu() : undefined}
-          >
-            {children}
-          </div>
-        </div>
-      </Transition>
-    </div>
+    <motion.div
+      initial="closed"
+      animate={index == menu.menuIndex ? "open" : "closed"}
+      transition={{
+        duration: 0.4,
+      }}
+      variants={variants}
+      className="absolute l transform -translate-x-1/2 w-screen sm:px-0 p-0 z-0 "
+      onMouseLeave={menu.hideMenu}
+    >
+      {children}
+
+      {/* </Transition> */}
+    </motion.div>
   );
 }

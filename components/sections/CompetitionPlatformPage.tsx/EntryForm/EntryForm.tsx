@@ -1,13 +1,13 @@
-import Button from "@/components/elements/Button";
-import Checkbox from "@/components/elements/Checkbox";
-import DatePicker from "@/components/elements/DatePicker";
-import DatePickerInput from "@/components/elements/DatePicker";
-import Form from "@/components/elements/Form";
-import ImageUploader from "@/components/elements/ImageUploader";
-import SelectInput from "@/components/elements/SelectInput";
-import TextAreaInput from "@/components/elements/TextAreaInput";
-import TextInput from "@/components/elements/TextInput";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import Button from "@/components/elements/ui/Button";
+import Checkbox from "@/components/elements/form/Checkbox";
+import DatePicker from "@/components/elements/form/DatePicker";
+import DatePickerInput from "@/components/elements/form/DatePicker";
+import Form from "@/components/elements/form/Form";
+import ImageUploader from "@/components/elements/form/ImageUploader";
+import SelectInput from "@/components/elements/form/SelectInput";
+import TextAreaInput from "@/components/elements/form/TextAreaInput";
+import TextInput from "@/components/elements/form/TextInput";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import { useFirebase } from "@/context/Firebase";
 import { EntryValues } from "@/types/entry";
 import {
@@ -64,14 +64,13 @@ const EntryForm = () => {
       });
       setSubmitted(true);
     } catch (error) {
-      console.log(error);
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className=" w-full flex items-center pt-24 flex-col bg-[#EEE0E6] pb-14">
+    <div className=" w-full flex items-center md:pt-24 pt-16 flex-col bg-[#EEE0E6] pb-14">
       <h1 className=" md:text-5xl text-4xl text-pink uppercase mb-12">
         {" "}
         <span className="font-extrabold">entry</span> form
@@ -179,11 +178,11 @@ submit a query and request a second entry by sending an email to:`}
                     label="Subscribe to GynaGuard"
                   />
                   <Checkbox
-                    setTsAndCsCheckboxMeta={setTsAndCsCheckboxMeta}
+                    // setTsAndCsCheckboxMeta={setTsAndCsCheckboxMeta}
                     showError={false}
                     name="acceptedTsAndCs"
                     label="Accept T's & C's"
-                    link="#"
+                    link="/terms-and-conditions"
                   />
                 </div>
                 {TsAndCsCheckBoxMeta &&
@@ -193,21 +192,22 @@ submit a query and request a second entry by sending an email to:`}
                       {TsAndCsCheckBoxMeta.error}
                     </div>
                   )}
-                {/* {showTermsError && (
-                  <div className="text-red-600 text-sm p-2  bg-opacity-10 col-span-2 text-center md:w-[50%] ">
-                    Please tick the box above to confirm that you agree to
-                    comply with terms and conditions of becoming a participating
-                    member in GYNAGaurd competition.
-                  </div>
-                )} */}
               </div>
             </div>
             <div className="flex flex-col items-center w-full">
-              <div className="md:px-16 mt-7 mb-4">
+              <div className="md:px-16 mt-7 mb-4 max-sm:w-full">
+                <div className=" text-xs text-brown text-center block md:hidden mb-2">
+                  Upload a photo of you with your product
+                </div>
                 <ImageUploader containerClassNames="w-full" name="photoURL" />
               </div>
-              <div>
-                <Button className="rounded-full " variant="green" type="submit">
+              <div className="max-sm:w-full">
+                <Button
+                  fullWidth
+                  className="rounded-full w-full"
+                  variant="green"
+                  type="submit"
+                >
                   {!submitting ? "SUBMIT MY ENTRY!" : "SUBMITTING..."}
                 </Button>
               </div>

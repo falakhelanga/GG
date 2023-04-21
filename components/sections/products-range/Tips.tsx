@@ -1,10 +1,10 @@
-import Logo from "@/components/elements/Logo";
-import ContentWrap from "@/components/elements/layout/ContentWrap";
+import Logo from "@/components/elements/ui/Logo";
+import ContentWrap from "@/components/elements/ui/ContentWrap";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import ArticleCard from "../homepage/articles/ArticleCard";
-import Title from "@/components/elements/Title";
+import Title from "@/components/elements/ui/Title";
 
 const articles = [
   {
