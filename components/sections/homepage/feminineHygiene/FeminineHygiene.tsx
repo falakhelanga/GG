@@ -63,7 +63,7 @@ const FeminineHygiene = () => {
           {/* CONTENT START */}
           <div className="md:absolute top-0 right-0 flex flex-col items-center w-full md:pt-14 max-sm:py-8 text-white  h-full">
             <ContentWrap className="h-full relative flex flex-col ">
-              <div className="flex-1  flex flex-col justify-end">
+              <div className="flex-1  flex flex-col justify-end mt-8">
                 <div className="text-5xl flex flex-col items-center mb-4">
                   <div
                     className="
