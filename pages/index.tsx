@@ -136,6 +136,7 @@ export const getStaticProps: GetStaticProps<{
     "products.image",
     // "products.products",
   ];
+
   const { data } = await fetchAPI("home-page", pagePopulate);
   const { data: categories } = await fetchAPI("categories");
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
