@@ -12,7 +12,7 @@ interface ArticleCardPropTypes {
 
 const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
   return (
-    <div className="rounded-md overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] shadow transition duration-100 ease-in-out">
+    <div className="rounded-md overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] hover:translate-y-1 shadow transition-all duration-100 ease-in-out">
       <div className="h-[12rem]">
         <Image
           src={image}
@@ -27,7 +27,7 @@ const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
         <Title size="md" className="uppercase text-green my-6">
           {title}
         </Title>
-        <div className="text-black">{body}</div>
+        <div className="text-black text-sm">{body}</div>
         <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more cursor-pointer ">
           <span className="">read more</span>{" "}
           <FontAwesomeIcon

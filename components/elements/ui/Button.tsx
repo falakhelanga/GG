@@ -39,7 +39,8 @@ const Button = ({
             `bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink ${className}`
           } 
       ${
-        variant === "pink" && `text-white bg-pink hover:opacity-75 ${className}`
+        variant === "pink" &&
+        `text-white bg-pink hover:bg-darkPink ${className}`
       }
       ${
         variant === "green" &&
@@ -62,7 +63,8 @@ const Button = ({
             `bg-transparent  border-pink border-2 text-pink hover:bg-pink hover:text-white hover:border-pink ${className}`
           } 
       ${
-        variant === "pink" && `text-white bg-pink hover:opacity-75 ${className}`
+        variant === "pink" &&
+        `text-white bg-pink hover:bg-darkPink ${className}`
       }
       ${
         variant === "green" &&

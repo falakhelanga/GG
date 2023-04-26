@@ -62,23 +62,23 @@ const ImageUploader = ({
       <div className="w-full flex flex-col">
         {!uploadedProgress && (
           <>
-            <Button type="button" className="block md:hidden">
+            <Button variant="pink" type="button" className="block md:hidden">
               <label
                 htmlFor={name}
-                className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+                className={`  rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer   font-bold   `}
               >
-                <span className="text-white   uppercase">
+                <span className="text-white   uppercase font-bold">
                   upload your photo
                   {/* UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT */}
                 </span>
               </label>
             </Button>
-            <Button type="button" className="hidden md:block">
+            <Button type="button" variant="pink" className="hidden md:block">
               <label
                 htmlFor={name}
-                className={`bg-pink   rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+                className={`  rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer `}
               >
-                <span className="text-white  max-sm:text-xs capitalize">
+                <span className="text-white  max-sm:text-xs capitalize   font-bold  ">
                   UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT
                 </span>
               </label>
@@ -99,7 +99,7 @@ const ImageUploader = ({
               <Button type="button" className="opacity-0">
                 <label
                   htmlFor={name}
-                  className={`bg-pink    rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:opacity-75`}
+                  className={`bg-pink    rounded-full text-center  px-4 py-2 font-semibold md:cursor-pointer hover:bg-darkPink`}
                 >
                   <span className="text-white  max-sm:text-xs">
                     UPLOAD A PHOTO OF YOU WITH YOUR PRODUCT

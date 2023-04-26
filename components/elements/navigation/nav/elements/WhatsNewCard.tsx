@@ -28,12 +28,12 @@ const WhatsNewCard = ({
           className=" w-full p-[2rem] bg-cover rounded-md h-full w-full"
         ></Image>
       </div>
-      <div className="flex flex-col col-span-2  ">
-        <h1 className="font-bold text-black text-lg">{title}</h1>
-        <ReactMarkdown className=" text-black  flex-1">
+      <div className="flex flex-col col-span-2 hover:text-pink transition-all ease-in-out transition-duration-300">
+        <h1 className="font-bold  text-lg">{title}</h1>
+        <ReactMarkdown className="   flex-1">
           {truncate(160, text)}
         </ReactMarkdown>
-        <div className="uppercase font-medium  text-black text-sm hover:text-pink font-semibold find-out-more ">
+        <div className="uppercase font-medium   text-sm hover:text-pink font-semibold find-out-more ">
           <Link href={`products-range/${id}`}>
             <span className="">find out more</span>{" "}
             <FontAwesomeIcon

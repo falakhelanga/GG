@@ -36,7 +36,7 @@ const Reviews = ({ reviews }: { reviews: ReviewType[] }) => {
     <div>
       <Title
         size="md"
-        className="uppercase text-black md:text-3xl font-normal border-black border-b-2 border-b pb-5 border-b-black"
+        className="uppercase text-black md:text-3xl font-normal border-black border-b-[1px] border-b pb-5 border-b-black"
       >
         what other woman <span className="font-bold">have to say</span>
       </Title>

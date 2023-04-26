@@ -51,20 +51,23 @@ export default function Home({
 
   const router = useRouter();
   const { section, page } = router.query;
+  const { isReady } = router;
 
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
-    if (!page) {
-      router.push(
-        {
-          pathname: "/",
-          query: { ...router.query, page: "comfort" },
-        },
-        undefined,
-        { scroll: false }
-      );
+    if (isReady) {
+      if (!page) {
+        router.push(
+          {
+            pathname: "/",
+            query: { ...router.query, page: "comfort" },
+          },
+          undefined,
+          { scroll: false }
+        );
+      }
     }
-  }, []);
+  }, [page, isReady]);
 
   useEffect(() => {
     if (section === "hub") {

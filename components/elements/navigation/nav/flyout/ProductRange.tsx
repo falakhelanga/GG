@@ -39,7 +39,7 @@ const linksVariants = {
     },
   },
 };
-const ProductRange = () => {
+const ProductRange = ({ menu }: { menu: any }) => {
   const { subcategories, newProducts } = useSubCategories();
 
   const MENU_ITEMS_COL_1: {
@@ -100,7 +100,7 @@ const ProductRange = () => {
   return (
     <motion.div
       variants={variants}
-      className=" w-screen bg-white bg-opacity-90 z-[100] mt-[0]  "
+      className=" w-screen text-sm bg-white z-[100] mt-[0] shadow-sm "
     >
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-8 flex justify-between">
@@ -120,16 +120,20 @@ const ProductRange = () => {
                     {links.map(({ text, link }, idx) => {
                       return (
                         <Link
+                          onClick={menu.hideMenu}
                           href={link}
                           key={idx}
-                          className="text-gray-700 hover:text-pink py-3 space-x-3 leading-7 find-out-more"
+                          className="text-gray-700 hover:text-pink py-3 space-x-3 max-sm:leading-7 find-out-more "
                         >
-                          <div className=" ">
+                          <div
+                            className="flex items-start 
+                          "
+                          >
                             <FontAwesomeIcon
                               icon={faAngleRight}
-                              className="text-pink pr-2"
+                              className="text-pink pr-2 relative top-[0.1rem] "
                             />
-                            <span className="find-out-more-chevron">
+                            <span className="find-out-more-chevron   pt-0">
                               {text}
                             </span>
                           </div>
@@ -141,7 +145,7 @@ const ProductRange = () => {
               );
             })}
           </div>
-          <div className="border-r-2 border-l-2 px-28 border-gray-400">
+          <div className="border-r-[1px] border-l-[1px] px-28 border-gray-400">
             {MENU_ITEMS_COL_2.map(({ title, subtitle, links }, idx) => {
               return (
                 <motion.div
@@ -157,16 +161,18 @@ const ProductRange = () => {
                     {links.map(({ text, link }, idx) => {
                       return (
                         <Link
+                          onClick={menu.hideMenu}
                           href={link}
                           key={idx}
-                          className="text-gray-700 hover:text-pink py-3 space-x-3 leading-7 find-out-more"
+                          className="text-gray-700 hover:text-pink max-sm:leading-7 py-3 space-x-3 
+                         find-out-more"
                         >
-                          <div className=" ">
+                          <div className="flex items-start  ">
                             <FontAwesomeIcon
                               icon={faAngleRight}
-                              className="text-pink pr-2"
+                              className="text-pink pr-2 relative top-[0.1rem] "
                             />
-                            <span className="find-out-more-chevron">
+                            <span className="find-out-more-chevron flex items-start ">
                               {text}
                             </span>
                           </div>
@@ -194,14 +200,15 @@ const ProductRange = () => {
                     {links.map(({ text, link }, idx) => {
                       return (
                         <Link
+                          onClick={menu.hideMenu}
                           href={link}
                           key={idx}
-                          className="text-gray-700 hover:text-pink py-3 space-x-3 leading-7 find-out-more"
+                          className="text-gray-700 hover:text-pink py-3 space-x-3 max-sm:leading-7 find-out-more"
                         >
-                          <div className=" ">
+                          <div className="flex items-start ">
                             <FontAwesomeIcon
                               icon={faAngleRight}
-                              className="text-pink pr-2"
+                              className="text-pink pr-2 relative top-[0.1rem]"
                             />
                             <span className="find-out-more-chevron">
                               {text}
@@ -216,13 +223,14 @@ const ProductRange = () => {
             })}
             <motion.div variants={linksVariants}>
               <Link
+                onClick={menu.hideMenu}
                 href={"/products-range"}
                 className="w-64 space-y-1 pb-5 find-out-more"
               >
-                <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer">
+                <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer flex items-start">
                   <FontAwesomeIcon
                     icon={faAngleRight}
-                    className="text-pink pr-2"
+                    className="text-pink pr-2 relative top-[0.1rem]"
                   />
                   <span className="find-out-more-chevron"> All Products</span>
                 </div>
@@ -237,17 +245,18 @@ const ProductRange = () => {
         </div>
         <motion.div
           variants={linksVariants}
-          className="grid grid-cols-2 gap-[5rem]"
+          className="grid grid-cols-2 gap-[5rem] "
         >
           {newProducts.map((product) => {
             return (
-              <WhatsNewCard
-                id={product.id}
-                image={product.image}
-                key={product.id}
-                title={product.name}
-                text={product.description}
-              />
+              <div key={product.id} onClick={menu.hideMenu}>
+                <WhatsNewCard
+                  id={product.id}
+                  image={product.image}
+                  title={product.name}
+                  text={product.description}
+                />
+              </div>
             );
           })}
         </motion.div>

@@ -73,7 +73,7 @@ const Footer = () => {
             <span className="font-bold uppercase">HUB</span>
           </Link>
         </div>
-        <div className=" col-span-3 md:col-span-1 md:flex hidden flex-col uppercase md:border-x border-x-white items-center">
+        <div className=" col-span-3 md:col-span-1 md:flex hidden flex-col uppercase md:border-x border-x-white items-center ">
           <Link
             href="/"
             className=" hover:opacity-80 transition-all ease-in-out transition-duration-300"
@@ -101,7 +101,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="col-span-1 flex flex-col uppercase  my-4 items-end gap-4">
+        <div className="col-span-1 flex flex-col uppercase  md:my-4 items-end gap-4 max-sm:mb-6">
           <Link
             href="/home"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
@@ -122,7 +122,7 @@ const Footer = () => {
           </Link>
           <Link
             href="/home"
-            className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
+            className="hover:opacity-80 transition-all ease-in-out transition-duration-300 mt-2"
           >
             <span className="font-bold">terms</span> of use
           </Link>
