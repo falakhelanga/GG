@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import Image from "next/image";
 import { ProductType } from "@/types/products";
+import SliderLeftArrow from "@/components/elements/ui/SliderLeftArrow";
+import SliderRightArrow from "@/components/elements/ui/SliderRightArrow";
 
 const Products = ({ products }: { products: ProductType[] }) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
@@ -29,24 +31,26 @@ const Products = ({ products }: { products: ProductType[] }) => {
         className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
         ref={(node) => setPrevEl(node)}
       >
-        <Image
+        {/* <Image
           alt="arrow-left"
           src="/images/slider_arrows_left.svg"
           height={70}
           width={70}
-        />
+        /> */}
+        <SliderLeftArrow />
       </div>
 
       <div
         ref={(node) => setNextEl(node)}
         className=" absolute top-[20%] md:right-[0rem] md:mr-[20rem] -right-6 z-[3] md:cursor-pointer "
       >
-        <Image
+        <SliderRightArrow />
+        {/* <Image
           alt="arrow-left"
           src="/images/slider_arrows_right.svg"
           height={70}
           width={70}
-        />
+        /> */}
       </div>
 
       <Swiper

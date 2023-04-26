@@ -47,6 +47,7 @@ const ProductRangePage = ({
   }));
   const router = useRouter();
   const { page } = router.query;
+  const { isReady } = router;
   const description = links.find((link) => link.link === page) || links[0];
   const [fadeNavBottomBarClass, setFadeNavBottomBarClass] =
     useState("-bottom-2");
@@ -55,11 +56,15 @@ const ProductRangePage = ({
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
   const [showWhiteLine, setShowWhiteLine] = useState(false);
-  const tabsRef = useRef<any>([]);
 
+  const tabsRef = useRef<any>([]);
+  const moveToActiveTab = () => {
+    setActiveTabIndex(page as string);
+  };
   useEffect(() => {
     function setTabPosition() {
       if (!activeTabIndex) return;
+
       const currentTab = tabsRef.current[activeTabIndex];
       setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
       setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
@@ -75,9 +80,9 @@ const ProductRangePage = ({
     return products.filter((item: any) => {
       return item.category.data.attributes.name === page;
     });
-  }, [products, data]);
+  }, [products, data, page]);
 
-  const reviews = pageProducts.map((product: any) => {
+  const reviews = products.map((product: any) => {
     return product.reviews;
   });
 
@@ -103,10 +108,15 @@ const ProductRangePage = ({
   }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
-    if (!page) {
-      router.push("?page=comfort");
+    if (isReady) {
+      if (!page) {
+        router.push("?page=comfort");
+        setActiveTabIndex("comfort");
+      } else {
+        setActiveTabIndex(page as string);
+      }
     }
-  }, []);
+  }, [page, isReady]);
 
   return (
     <>
@@ -125,72 +135,64 @@ const ProductRangePage = ({
         </div>
         <div className="flex flex-col w-full ">
           <div
-            onMouseEnter={() => {
-              setShowWhiteLine(true);
-            }}
-            onMouseLeave={() => {
-              setShowWhiteLine(false);
-              setActiveTabIndex(null);
-            }}
-            className="flex flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
+            // onMouseEnter={() => {
+            //   setShowWhiteLine(true);
+            // }}
+            // onMouseLeave={() => {
+            //   setShowWhiteLine(false);
+            //   setActiveTabIndex(null);
+            // }}
+            className="flex relative flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
           >
-            <div className="relative  overflow-hidden">
-              <div className="flex max-sm:gap-8 gap-[4rem] ">
-                {links.map((item, idx) => {
-                  return (
-                    <Link
-                      key={item.name}
-                      ref={(el) => (tabsRef.current[item.name] = el)}
-                      href={`?page=${item.name}`}
-                      onMouseEnter={() => {
-                        setActiveTabIndex(item.name);
-                      }}
-                      className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
-                        page === item.link && "  translate-y-[3px] "
-                      } ${
-                        !page &&
-                        idx === 0 &&
-                        "  translate-y-[3px] transition duration-200 transition-all ease-in-out"
-                      } relative  pb-4  `}
-                      scroll={false}
+            <div className="flex max-sm:gap-8 gap-[4rem] ">
+              {links.map((item, idx) => {
+                return (
+                  <Link
+                    key={item.name}
+                    ref={(el) => (tabsRef.current[item.name] = el)}
+                    href={`?page=${item.name}`}
+                    onMouseEnter={() => {
+                      setActiveTabIndex(item.name);
+                    }}
+                    onMouseLeave={moveToActiveTab}
+                    className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
+                      page === item.link && "  translate-y-[3px] "
+                    } ${
+                      !page &&
+                      idx === 0 &&
+                      "  translate-y-[3px] transition duration-200 transition-all ease-in-out"
+                    } relative  pb-4   `}
+                    scroll={false}
+                  >
+                    <span
+                      className={`font-bold ${
+                        page === item.link && "text-green"
+                      } ${!page && idx === 0 && "text-green"} `}
                     >
-                      <span
-                        className={`font-bold ${
-                          page === item.link && "text-green"
-                        } ${!page && idx === 0 && "text-green"} `}
-                      >
-                        {item.name}
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-              {page && (
-                <span
-                  style={{
-                    left: tabsRef?.current[page as string]?.offsetLeft ?? 0,
-                    width: tabsRef?.current[page as string]?.clientWidth ?? 0,
-                  }}
-                  className={`absolute  block h-3 bottom-0 bg-green transition-all duration-300 `}
-                />
-              )}
-
-              <span
-                style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-                className={`absolute md:block hidden bg-green  block h-3 bg-black transition-all duration-300 ${
-                  showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
-                }`}
-              />
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
+
+            <span
+              style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+              className={`absolute  bg-green  block h-2 bg-black transition-all duration-300 bottom-0`}
+            />
           </div>
-          <div className="text-brown text-center my-5">{description.text}</div>
+          <div className="text-brown text-center my-5 text-lg">
+            {description.text}
+          </div>
         </div>
 
         {/* products range */}
         <ContentWrap className="mt-14 overflow-hidden">
           <ProductsRange products={pageProducts} />
           <div className="mt-[5rem]">
-            <Reviews reviews={reviewsArray} />
+            <Reviews
+              reviews={[reviewsArray[0], reviewsArray[1], reviewsArray[2]]}
+            />
           </div>
         </ContentWrap>
         <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] w-full py-8 mt-14">

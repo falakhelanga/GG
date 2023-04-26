@@ -51,20 +51,23 @@ export default function Home({
 
   const router = useRouter();
   const { section, page } = router.query;
+  const { isReady } = router;
 
   //////if router.query.page === undefined, push the page to ?page=comfort
   useEffect(() => {
-    if (!page) {
-      router.push(
-        {
-          pathname: "/",
-          query: { ...router.query, page: "comfort" },
-        },
-        undefined,
-        { scroll: false }
-      );
+    if (isReady) {
+      if (!page) {
+        router.push(
+          {
+            pathname: "/",
+            query: { ...router.query, page: "comfort" },
+          },
+          undefined,
+          { scroll: false }
+        );
+      }
     }
-  }, []);
+  }, [page, isReady]);
 
   useEffect(() => {
     if (section === "hub") {
@@ -104,10 +107,10 @@ export default function Home({
           <div ref={productsRef} className="mt-8 mx-8">
             <Products products={products} />
           </div>
-          <div ref={feminineHygieneRef} className="md:mt-16 mt-4">
+          <div ref={feminineHygieneRef} className="mt-8">
             <FeminineHygiene />
           </div>
-          <div ref={arcticlesRef} className="mt-1">
+          <div ref={arcticlesRef} className="md:mt-1">
             <Articles />
           </div>
           <div ref={promiseRef}>
@@ -136,6 +139,7 @@ export const getStaticProps: GetStaticProps<{
     "products.image",
     // "products.products",
   ];
+
   const { data } = await fetchAPI("home-page", pagePopulate);
   const { data: categories } = await fetchAPI("categories");
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);

@@ -80,7 +80,7 @@ const NavBar = () => {
     <>
       <div className="hidden md:block fixed top-[9vh] z-[99] right-0 left-0 ">
         <MegaMenu menu={menu} index={0}>
-          <ProductRange />
+          <ProductRange menu={menu} />
         </MegaMenu>
       </div>
       <div
@@ -214,12 +214,12 @@ const NavBar = () => {
                         : (section as string)
                     ]?.clientWidth ?? 0,
                 }}
-                className={`absolute  block h-3 bottom-0 bg-white transition-all duration-300 `}
+                className={`absolute  block h-2 bottom-0 bg-white transition-all duration-300 `}
               />
             )}
             <span
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-              className={`absolute  block h-3 bg-white transition-all duration-300 ${
+              className={`absolute  block h-2 bg-white transition-all duration-300 ${
                 showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
               }`}
             />

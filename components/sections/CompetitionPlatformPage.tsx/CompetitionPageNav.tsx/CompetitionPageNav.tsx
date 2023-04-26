@@ -48,6 +48,14 @@ const CompetitionPageNav = () => {
 
     return () => window.removeEventListener("resize", setTabPosition);
   }, [activeTabIndex]);
+
+  useEffect(() => {
+    setActiveTabIndex(router.route);
+  }, []);
+
+  const moveToActiveTab = () => {
+    setActiveTabIndex(router.route as string);
+  };
   return (
     <div className="">
       <div className="md:h-[80vh] h-[80vh]  relative flex items-end  ">
@@ -80,22 +88,25 @@ const CompetitionPageNav = () => {
       <HeaderImageUnderline />
       <ContentWrap>
         <div
-          onMouseEnter={() => {
-            setShowWhiteLine(true);
-          }}
-          onMouseLeave={() => {
-            setShowWhiteLine(false);
-            setActiveTabIndex(null);
-          }}
+          // onMouseEnter={() => {
+          //   setShowWhiteLine(true);
+          // }}
+          // onMouseLeave={() => {
+          //   setShowWhiteLine(false);
+          //   setActiveTabIndex(null);
+          // }}
           className="  overflow-hidden flex justify-center"
         >
-          <div className="  w-fit overflow-hidden relative flex gap-6 uppercase  justify-center max-sm:text-center text-pink md:text-lg text-sm mt-[4rem] ">
+          <div className="  w-fit overflow-hidden relative flex gap-6 uppercase  justify-center max-sm:text-left text-pink md:text-lg text-sm mt-[4rem] ">
             {NAV_LINKS.map((link) => (
               <Link
-                className="pb-4"
+                className={`pb-4 md:hover:translate-y-[3px]  transition-all ease-in transition-duration-[3000ms] ${
+                  router.route === link.link && "  translate-y-[3px] "
+                }`}
                 onMouseEnter={() => {
                   setActiveTabIndex(link.link);
                 }}
+                onMouseLeave={moveToActiveTab}
                 key={link.link}
                 href={link.link}
                 ref={(el) => (tabsRef.current[link.link] = el)}
@@ -105,21 +116,19 @@ const CompetitionPageNav = () => {
                 <span className="font-bold">{link.boldText}</span>
               </Link>
             ))}
-            {router.isReady && (
+            {/* {router.isReady && (
               <span
                 style={{
                   left: tabsRef?.current[router.route as string]?.offsetLeft,
                   width: tabsRef?.current[router.route as string]?.clientWidth,
                 }}
-                className={`absolute  block h-3 bottom-0 bg-pink transition-all duration-300 `}
+                className={`absolute  block h-2 bottom-0 bg-pink transition-all duration-300 `}
               />
-            )}
+            )} */}
 
             <span
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-              className={`absolute md:block hidden bg-pink  block h-3 bg-black transition-all duration-300 ${
-                showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
-              }`}
+              className={`absolute  bg-pink  block h-2 bg-black transition-all duration-300 bottom-0`}
             />
           </div>
         </div>

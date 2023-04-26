@@ -127,7 +127,7 @@ const IndividualProduct = ({
               <ReactMarkdown className="   text-black my-6 prose">
                 {product.subContent}
               </ReactMarkdown>
-              <ReactMarkdown className="   text-black mb-6 prose -ml-3">
+              <ReactMarkdown className="   text-black mb-6 prose -ml-3 leading-[1.3rem]">
                 {product.subContentBullets}
               </ReactMarkdown>
               <div className="md:w-[50%] relative">

@@ -50,6 +50,18 @@ const HomePageHero = ({
     return () => window.removeEventListener("resize", setTabPosition);
   }, [activeTabIndex]);
 
+  const moveToActiveTab = () => {
+    setActiveTabIndex(page as string);
+  };
+
+  useEffect(() => {
+    if (!page) {
+      setActiveTabIndex("comfort");
+    } else {
+      setActiveTabIndex(page as string);
+    }
+  }, [page]);
+
   return (
     <div className="">
       <Swiper
@@ -105,16 +117,7 @@ const HomePageHero = ({
           </h1>
         </div>
         <div className="flex flex-col md:w-[50%]">
-          <div
-            onMouseEnter={() => {
-              setShowWhiteLine(true);
-            }}
-            onMouseLeave={() => {
-              setShowWhiteLine(false);
-              setActiveTabIndex(null);
-            }}
-            className="overflow-hidden flex flex-col uppercase w-full   relative items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
-          >
+          <div className="overflow-hidden flex flex-col uppercase w-full   relative items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
             <div className="flex max-sm:gap-8 gap-[4rem] ">
               {links.map((item, idx) => {
                 return (
@@ -125,13 +128,14 @@ const HomePageHero = ({
                     onMouseEnter={() => {
                       setActiveTabIndex(item.name);
                     }}
+                    onMouseLeave={moveToActiveTab}
                     className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
                       page === item.link && "  translate-y-[3px] "
                     } ${
                       !page &&
                       idx === 0 &&
                       "  translate-y-[3px] transition duration-200 transition-all ease-in-out"
-                    } relative  pb-4  `}
+                    } relative  pb-4   `}
                     scroll={false}
                   >
                     <span
@@ -146,24 +150,14 @@ const HomePageHero = ({
               })}
             </div>
 
-            {page && (
-              <span
-                style={{
-                  left: tabsRef?.current[page as string]?.offsetLeft ?? 0,
-                  width: tabsRef?.current[page as string]?.clientWidth ?? 0,
-                }}
-                className={`absolute  block h-3 bottom-0 bg-green transition-all duration-300 `}
-              />
-            )}
-
             <span
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-              className={`absolute md:block hidden bg-green  block h-3 bg-black transition-all duration-300 ${
-                showWhiteLine ? "bottom-[0rem]" : "-bottom-[1rem]"
-              }`}
+              className={`absolute  bg-green  block h-2 bg-black transition-all duration-300 bottom-0`}
             />
           </div>
-          <div className="text-brown text-center my-5">{description.text}</div>
+          <div className="text-brown text-center my-5 text-lg">
+            {description.text}
+          </div>
         </div>
       </ContentWrap>
     </div>

@@ -53,7 +53,7 @@ const Product = ({
           // remarkPlugins={[gfm]}
           className={` ${
             isCarousel ? "md:h-[9rem] h-[9rem]" : "flex-1"
-          } text-black prose  overflow-hidden marker:text-red-black`}
+          } text-black prose  overflow-hidden marker:text-red-black leading-[1.3rem]`}
         >
           {product.subContentBullets}
         </ReactMarkdown>

@@ -11,7 +11,7 @@ const GalleryCard = ({ entry }: EntryPropType) => {
     <motion.div
       transition={{ duration: 0.5 }}
       layout
-      className="bg-white gallery-card overflow-hidden rounded-md shadow-lg border border-white border-2"
+      className="bg-white gallery-card overflow-hidden rounded-md shadow-lg border border-white border-[1px]"
     >
       <div className="h-[20rem] w-auto overflow-hidden relative">
         <Image
@@ -19,7 +19,7 @@ const GalleryCard = ({ entry }: EntryPropType) => {
           height={600}
           src={entry?.photoURL}
           alt=""
-          className={`gallery-card-image h-full w-full    bg-no-repeat bg-cover bg-center object-cover`}
+          className={` h-full w-full    bg-no-repeat bg-cover bg-center object-cover`}
         />
       </div>
 

@@ -20,6 +20,18 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   background-color: white;
+  color: #676767;
+}
+
+.slider_arrow_container:hover {
+  /* background-color: #e9608a; */
+  transition: all ease-in-out 500ms;
+}
+.slider_arrow {
+  transition: all ease-in-out 500ms;
+}
+.slider_arrow_container:hover .slider_arrow {
+  fill: white;
 }
 
 .gallery-card-image {

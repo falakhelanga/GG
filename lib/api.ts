@@ -1,6 +1,6 @@
 import qs from "qs";
 
-export const fetchAPI = async (path: string, populate: string[] = []) => {
+export const fetchAPI = async (path: string, populate: string[] | {} = []) => {
   const query = qs.stringify(
     {
       populate: populate,

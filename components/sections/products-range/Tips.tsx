@@ -39,12 +39,9 @@ const articles = [
 const Tips = () => {
   return (
     <div className=" w-full  ">
-      <Title
-        size="2xl"
-        className="text-center text-pink uppercase font-normal mb-4 max-sm:text-[2em]"
-      >
+      <h1 className="text-center text-pink uppercase font-normal mb-4 md:text-[2.5em] text-4xl ">
         <span className="font-bold">how-to&apos;s</span> and tips
-      </Title>
+      </h1>
       {/* articles */}
       <div className="">
         <ContentWrap className="md:grid flex flex-col  md:grid-cols-3  gap-7">

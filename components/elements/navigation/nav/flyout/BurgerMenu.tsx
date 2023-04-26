@@ -49,7 +49,7 @@ const burgerMenuItems = [
 
 const BurgerMenu = () => {
   return (
-    <div className="absolute w-screen bg-white bg-opacity-90 z-[100] mt-[1.5vh] md:block hidden ">
+    <div className="absolute w-screen bg-white  z-[100] mt-[1.5vh] md:block hidden shadow-sm ">
       <div className="flex p-7">
         <div className="mx-auto w-full max-w-7xl px-16 flex justify-end">
           <motion.div variants={variants} className="">
