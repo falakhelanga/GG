@@ -62,8 +62,8 @@ const FeminineHygiene = () => {
           ></div>
           {/* CONTENT START */}
           <div className="md:absolute top-0 right-0 flex flex-col items-center w-full md:pt-14 max-sm:py-8 text-white  h-full">
-            <ContentWrap className="h-full relative">
-              <div className="">
+            <ContentWrap className="h-full relative flex flex-col ">
+              <div className="flex-1  flex flex-col justify-end">
                 <div className="text-5xl flex flex-col items-center mb-4">
                   <div
                     className="
@@ -84,7 +84,7 @@ const FeminineHygiene = () => {
                     </span>{" "}
                     here.
                   </p>{" "}
-                  <p className="text-lg">
+                  <p className="text-lg ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </p>
                 </div>
@@ -99,7 +99,7 @@ const FeminineHygiene = () => {
                 </div>
               </div>
 
-              <div className="md:absolute bottom-0   w-full flex-1 justify-center flex left-0 max-sm:h-full ">
+              <div className=" items-end  w-full flex-1 justify-center flex left-0 max-sm:h-full ">
                 <div className="mx-auto w-full md:max-w-7xl md:px-8 grid md:grid-cols-3 gap-6  justify-center  w-full max-sm:h-full max-sm:pb-8">
                   <FeminineHygieneCard
                     color="lightPink"
@@ -183,12 +183,12 @@ const FeminineHygiene = () => {
                 </div>
               </div>
               <div className="mt-6 text-white text-center">
-                <div className="text-white text-center">
+                <div className="text-lg text-white text-center">
                   Say that about needing a{" "}
                   <span className="text-pink">delicate balance</span> here.
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 text-sm">
                   Finish off the sentiment by talking to the fact that ALL AGES
                   need this feminine Lorem ipsum dolor sit amet consectetur
                   adipisicing elit.

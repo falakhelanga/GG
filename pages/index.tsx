@@ -107,7 +107,7 @@ export default function Home({
           <div ref={productsRef} className="mt-8 mx-8">
             <Products products={products} />
           </div>
-          <div ref={feminineHygieneRef} className="md:mt-16 mt-4">
+          <div ref={feminineHygieneRef} className="mt-8">
             <FeminineHygiene />
           </div>
           <div ref={arcticlesRef} className="md:mt-1">
