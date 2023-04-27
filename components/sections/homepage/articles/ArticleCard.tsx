@@ -3,6 +3,8 @@ import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
+import ReactMarkDown from "react-markdown";
+
 interface ArticleCardPropTypes {
   id: number;
   image: string;
@@ -25,9 +27,11 @@ const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
 
       <div className="p-6">
         <Title size="md" className="uppercase text-green my-6">
-          {title}
+          <ReactMarkDown>{title}</ReactMarkDown>
         </Title>
-        <div className="text-black text-sm">{body}</div>
+        <ReactMarkDown className="text-black text-sm md:h-[8rem] h-[10rem] overflow-hidden">
+          {body}
+        </ReactMarkDown>
         <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more cursor-pointer ">
           <span className="">read more</span>{" "}
           <FontAwesomeIcon

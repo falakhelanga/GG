@@ -29,7 +29,7 @@ export const ScrollToTop = () => {
       onClick={() => {
         scrollToTop();
       }}
-      className={` container absolute border-2 text-pink border-pink md:cursor-pointer md:bottom-5 bottom-12 mb-4 md:mb-0 right-0   z-10 w-10 h-10 rounded-full overflow-hidden  items-center justify-center top-1  ${
+      className={` container  border-2 text-pink border-pink md:cursor-pointer md:bottom-5 bottom-12 mb-4 md:mb-0 right-0   z-10 w-10 h-10  rounded-full overflow-hidden  items-center justify-center top-1  ${
         show ? "flex" : "hidden"
       } hover:bg-pink hover:text-white`}
     >

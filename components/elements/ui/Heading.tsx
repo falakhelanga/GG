@@ -9,12 +9,11 @@ const Heading = ({
   className?: string;
 }) => {
   return (
-    <Title
-      size="2xl"
-      className={`text-center text-pink uppercase font-normal mb-4 max-sm:text-[2em] ${className}`}
+    <div
+      className={`text-center text-pink uppercase font-normal mb-4 md:text-[2.5em] text-4xl ${className}`}
     >
       {children}
-    </Title>
+    </div>
   );
 };
 

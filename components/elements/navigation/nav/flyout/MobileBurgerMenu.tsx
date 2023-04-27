@@ -224,15 +224,18 @@ const MobileBurgerMenu = ({
             })}
             <motion.div variants={linksVariants}>
               <Link
-                href="/?section=hub"
+                href="/free-to-just-be-hub"
                 onClick={() => setShowMobileBurgerMenu(false)}
                 className="flex flex-col items-start text-white md:cursor-pointer  "
               >
                 <div className="text-[#f5f5f5] ">
                   <span>Free to</span>
-                  <span className="font-paul lowercase  ">just be</span>
+                  <span className="font-paul lowercase  text-2xl">
+                    {" "}
+                    just be
+                  </span>
                 </div>
-                <div className="font-bold uppercase">hub</div>
+                <div className="font-bold uppercase ">hub</div>
               </Link>
             </motion.div>
             <motion.div variants={linksVariants}>

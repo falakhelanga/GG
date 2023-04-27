@@ -2,16 +2,18 @@ import { faChevronDown } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutSide";
-const options = ["newest", "oldest"];
+// const options = ["newest", "oldest"];
 
 const GallerySortDropDown = ({
   sortValue,
   setSortValue,
+  name,
+  options,
 }: {
-  setSortValue: React.Dispatch<
-    React.SetStateAction<"newest" | "oldest" | null>
-  >;
-  sortValue: "newest" | "oldest" | null;
+  setSortValue: React.Dispatch<React.SetStateAction<any | null>>;
+  sortValue: string | null;
+  name: string;
+  options: string[];
 }) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [showDropdown, setShowDropDown] = useState(false);
@@ -28,14 +30,14 @@ const GallerySortDropDown = ({
         onClick={() => {
           setShowDropDown(true);
         }}
-        className="md:w-[18rem] w-full h-10 bg-white rounded-md items-center flex justify-around md:cursor-pointer"
+        className="md:w-full w-full h-10 bg-white rounded-md items-center flex justify-around md:cursor-pointer"
       >
-        <span className="">Sort by:</span>
+        <span className="">{name}:</span>
         <span className="capitalize text-pink ">{sortValue}</span>
         <FontAwesomeIcon icon={faChevronDown} className="text-pink" />
       </div>
       {showDropdown && (
-        <div className="flex flex-col md:w-[15rem] w-full items-center absolute md:left-7 top-10 z-[5]">
+        <div className="flex flex-col w-full items-center absolute  md:w-[90%] top-10 z-[5]">
           <div
             style={{
               width: 0,
@@ -58,10 +60,10 @@ const GallerySortDropDown = ({
                   className={`w-full flex flex-col items-center  }`}
                 >
                   <div
-                    className={`${
+                    className={` ${
                       idx === 0 && "first-drop-down-item-gallery"
-                    } ${sortValue === item && "bg-[#f1ecee]"}
-                   hover:bg-[#f1ecee] bg-white h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize`}
+                    } ${sortValue === item ? "bg-[#f1ecee]" : "bg-white"}
+                   hover:bg-[#f1ecee]  h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize `}
                   >
                     {item}
                   </div>

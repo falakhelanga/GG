@@ -175,8 +175,8 @@ const NavBar = () => {
                   menu.hideMenu();
                 }}
                 href={{
-                  pathname: "/",
-                  query: { ...router.query, section: "hub" },
+                  pathname: "/free-to-just-be-hub",
+                  // query: { ...router.query, section: "hub" },
                 }}
                 className={` justify-center flex flex-col items-start text-white md:cursor-pointer  transition duration-200 transition-all ease-in-out  duration-500   nav-link-container`}
               >

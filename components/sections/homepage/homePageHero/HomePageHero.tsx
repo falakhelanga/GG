@@ -129,7 +129,7 @@ const HomePageHero = ({
                       setActiveTabIndex(item.name);
                     }}
                     onMouseLeave={moveToActiveTab}
-                    className={`hover:text-green md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
+                    className={`hover:text-green relative z-[10] md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
                       page === item.link && "  translate-y-[3px] "
                     } ${
                       !page &&
@@ -152,7 +152,7 @@ const HomePageHero = ({
 
             <span
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
-              className={`absolute  bg-green  block h-2 bg-black transition-all duration-300 bottom-0`}
+              className={`absolute  bg-green  block h-2  transition-all duration-300 bottom-0`}
             />
           </div>
           <div className="text-brown text-center my-5 text-lg">
