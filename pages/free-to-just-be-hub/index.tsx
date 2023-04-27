@@ -51,7 +51,7 @@ const FreeToBeHub = ({
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { setSubCategories, setNewProducts } = useSubCategories();
-  // console.log(articlesProp, "articles");
+  console.log(articles, "articles");
   const [searchValue, setSearchValue] = useState("");
   const [sortValue, setSortValue] = useState<string | null>(sortingOptions[0]);
   const [sortCategoriesValue, setSortCategoriesValue] = useState<string | null>(
@@ -145,7 +145,7 @@ export const getStaticProps: GetStaticProps<{
   newProducts: ProductType[];
   articles: {
     id: number;
-    image: string;
+    image: any;
     title: string;
     body: string;
   }[];
@@ -172,7 +172,7 @@ export const getStaticProps: GetStaticProps<{
         }))
         .map((article: any) => ({
           ...article,
-          image: article.image.data.attributes.url,
+          image: article.image,
           body: article.intro_text,
         })),
       newProducts,
