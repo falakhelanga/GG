@@ -80,7 +80,7 @@ const IndividualProduct = ({
               {" "}
               {truncate(15, product.name)}{" "}
             </span>
-            <span className="font-bold md:block hidden"> {product.name} </span>
+            <span className="font-bold md:block hidden">{product.name}</span>
           </div>
 
           <div className="grid md:grid-cols-2 mt-12 gap-4">

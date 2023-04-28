@@ -17,6 +17,7 @@ import ProductBlock from "./ProductBlock";
 import ProductsRow from "./ProductsRow";
 import Blogs from "./Blogs";
 import FormBlock from "./FormBlock";
+import PageHeader from "./PageHeader";
 import ContactFormPage from "./ContactFormPage";
 
 const PageComponentBuilderController = ({
@@ -29,6 +30,7 @@ const PageComponentBuilderController = ({
     const layouts: any = {
       "layout.latest-article": <LatestArticle {...pageContentItem} />,
       "layout.hero": <SlidingHero heroData={pageContentItem} />,
+      "layout.header": <PageHeader headerData={pageContentItem} />,
       "layout.gyanaguard-product-range-heading": (
         <GynaguardProductRangeHeading
           {...pageContentItem}
