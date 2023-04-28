@@ -53,6 +53,7 @@ const PageComponentBuilderController = ({
       "layout.blogs": <Blogs {...pageContentItem} />,
       "layout.form": <FormBlock {...pageContentItem} />,
       "layout.contact-form": <ContactFormPage {...pageContentItem} />,
+      "layout.page-header": <PageHeader {...pageContentItem} />,
       default: (
         <div key={`page-${idx}`}>
           {/* <ErrorComponent

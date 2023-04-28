@@ -5,6 +5,8 @@ import { ColoursEnum } from "@/enums/colourEnum";
 import ContentWrap from "./ContentWrap";
 import TextAreaInput from "../form/TextAreaInput";
 import MarkDown from "./MarkDown";
+import Button from "./Button";
+import Checkbox from "../form/Checkbox";
 
 const ContactFormPage = ({
   description,
@@ -32,7 +34,7 @@ const ContactFormPage = ({
           onSubmit={() => {}}
           initialValues={initialValues}
           containerClassName="
-           w-full "
+           w-full pb-14"
         >
           <div className="grid grid-cols-2  gap-x-8 w-full">
             <TextInput
@@ -66,6 +68,23 @@ const ContactFormPage = ({
               inputClassNames={`bg-[#f1ecee] placeholder-black`}
               rows="5"
             />
+          </div>
+          <div className="w-full flex justify-center flex-col">
+            <div className="flex flex-col col-span-2 md:items-center">
+              <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
+                <Checkbox name="isSubscribed" label="Subscribe to GynaGuard" />
+                <Checkbox
+                  // setTsAndCsCheckboxMeta={setTsAndCsCheckboxMeta}
+                  showError={false}
+                  name="acceptedTsAndCs"
+                  label="Accept T's & C's"
+                  link="/terms-and-conditions"
+                />
+              </div>
+            </div>
+            <div>
+              <Button className="uppercase">submit form</Button>
+            </div>
           </div>
         </Form>
         <MarkDown>{contactDetails}</MarkDown>
