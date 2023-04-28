@@ -33,7 +33,7 @@ const TextInput = ({
         {({ field, form, meta }: { field: any; form: any; meta: any }) => (
           <div>
             <input
-              className={`outline-none w-full  bg-white  border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
+              className={`outline-none w-full    border-gray-300 py-4 px-2 rounded-md ${inputClassNames}`}
               type={type}
               {...field}
               placeholder={placeholder}

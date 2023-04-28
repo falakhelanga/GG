@@ -18,6 +18,7 @@ import ProductsRow from "./ProductsRow";
 import Blogs from "./Blogs";
 import FormBlock from "./FormBlock";
 import PageHeader from "./PageHeader";
+import ContactFormPage from "./ContactFormPage";
 
 const PageComponentBuilderController = ({
   pageContent,
@@ -51,6 +52,7 @@ const PageComponentBuilderController = ({
       "layout.products-row": <ProductsRow {...pageContentItem} />,
       "layout.blogs": <Blogs {...pageContentItem} />,
       "layout.form": <FormBlock {...pageContentItem} />,
+      "layout.contact-form": <ContactFormPage {...pageContentItem} />,
       default: (
         <div key={`page-${idx}`}>
           {/* <ErrorComponent
