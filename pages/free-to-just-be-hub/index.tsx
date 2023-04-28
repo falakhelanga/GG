@@ -182,6 +182,7 @@ const FreeToBeHub = ({
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
                 handleSearch={handleSearch}
+                placeholder="Search for an article"
               />
 
               <div>

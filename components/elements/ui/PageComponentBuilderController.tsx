@@ -11,6 +11,12 @@ import TextBlocksRow from "./TextBlocksRow";
 import QuoteText from "./QuoteText";
 import ImageBlock from "./ImageBlock";
 import ImageBlocksRow from "./ImageBlocksRow";
+import VideoBlock from "./VideoBlock";
+import VideoBlockRow from "./VideoBlockRow";
+import ProductBlock from "./ProductBlock";
+import ProductsRow from "./ProductsRow";
+import Blogs from "./Blogs";
+import FormBlock from "./FormBlock";
 
 const PageComponentBuilderController = ({
   pageContent,
@@ -37,6 +43,12 @@ const PageComponentBuilderController = ({
       "layout.quote-text": <QuoteText {...pageContentItem} />,
       "layout.image-block": <ImageBlock {...pageContentItem} />,
       "layout.image-blocks-row": <ImageBlocksRow {...pageContentItem} />,
+      "layout.videos": <VideoBlock {...pageContentItem} />,
+      "layout.video-blocks-row": <VideoBlockRow {...pageContentItem} />,
+      "layout.product-block": <ProductBlock {...pageContentItem} />,
+      "layout.products-row": <ProductsRow {...pageContentItem} />,
+      "layout.blogs": <Blogs {...pageContentItem} />,
+      "layout.form": <FormBlock {...pageContentItem} />,
       default: (
         <div key={`page-${idx}`}>
           {/* <ErrorComponent

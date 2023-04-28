@@ -26,7 +26,7 @@ const IndividualBlog = ({
   }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   return (
     <div className="bg-[#F1ECEE]">
-      <ContentWrap className="bg-white pt-[6rem] pb-14">
+      <ContentWrap className="bg-white md:pt-[8rem] pt-[6rem] pb-14">
         <div className="uppercase flex items-center gap-2 text-sm text-black max-sm:text-xs">
           <Link
             className="hover:text-pink uppercase"
@@ -53,7 +53,7 @@ const IndividualBlog = ({
           </span>
         </div>
         <div className="mt-10">
-          <h1 className=" font-medium md:text-[2.5em] text-4xl uppercase  flex items-end h-full leading-10">
+          <h1 className=" font-medium md:text-[2.5em] max-sm:mb-3 text-4xl uppercase  flex items-end h-full leading-10">
             {article.title}
           </h1>
           <div className="w-full md:block hidden h-[715px] object-contain">
