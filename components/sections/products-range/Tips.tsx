@@ -36,7 +36,7 @@ const articles = [
   },
 ];
 
-const Tips = () => {
+const Tips = ({ blogs }: { blogs: any }) => {
   return (
     <div className=" w-full  ">
       <h1 className="text-center text-pink uppercase font-normal mb-4 md:text-[2.5em] text-4xl ">
@@ -45,7 +45,7 @@ const Tips = () => {
       {/* articles */}
       <div className="">
         <ContentWrap className="md:grid flex flex-col  md:grid-cols-3  gap-7">
-          {articles.map((article) => (
+          {blogs.map((article: any) => (
             <ArticleCard {...article} key={article.id} />
           ))}
         </ContentWrap>

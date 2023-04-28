@@ -20,6 +20,7 @@ import { useMenu } from "@/context/menu";
 import { useRouter } from "next/router";
 import { useSubCategories } from "@/context/subCategories";
 import { query } from "firebase/firestore";
+import PageComponentBuilderController from "@/components/elements/ui/PageComponentBuilderController";
 
 export default function Home({
   products,
@@ -27,12 +28,15 @@ export default function Home({
   categories,
   subcategories,
   newProducts,
+  pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { setSubCategories, setNewProducts } = useSubCategories();
   useEffect(() => {
     setNewProducts(newProducts);
     setSubCategories(subcategories);
   }, [setSubCategories, subcategories]);
+
+  // console.log(pageData, "pageData");
   const arcticlesRef = useRef(null);
   const feminineHygieneRef = useRef(null);
   const promiseRef = useRef(null);
@@ -48,6 +52,22 @@ export default function Home({
     text: category.description,
     index: idx - 1,
   }));
+
+  const blogs = pageData.attributes.page_components
+    .filter((item: any) => item.__component === "layout.blogs")
+    .map((item: any) => {
+      return item.blogs.data;
+    })[0]
+    .map((article: any) => ({
+      ...article.attributes,
+      id: article.id,
+    }))
+    .map((article: any) => ({
+      ...article,
+      desktop_image: article.desktop_image,
+      mobile_image: article.mobile_image,
+      body: article.intro_text,
+    }));
 
   const router = useRouter();
   const { section, page } = router.query;
@@ -103,15 +123,19 @@ export default function Home({
       </Head>
       <ParallaxProvider>
         <main className="">
-          <HomePageHero heroData={hero} links={links} />
-          <div ref={productsRef} className="mt-8 mx-8">
+          <PageComponentBuilderController
+            pageContent={pageData.attributes.page_components}
+          />
+          {/* <PageComponentBuilderController pageContent={pageData} /> */}
+          {/* <HomePageHero links={links} /> */}
+          {/* <div ref={productsRef} className="mt-8 mx-8">
             <Products products={products} />
-          </div>
+          </div> */}
           <div ref={feminineHygieneRef} className="mt-8">
             <FeminineHygiene />
           </div>
           <div ref={arcticlesRef} className="md:mt-1">
-            <Articles />
+            <Articles articles={blogs} />
           </div>
           <div ref={promiseRef}>
             <GynaguardPromise />
@@ -123,45 +147,42 @@ export default function Home({
 }
 export const getStaticProps: GetStaticProps<{
   products: ProductType[];
-  hero: any;
+  // hero: any;
   categories: CategoryType[];
   subcategories: SubCategoryType[];
   newProducts: ProductType[];
+  pageData: any;
 }> = async (ctx) => {
-  const pagePopulate = [
-    "hero",
-    "hero.desktopImages",
-    "hero.mobileImages",
-    "hero.button",
-    "hero.button.button_variant",
-    "hero.button.color",
-    "products",
-    "products.image",
-    // "products.products",
-  ];
+  const productPopulate = ["products.products.image", "products.products"];
 
-  const { data } = await fetchAPI("home-page", pagePopulate);
   const { data: categories } = await fetchAPI("categories");
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
-  const products: ProductType[] = data.attributes.products.data.map(
-    (product: any) => ({ ...product.attributes, id: product.id })
+  const { data: productsData } = await fetchAPI(
+    "products-range",
+    productPopulate
   );
+  const products: ProductType[] =
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
+      id: product.id,
+    }));
   const newProducts = products.filter((product) => product.isNew);
-  const hero = data.attributes.hero;
+  const { data: pageData } = await fetchAPI("basi-pages/2", ["deep"]);
 
   return {
     props: {
       products,
       categories: categories.map((category: any) => ({
         ...category.attributes,
-        id: data.id,
+        id: category.id,
       })),
-      hero,
+
       subcategories: subcategories.map((subcategory: any) => ({
         ...subcategory.attributes,
         id: subcategory.id,
       })),
       newProducts,
+      pageData,
     },
   };
 };

@@ -4,7 +4,15 @@ import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const FreeToJustBeHubHero = () => {
+const FreeToJustBeHubHero = ({
+  latestArticleCardData,
+  article,
+}: {
+  latestArticleCardData: any;
+  article: any;
+}) => {
+  const topRightText = latestArticleCardData.top_right_text.split(" ");
+  console.log(topRightText, "gdg");
   return (
     <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">
       <ContentWrap className="grid md:grid-cols-2 h-full  items-end md:mt-14 pt-14">
@@ -23,8 +31,10 @@ const FreeToJustBeHubHero = () => {
         <div>
           <div className="text-end text-white font-bold">
             <div>
-              <span className="font-paul text-2xl font-thin">latest </span>
-              <span className="uppercase">article</span>
+              <span className="font-paul text-2xl font-thin">
+                {topRightText[0]}
+              </span>
+              <span className="uppercase">{topRightText[1]}</span>
             </div>
           </div>
           <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">

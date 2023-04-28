@@ -33,7 +33,24 @@ const ProductRangePage = ({
   categories,
   subcategories,
   newProducts,
+  pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const blogs = pageData.attributes.page_components
+    .filter((item: any) => item.__component === "layout.blogs")
+    .map((item: any) => {
+      return item.blogs.data;
+    })[0]
+    .map((article: any) => ({
+      ...article.attributes,
+      id: article.id,
+    }))
+    .map((article: any) => ({
+      ...article,
+      desktop_image: article.desktop_image,
+      mobile_image: article.mobile_image,
+      body: article.intro_text,
+    }));
+
   const links: {
     name: string;
     link: string;
@@ -134,16 +151,7 @@ const ProductRangePage = ({
           </h1>
         </div>
         <div className="flex flex-col w-full ">
-          <div
-            // onMouseEnter={() => {
-            //   setShowWhiteLine(true);
-            // }}
-            // onMouseLeave={() => {
-            //   setShowWhiteLine(false);
-            //   setActiveTabIndex(null);
-            // }}
-            className="flex relative flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  "
-          >
+          <div className="flex relative flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
             <div className="flex max-sm:gap-8 gap-[4rem] ">
               {links.map((item, idx) => {
                 return (
@@ -196,7 +204,7 @@ const ProductRangePage = ({
           </div>
         </ContentWrap>
         <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] w-full py-8 mt-14">
-          <Tips />
+          <Tips blogs={blogs} />
         </div>
         <GynaguardPromise />
       </div>
@@ -210,6 +218,7 @@ export const getStaticProps: GetStaticProps<{
   categories: CategoryType[];
   subcategories: SubCategoryType[];
   newProducts: ProductType[];
+  pageData: any;
 }> = async (ctx) => {
   const pagePopulate = [
     "products.products.image",
@@ -219,6 +228,7 @@ export const getStaticProps: GetStaticProps<{
   ];
   const { data } = await fetchAPI("products-range", pagePopulate);
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  const { data: pageData } = await fetchAPI("basi-pages/3", ["deep"]);
   const { data: categories } = await fetchAPI("categories");
   const products: ProductType[] = data.attributes.products.products.data.map(
     (product: any) => ({ ...product.attributes, id: product.id })
@@ -233,6 +243,7 @@ export const getStaticProps: GetStaticProps<{
     }
     return 0;
   });
+
   return {
     props: {
       data,
@@ -242,6 +253,7 @@ export const getStaticProps: GetStaticProps<{
         ...category.attributes,
         id: category.id,
       })),
+      pageData,
       subcategories: subcategories.map((subcategory: any) => ({
         ...subcategory.attributes,
         id: subcategory.id,

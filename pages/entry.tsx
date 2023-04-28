@@ -40,16 +40,13 @@ export const getStaticProps: GetStaticProps<{
   newProducts: ProductType[];
 }> = async (ctx) => {
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
-  const productPopulate = ["products.products.image", "products.products"];
-  const { data: productsData } = await fetchAPI(
-    "products-range",
-    productPopulate
-  );
-  const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
-      ...product.attributes,
-      id: product.id,
-    }));
+  const productPopulate = ["image", "products"];
+  const { data: productsData } = await fetchAPI("products", productPopulate);
+
+  const products: ProductType[] = productsData.map((product: any) => ({
+    ...product.attributes,
+    id: product.id,
+  }));
   const newProducts = products.filter((product) => product.isNew);
   return {
     props: {

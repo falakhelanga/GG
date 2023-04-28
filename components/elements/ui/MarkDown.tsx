@@ -13,7 +13,7 @@ const MarkDown = ({
     <ReactMarkdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
-      className={`prose ${className}`}
+      className={`prose max-w-none ${className}`}
     >
       {children}
     </ReactMarkdown>

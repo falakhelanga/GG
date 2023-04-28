@@ -39,10 +39,6 @@ const GalleryGrid = () => {
   const [visible, setVisible] = useState(ITEMS_PER_PAGE);
   const [totalEntries, setTotalEntries] = useState(1);
 
-  const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + ITEMS_PER_PAGE);
-  };
-
   ///////// FETCH ALL ENTRIES OF THE EPISODE FROM FIRESTORE
 
   useEffect(() => {

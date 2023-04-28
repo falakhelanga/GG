@@ -6,38 +6,10 @@ import React from "react";
 import { ParallaxProvider, useParallax, Parallax } from "react-scroll-parallax";
 import ArticleCard from "./ArticleCard";
 import Button from "@/components/elements/ui/Button";
+import { useRouter } from "next/router";
 
-const articles = [
-  {
-    id: 1,
-    image: "/images/blog_img_1.png",
-    title: `the are 2 v's that matter the article`,
-    body: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem
-  vero eaque doloribus, ea, eius quas consectetur hic quidem unde
-  sapiente molestias officia temporibus. Alias distinctio ducimus,
-  odio exercitationem perferendis hic?`,
-  },
-  {
-    id: 2,
-    image: "/images/blog_img_2.png",
-    title: `the are 2 v's that matter the article`,
-    body: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem
-  vero eaque doloribus, ea, eius quas consectetur hic quidem unde
-  sapiente molestias officia temporibus. Alias distinctio ducimus,
-  odio exercitationem perferendis hic?`,
-  },
-  {
-    id: 3,
-    image: "/images/blog_img_3.png",
-    title: `the are 2 v's that matter the article`,
-    body: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem
-  vero eaque doloribus, ea, eius quas consectetur hic quidem unde
-  sapiente molestias officia temporibus. Alias distinctio ducimus,
-  odio exercitationem perferendis hic?`,
-  },
-];
-
-const Articles = () => {
+const Articles = ({ articles }: { articles: any }) => {
+  const router = useRouter();
   return (
     <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 ">
       <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">
@@ -87,11 +59,15 @@ const Articles = () => {
       {/* articles */}
       <div className="">
         <ContentWrap className="md:grid flex flex-col  md:grid-cols-3 mt-10 gap-7">
-          {articles.map((article) => (
+          {articles.map((article: any) => (
             <ArticleCard {...article} key={article.id} />
           ))}
           <div className="w-full flex justify-center  col-span-3 my-4">
-            <Button variant="outline" className="uppercase max-sm:w-full">
+            <Button
+              link="/free-to-just-be-hub"
+              variant="outline"
+              className="uppercase max-sm:w-full"
+            >
               see all articles
             </Button>
           </div>

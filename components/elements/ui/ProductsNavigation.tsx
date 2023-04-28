@@ -1,34 +1,30 @@
-import HeaderImageUnderline from "@/components/elements/ui/HeaderImageUnderline";
-import Logo from "@/components/elements/ui/Logo";
-import ContentWrap from "@/components/elements/ui/ContentWrap";
+import React, { useEffect, useRef, useState } from "react";
+import ContentWrap from "./ContentWrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Swiper, SwiperSlide } from "swiper/react";
-import * as ReactDOMServer from "react-dom/server";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation, Autoplay } from "swiper";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Button from "@/components/elements/ui/Button";
-import { LayoutHero } from "@/schemas";
-import SlidingHero from "@/components/elements/ui/SlidingHero";
-import GynaguardLogo from "@/components/elements/ui/GynaguardLogo";
-import GynaguardProductRangeHeading from "@/components/elements/ui/GynaguardProductRangeHeading";
-import { ColoursEnum } from "@/enums/colourEnum";
 
-const sliderWidth = 7;
-const HomePageHero = ({
-  links,
-}: {
-  links: {
+const ProductsNavigation = ({
+  categories,
+  activeColor,
+  borderColor,
+  hoverColor,
+}: any) => {
+  const categoriesData = categories.data.map((category: any) => ({
+    ...category.attributes,
+    id: category.id,
+  }));
+  const links: {
     name: string;
     link: string;
     text: string;
     index: number;
-  }[];
-}) => {
+  }[] = categoriesData.map((category: any, idx: number) => ({
+    name: category.name,
+    link: category.name,
+    text: category.description,
+    index: idx - 1,
+  }));
+
   const router = useRouter();
   const { page } = router.query;
   const description = links.find((link) => link.link === page) || links[0];
@@ -116,4 +112,4 @@ const HomePageHero = ({
   );
 };
 
-export default HomePageHero;
+export default ProductsNavigation;

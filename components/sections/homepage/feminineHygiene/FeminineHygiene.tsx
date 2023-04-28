@@ -40,7 +40,7 @@ const FeminineHygiene = () => {
             easing="easeInQuad"
             speed={20}
             opacity={[1, 0]}
-            className="md:block hidden"
+            className="md:block hidden absolute"
           >
             <Image
               src="/images/desktop_fem_hyg_bg_parallax_1.png"
@@ -61,7 +61,7 @@ const FeminineHygiene = () => {
             className="bg-[url(/images/desktop_fem_hyg_bg_parallax_1.png)] md:block  hidden bg-contain md:bg-contain bg-center h-full absolute top-0 w-full left-0 bg-no-repeat"
           ></div>
           {/* CONTENT START */}
-          <div className="md:absolute top-0 right-0 flex flex-col items-center w-full md:pt-14 max-sm:py-8 text-white  h-full">
+          <div className=" top-0 right-0 flex flex-col items-center w-full md:pt-14 max-sm:py-8 text-white  h-full">
             <ContentWrap className="h-full relative flex flex-col ">
               <div className="flex-1  flex flex-col justify-end mt-8">
                 <div className="text-5xl flex flex-col items-center mb-4">

@@ -5,22 +5,45 @@ import truncate from "@/helpers.tsx/textTruncate";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import ReactMarkDown from "react-markdown";
 
 interface ArticleCardPropTypes {
   id: number;
-  image: string;
+  desktop_image: string;
   title: string;
   body: string;
+  mobile_image: string;
 }
 
-const ArticleCard = ({ id, image, title, body }: ArticleCardPropTypes) => {
+const ArticleCard = ({
+  id,
+  desktop_image,
+  mobile_image,
+  title,
+  body,
+}: ArticleCardPropTypes) => {
+  const router = useRouter();
   return (
-    <div className="rounded-md overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] hover:translate-y-1 shadow transition-all duration-100 ease-in-out">
-      <div className="h-[12rem]">
+    <div
+      onClick={() => {
+        router.push(`/free-to-just-be-hub/${id}`);
+      }}
+      className="rounded-md md:cursor-pointer overflow-hidden bg-white hover:shadow-[0_2px_8px_0px_rgba(0,0,0,0.3)] hover:translate-y-1 shadow transition-all duration-100 ease-in-out"
+    >
+      <div className="h-[12rem] md:block hidden">
         <Image
-          src={imageFormatter(image)}
+          src={imageFormatter(desktop_image)}
+          height={300}
+          width={300}
+          alt=""
+          className="h-full object-cover w-full bg-cover bg-no-repeat bg-center"
+        />
+      </div>
+      <div className="h-[12rem] block md:hidden">
+        <Image
+          src={imageFormatter(mobile_image)}
           height={300}
           width={300}
           alt=""
