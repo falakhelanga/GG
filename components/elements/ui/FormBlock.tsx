@@ -10,8 +10,7 @@ const FormBlock = ({
   textArea: any;
   formName: any;
 }) => {
-  const initialValues = textIinput.map;
-
+  //   const initialValues = textIinput.['a', 'b', 'c'].reduce((a, v) => ({ ...a, [v]: v}), {})
   return (
     <div>
       {/* <Form
