@@ -40,7 +40,7 @@ const TextAreaInput = ({
               style={{
                 resize: "none",
               }}
-              className={`outline-none w-full rounded bg-white py-3 px-2 ${inputClassNames}`}
+              className={`outline-none w-full rounded  py-3 px-2 ${inputClassNames}`}
               type={type}
               {...field}
               placeholder={placeholder}
