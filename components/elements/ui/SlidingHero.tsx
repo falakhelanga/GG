@@ -10,8 +10,8 @@ import HeaderImageUnderline from "./HeaderImageUnderline";
 const SlidingHero = ({ heroData }: { heroData: any }) => {
   console.log(heroData, "gdg");
   return (
-    <>
-      <div className="md:block hidden">
+    <div className="md:mb-14 mb-8">
+      <div className="md:block hidden  ">
         <Swiper
           breakpoints={{
             0: {
@@ -34,7 +34,7 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
           modules={[Pagination, Navigation, Autoplay]}
           className="mySwiper flex md:h-[80vh] h-[80vh] w-full "
         >
-          <div className="md:block hidden">
+          <div className="md:block hidden ">
             {heroData.desktopImages.data.map((image: any, idx: number) => {
               console.log(image, "image");
               return (
@@ -122,7 +122,7 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
       </div>
 
       <HeaderImageUnderline />
-    </>
+    </div>
   );
 };
 
