@@ -103,25 +103,25 @@ const Footer = () => {
         </div>
         <div className="col-span-1 flex flex-col uppercase  md:my-4 items-end gap-4 max-sm:mb-6">
           <Link
-            href="/home"
+            href="/about-gynaguard"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
           >
             <span className="font-bold">about</span> us
           </Link>
           <Link
-            href="/home"
+            href="/contact-page"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
           >
             <span className="font-bold">contact</span> us
           </Link>
           <Link
-            href="/home"
+            href="/faq"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
           >
             <span className="font-bold">privacy</span> policy
           </Link>
           <Link
-            href="/home"
+            href="/terms-of-use"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300 mt-2"
           >
             <span className="font-bold">terms</span> of use
