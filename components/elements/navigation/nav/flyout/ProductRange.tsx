@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const productsFormatter = (products: any): ProductType[] => {
   return products?.data.map((item: any) => ({
-    ...item.attributes,
+    ...item?.attributes,
     id: item.id,
   })) as ProductType[];
 };

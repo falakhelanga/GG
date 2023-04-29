@@ -85,7 +85,7 @@ export async function getStaticPaths() {
   const { data } = await fetchAPI("arcticles");
 
   const products = data?.map((article: any) => ({
-    ...article.attributes,
+    ...article?.attributes,
     id: article.id,
   }));
   const paths = products
@@ -117,18 +117,18 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data?.map((product: any) => ({
-      ...product.attributes,
+    productsData?.attributes.products.products.data?.map((product: any) => ({
+      ...product?.attributes,
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
   return {
     props: {
       // pageData,
-      article: article.attributes,
+      article: article?.attributes,
       newProducts,
       subcategories: subcategories?.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
     },

@@ -116,8 +116,8 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
-      ...product.attributes,
+    productsData?.attributes.products.products.data.map((product: any) => ({
+      ...product?.attributes,
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       newProducts,
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
     },

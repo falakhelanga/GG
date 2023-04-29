@@ -43,14 +43,15 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
                   className="h-full md:h-[80vh] h-[80vh] w-full"
                 >
                   <div
-                    style={{ backgroundImage: `url(${image.attributes.url})` }}
+                    style={{ backgroundImage: `url(${image?.attributes.url})` }}
                     className={`flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end   bg-cover bg-no-repeat bg-center`}
                   >
                     {heroData.withButton && (
                       <Button
                         link={heroData.button.link}
                         variant={
-                          heroData.button.button_variant.data.attributes.variant
+                          heroData.button.button_variant.data?.attributes
+                            .variant
                         }
                         className="uppercase mb-14"
                       >
@@ -97,14 +98,15 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
                   className="h-full md:h-[80vh] h-[80vh] w-full"
                 >
                   <div
-                    style={{ backgroundImage: `url(${image.attributes.url})` }}
+                    style={{ backgroundImage: `url(${image?.attributes.url})` }}
                     className={`flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end   bg-cover bg-no-repeat bg-center`}
                   >
                     {heroData.withButton && (
                       <Button
                         link={heroData.button.link}
                         variant={
-                          heroData.button.button_variant.data.attributes.variant
+                          heroData.button.button_variant.data?.attributes
+                            .variant
                         }
                         className="uppercase mb-14"
                       >

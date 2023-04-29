@@ -10,7 +10,7 @@ const ProductsNavigation = ({
   hoverColor,
 }: any) => {
   const categoriesData = categories.data.map((category: any) => ({
-    ...category.attributes,
+    ...category?.attributes,
     id: category.id,
   }));
   const links: {
