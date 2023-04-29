@@ -30,6 +30,7 @@ const GenericPage = ({
         </Head>
         <div className=" ">
           <PageComponentBuilderController
+            page={page}
             pageContent={apiBasicPageData.attributes.page_components}
           />
         </div>

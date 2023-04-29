@@ -55,7 +55,7 @@ const Checkbox = ({
               setCheckBoxValue((currState) => !currState);
               helpers.setValue(!checkBoxValue);
             }}
-            className="bg-white h-5 w-5 md:cursor-pointer  rounded overflow-hidden flex items-center justify-center"
+            className={`  h-5 w-5 md:cursor-pointer  rounded overflow-hidden flex items-center justify-center ${inputClassNames}`}
           >
             {value && (
               <Image
