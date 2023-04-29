@@ -88,9 +88,11 @@ export async function getStaticPaths() {
     ...article.attributes,
     id: article.id,
   }));
-  const paths = products?.map((article: any) => ({
-    params: { blog_id: article.id.toString() },
-  }));
+  const paths = products
+    ? products?.map((article: any) => ({
+        params: { blog_id: article.id.toString() },
+      }))
+    : [];
   return {
     paths: paths,
     fallback: false, // can also be true or 'blocking'
