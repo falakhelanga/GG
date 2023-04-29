@@ -248,7 +248,7 @@ const MobileBurgerMenu = ({
             <motion.div variants={linksVariants}>
               <Link
                 onClick={() => setShowMobileBurgerMenu(false)}
-                href={"/#"}
+                href={"/faq"}
                 className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
               >
                 <div className="text-[#f5f5f5]">Frequently</div>
@@ -258,7 +258,7 @@ const MobileBurgerMenu = ({
             <motion.div variants={linksVariants}>
               <Link
                 onClick={() => setShowMobileBurgerMenu(false)}
-                href={"/#"}
+                href={"/about-gynaguard"}
                 className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
               >
                 <div className="text-[#f5f5f5]">About</div>
@@ -268,7 +268,7 @@ const MobileBurgerMenu = ({
             <motion.div variants={linksVariants}>
               <Link
                 onClick={() => setShowMobileBurgerMenu(false)}
-                href={"/#"}
+                href={"/contact-page"}
                 className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
               >
                 <div className="text-[#f5f5f5]">Contact</div>
@@ -278,7 +278,7 @@ const MobileBurgerMenu = ({
             <motion.div variants={linksVariants}>
               <Link
                 onClick={() => setShowMobileBurgerMenu(false)}
-                href={"/#"}
+                href={"/terms-of-use"}
                 className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
               >
                 <div className="text-[#f5f5f5]">Terms of</div>
