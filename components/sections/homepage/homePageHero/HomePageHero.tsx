@@ -31,7 +31,9 @@ const HomePageHero = ({
 }) => {
   const router = useRouter();
   const { page } = router.query;
-  const description = links.find((link) => link.link === page) || links[0];
+  const description = links
+    ? links.find((link) => link.link === page) || links[0]
+    : null;
   const [activeTabIndex, setActiveTabIndex] = useState<string | null>(null);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);

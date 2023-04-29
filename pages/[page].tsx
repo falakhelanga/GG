@@ -101,7 +101,9 @@ export const getStaticProps: GetStaticProps<{
     );
 
     if (filteredPaths.length > 0) {
-      const generatedPathsFiltered = filteredPaths[0].params.id;
+      const generatedPathsFiltered = filteredPaths
+        ? filteredPaths[0].params.id
+        : null;
 
       return generatedPathsFiltered;
     }

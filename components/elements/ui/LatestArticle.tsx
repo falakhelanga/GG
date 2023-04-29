@@ -45,12 +45,14 @@ const LatestArticle = ({
           </div>
           <div>
             <div className="text-end text-white font-bold">
-              <div>
-                <span className="font-paul text-2xl font-thin">
-                  {topRightText[0]}{" "}
-                </span>
-                <span className="uppercase">{topRightText[1]}</span>
-              </div>
+              {topRightText ? (
+                <div>
+                  <span className="font-paul text-2xl font-thin">
+                    {topRightText[0]}{" "}
+                  </span>
+                  <span className="uppercase">{topRightText[1]}</span>
+                </div>
+              ) : null}
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
@@ -98,12 +100,14 @@ const LatestArticle = ({
           </div>
           <div>
             <div className="text-end text-white font-bold">
-              <div>
-                <span className="font-paul text-2xl font-thin">
-                  {topRightText[0]}{" "}
-                </span>
-                <span className="uppercase">{topRightText[1]}</span>
-              </div>
+              {topRightText ? (
+                <div>
+                  <span className="font-paul text-2xl font-thin">
+                    {topRightText[0]}{" "}
+                  </span>
+                  <span className="uppercase">{topRightText[1]}</span>
+                </div>
+              ) : null}
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
