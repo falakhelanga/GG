@@ -4,12 +4,21 @@ import { fetchAPI } from "../lib/api";
 import ErrorComponent from "@/components/elements/ui/ErrorComponent";
 import PageComponentBuilderController from "@/components/elements/ui/PageComponentBuilderController";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { ProductType, SubCategoryType } from "@/types/products";
+import { useSubCategories } from "@/context/subCategories";
+import { useEffect } from "react";
 
 const GenericPage = ({
   apiBasicPageData,
   page,
+  newProducts,
+  subcategories,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(page, "api basic");
+  const { setSubCategories, setNewProducts } = useSubCategories();
+  useEffect(() => {
+    setNewProducts(newProducts);
+    setSubCategories(subcategories);
+  }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   if (apiBasicPageData) {
     return (
       <>
@@ -19,9 +28,12 @@ const GenericPage = ({
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <PageComponentBuilderController
-          pageContent={apiBasicPageData.attributes.page_components}
-        />
+        <div className=" ">
+          <PageComponentBuilderController
+            page={page}
+            pageContent={apiBasicPageData.attributes.page_components}
+          />
+        </div>
       </>
     );
   }
@@ -67,6 +79,8 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<{
   page: string;
   apiBasicPageData: any;
+  subcategories: SubCategoryType[];
+  newProducts: ProductType[];
 }> = async ({ params }) => {
   const { data: basicPageData } = await fetchAPI("basi-pages");
 
@@ -92,7 +106,15 @@ export const getStaticProps: GetStaticProps<{
 
     return null;
   };
+  const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
+  const productPopulate = ["image", "products"];
+  const { data: productsData } = await fetchAPI("products", productPopulate);
 
+  const products: ProductType[] = productsData.map((product: any) => ({
+    ...product.attributes,
+    id: product.id,
+  }));
+  const newProducts = products.filter((product) => product.isNew);
   const pagePopulation = ["deep"];
   const { data } = await fetchAPI(
     `basi-pages/${getPageIdFromPath()}`,
@@ -101,6 +123,11 @@ export const getStaticProps: GetStaticProps<{
 
   return {
     props: {
+      newProducts,
+      subcategories: subcategories.map((subcategory: any) => ({
+        ...subcategory.attributes,
+        id: subcategory.id,
+      })),
       apiBasicPageData: data,
       page: params?.page as string,
     },

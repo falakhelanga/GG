@@ -6,10 +6,12 @@ const SearchInput = ({
   handleSearch,
   searchValue,
   setSearchValue,
+  placeholder = "Search for someone",
 }: {
   handleSearch: (e: React.FormEvent<HTMLFormElement>) => void;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   searchValue: string;
+  placeholder?: string;
 }) => {
   return (
     <form
@@ -22,7 +24,7 @@ const SearchInput = ({
         }}
         value={searchValue}
         className="flex-1 bg-[transparent] outline-none"
-        placeholder="Search for someone"
+        placeholder={placeholder}
       />
       <button type="submit">
         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-pink" />

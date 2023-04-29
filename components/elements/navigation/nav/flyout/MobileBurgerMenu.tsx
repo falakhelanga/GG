@@ -82,7 +82,7 @@ const MobileBurgerMenu = ({
       {
         lightText: "what is",
         boldText: "feminine hygiene?",
-        link: "feminine",
+        link: "/feminine-hygiene",
       },
       {
         lightText: "our",
@@ -212,7 +212,14 @@ const MobileBurgerMenu = ({
               return (
                 <motion.div variants={linksVariants} key={idx}>
                   <Link
-                    href={`/?section=${item.link}`}
+                    href={
+                      item.link === "/feminine-hygiene"
+                        ? "/feminine-hygiene"
+                        : {
+                            pathname: "/",
+                            query: { ...router.query, section: item.link },
+                          }
+                    }
                     onClick={() => setShowMobileBurgerMenu(false)}
                     className="flex flex-col items-start text-white  uppercase md:cursor-pointer"
                   >

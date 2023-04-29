@@ -35,10 +35,10 @@ const ImageUploader = ({
     let fdPhoto = new FormData();
 
     fdPhoto.append("file", photoFile!!);
-    fdPhoto.append("upload_preset", "gynaguard");
-    fdPhoto.append("cloud_name", "dxrvqywct");
+    fdPhoto.append("upload_preset", "fzwzonia");
+    fdPhoto.append("cloud_name", "ddwxwlhw5");
     axios
-      .post("https://api.cloudinary.com/v1_1/dxrvqywct/image/upload", fdPhoto, {
+      .post("https://api.cloudinary.com/v1_1/ddwxwlhw5/image/upload", fdPhoto, {
         onUploadProgress: (progressEvent) => {
           const res = (progressEvent.loaded / progressEvent?.total!!) * 100;
           setUploadedProgress(Math.floor(res));

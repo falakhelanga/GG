@@ -25,4 +25,5 @@ export type FirebaseTypes = {
   approveEntry: (entry: EntryValues) => Promise<void>;
   denyEntry: (entry: EntryValues) => Promise<void>;
   checkUserAuth: () => void;
+  createContacts: (values: any) => Promise<DocumentReference<any>>;
 };

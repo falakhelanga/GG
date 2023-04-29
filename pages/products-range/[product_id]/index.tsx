@@ -23,7 +23,7 @@ import { ReactPlayerProps } from "react-player/types/lib";
 import Link from "next/link";
 import truncate from "@/helpers.tsx/textTruncate";
 import { useSubCategories } from "@/context/subCategories";
-const ReactPlayer = _ReactPlayer as unknown as React.FC<ReactPlayerProps>;
+import ReactPlayer from "react-player";
 const IndividualProduct = ({
   product,
   subcategories,
@@ -80,7 +80,7 @@ const IndividualProduct = ({
               {" "}
               {truncate(15, product.name)}{" "}
             </span>
-            <span className="font-bold md:block hidden"> {product.name} </span>
+            <span className="font-bold md:block hidden">{product.name}</span>
           </div>
 
           <div className="grid md:grid-cols-2 mt-12 gap-4">
@@ -90,20 +90,20 @@ const IndividualProduct = ({
                 alt={product.name}
                 height={1000}
                 width={1000}
-                src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${product.image.data.attributes.url}`}
+                src={`${product.image.data.attributes.url}`}
               />
               {gynaguardPromise && (
                 <>
                   <Image
                     className="absolute top-0 right-8 md:block hidden"
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${gynaguardPromise.badge.data.attributes.url}`}
+                    src={`${gynaguardPromise.badge.data.attributes.url}`}
                     alt={gynaguardPromise.text}
                     height={170}
                     width={170}
                   />
                   <Image
                     className="absolute top-0 right-8 md:hidden block"
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${gynaguardPromise.badge.data.attributes.url}`}
+                    src={`${gynaguardPromise.badge.data.attributes.url}`}
                     alt={gynaguardPromise.text}
                     height={100}
                     width={100}
@@ -145,7 +145,7 @@ const IndividualProduct = ({
               className="react-player aspect-video "
               height={"100%"}
               width={"100%"}
-              url={"https://youtu.be/YkLm5cUR0aM"}
+              url={`http://127.0.0.1:1337/uploads/pexels_zura_narimanishvili_5490419_1920x1080_25fps_87c8504875.mp4`}
               controls
             />
           </div>

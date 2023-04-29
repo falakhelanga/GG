@@ -14,9 +14,11 @@ import BuyNowDropDown from "./BuyNowDropDown";
 const Product = ({
   product,
   isCarousel = false,
+  isBlogPage = false,
 }: {
   product: ProductType;
   isCarousel?: boolean;
+  isBlogPage?: boolean;
 }) => {
   return (
     <div
@@ -24,15 +26,31 @@ const Product = ({
         isCarousel ? "h-[40rem] min-h-[40rem]" : "h-full"
       }  flex-col flex  b `}
     >
-      <Link href={`products-range/${product.id}`}>
-        <Image
-          height={200}
-          width={200}
-          alt="gynaguard product"
-          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${product.image.data.attributes.url}`}
-          className="h-full w-full"
-        />
-      </Link>
+      {isBlogPage && (
+        <Link
+          href={`products-range/${product.id}`}
+          className=" justify-center flex"
+        >
+          <Image
+            height={300}
+            width={300}
+            alt="gynaguard product"
+            src={`${product.image.data.attributes.url}`}
+            className=""
+          />
+        </Link>
+      )}
+      {!isBlogPage && (
+        <Link href={`products-range/${product.id}`}>
+          <Image
+            height={200}
+            width={200}
+            alt="gynaguard product"
+            src={`${product.image.data.attributes.url}`}
+            className="h-full w-full"
+          />
+        </Link>
+      )}
 
       <div className="h-full flex-1 flex flex-col">
         <Title

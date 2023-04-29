@@ -34,6 +34,15 @@ const Firebase = {
       // fullName: values.firstName + " " + values.lastName,
     });
   },
+  createContacts: (values: any) => {
+    const entryRef = collection(db, "contacts");
+    return addDoc(entryRef, {
+      ...values,
+      enteredAt: Timestamp.fromDate(new Date()),
+
+      // fullName: values.firstName + " " + values.lastName,
+    });
+  },
 
   // approveEntry: (entry: EntryValues) => {
   //   const entryRef = doc(db, "entries", entry.id);

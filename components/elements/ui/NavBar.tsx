@@ -58,7 +58,7 @@ const NavBar = () => {
       {
         lightText: "what is",
         boldText: "feminine hygiene?",
-        link: "feminine",
+        link: "/feminine-hygiene",
         idx: 1,
       },
       {
@@ -146,10 +146,14 @@ const NavBar = () => {
                 return (
                   <Link
                     ref={(el) => (tabsRef.current[item.link] = el)}
-                    href={{
-                      pathname: "/",
-                      query: { ...router.query, section: item.link },
-                    }}
+                    href={
+                      item.link === "/feminine-hygiene"
+                        ? "/feminine-hygiene"
+                        : {
+                            pathname: "/",
+                            query: { ...router.query, section: item.link },
+                          }
+                    }
                     onMouseEnter={() => {
                       setActiveTabIndex(item.link);
                       menu.hideMenu();

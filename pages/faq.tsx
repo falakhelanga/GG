@@ -1,4 +1,5 @@
 import ContentWrap from "@/components/elements/ui/ContentWrap";
+import PageHeader from "@/components/elements/ui/PageHeader";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import { useSubCategories } from "@/context/subCategories";
 import { fetchAPI } from "@/lib/api";
@@ -24,23 +25,12 @@ const Faq = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <PageHeader headerData={""} />
       <div className=" ">
-        <CompetitionPageNav />
-        <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14">
+        {/* <CompetitionPageNav /> */}
+        <div className=" pb-14">
           <ContentWrap className="pt-14 flex-col items-center ">
-            <div className="text-5xl flex flex-col items-center">
-              <div
-                className="
-      md:text-5xl text-4xl uppercase text-pink
-      "
-              >
-                ABOUT &
-              </div>
-              <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
-                faq page
-              </div>
-            </div>
-            <div className="my-14 text-brown text-center">
+            <div className=" text-brown text-center">
               <p className="text-lg">
                 Have questions? Find some answers below.
               </p>
