@@ -84,11 +84,11 @@ const IndividualBlog = ({
 export async function getStaticPaths() {
   const { data } = await fetchAPI("arcticles");
 
-  const products = data.map((article: any) => ({
+  const products = data?.map((article: any) => ({
     ...article.attributes,
     id: article.id,
   }));
-  const paths = products.map((article: any) => ({
+  const paths = products?.map((article: any) => ({
     params: { blog_id: article.id.toString() },
   }));
   return {
@@ -115,7 +115,7 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
+    productsData.attributes.products.products.data?.map((product: any) => ({
       ...product.attributes,
       id: product.id,
     }));
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<{
       // pageData,
       article: article.attributes,
       newProducts,
-      subcategories: subcategories.map((subcategory: any) => ({
+      subcategories: subcategories?.map((subcategory: any) => ({
         ...subcategory.attributes,
         id: subcategory.id,
       })),

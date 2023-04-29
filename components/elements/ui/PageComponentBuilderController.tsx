@@ -25,6 +25,7 @@ import IntroCopy from "./IntroCopy";
 import BadgesRow from "./BadgesRow";
 import LinkButton from "./LinkButton";
 import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
+import { useRouter } from "next/router";
 
 const PageComponentBuilderController = ({
   pageContent,
