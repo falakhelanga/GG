@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Product from "./Product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import * as ReactDOMServer from "react-dom/server";
@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ProductType } from "@/types/products";
 import SliderLeftArrow from "@/components/elements/ui/SliderLeftArrow";
 import SliderRightArrow from "@/components/elements/ui/SliderRightArrow";
+import { useRouter } from "next/router";
 
 const Products = ({ products: productsData }: any) => {
   // const { products: productsData } = sliderData;
@@ -17,6 +18,13 @@ const Products = ({ products: productsData }: any) => {
     ...product.attributes,
     id: product.id,
   }));
+  const router = useRouter();
+  const { page } = router.query;
+  const pageProducts = useMemo(() => {
+    return products.filter((item: any) => {
+      return item.category.data.attributes.name === page;
+    });
+  }, [products, page]);
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
   const pagination = {
@@ -31,7 +39,7 @@ const Products = ({ products: productsData }: any) => {
     },
   };
   return (
-    <div className=" relative md:mb-14 mb-8">
+    <div className=" relative md:mb-14 mb-8 mx-4">
       <div
         className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
         ref={(node) => setPrevEl(node)}
@@ -83,7 +91,7 @@ const Products = ({ products: productsData }: any) => {
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper  "
       >
-        {products.map((product, idx) => {
+        {pageProducts.map((product, idx) => {
           return (
             <SwiperSlide key={idx} className="">
               <Product isCarousel product={product} />

@@ -26,6 +26,7 @@ import BadgesRow from "./BadgesRow";
 import LinkButton from "./LinkButton";
 import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
 import { useRouter } from "next/router";
+import HomePageFeminineHygiene from "./HomePageFeminineHygiene";
 
 const PageComponentBuilderController = ({
   pageContent,
@@ -70,7 +71,7 @@ const PageComponentBuilderController = ({
       "layout.badges-row": <BadgesRow {...pageContentItem} />,
       "layout.link-button": <LinkButton {...pageContentItem} />,
       "layout.home-page-feminine-hygiene": (
-        <FeminineHygiene {...pageContentItem} />
+        <HomePageFeminineHygiene {...pageContentItem} />
       ),
 
       default: (
