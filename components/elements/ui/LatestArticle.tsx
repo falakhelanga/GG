@@ -18,7 +18,7 @@ const LatestArticle = ({
   latest_article_card,
   mobile_background_image,
 }: LayoutLatestArticle) => {
-  const topRightText = latest_article_card.top_right_text.split(" ");
+  const topRightText = latest_article_card?.top_right_text.split(" ");
   console.log(desktop_background_image, "latest");
   return (
     <>
