@@ -31,7 +31,7 @@ const Products = ({ products: productsData }: any) => {
     },
   };
   return (
-    <div className=" relative">
+    <div className=" relative md:mb-14 mb-8">
       <div
         className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
         ref={(node) => setPrevEl(node)}
@@ -92,7 +92,7 @@ const Products = ({ products: productsData }: any) => {
         })}
       </Swiper>
 
-      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[4rem] mt-[5rem] " />
+      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[8rem] mt-[5rem] " />
     </div>
   );
 };
