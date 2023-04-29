@@ -35,7 +35,7 @@ const Product = ({
             height={300}
             width={300}
             alt="gynaguard product"
-            src={`${product.image.data.attributes.url}`}
+            src={`${product.image.data?.attributes.url}`}
             className=""
           />
         </Link>
@@ -46,7 +46,7 @@ const Product = ({
             height={200}
             width={200}
             alt="gynaguard product"
-            src={`${product.image.data.attributes.url}`}
+            src={`${product.image.data?.attributes.url}`}
             className="h-full w-full"
           />
         </Link>

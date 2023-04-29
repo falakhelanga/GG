@@ -270,7 +270,7 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
+    productsData.attributes.products.products.data?.map((product: any) => ({
       ...product.attributes,
       id: product.id,
     }));
@@ -279,11 +279,11 @@ export const getStaticProps: GetStaticProps<{
     props: {
       pageData,
       articles: articles
-        .map((article: any) => ({
+        ?.map((article: any) => ({
           ...article.attributes,
           id: article.id,
         }))
-        .map((article: any) => ({
+        ?.map((article: any) => ({
           ...article,
           desktop_image: article.desktop_image,
           mobile_image: article.mobile_image,

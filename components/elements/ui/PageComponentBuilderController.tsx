@@ -35,7 +35,7 @@ const PageComponentBuilderController = ({
   page?: any;
 }): ReactElement => {
   const router = useRouter();
-  return pageContent.map((pageContentItem, idx) => {
+  return pageContent?.map((pageContentItem, idx) => {
     console.log(pageContentItem, "page content");
     const layouts: any = {
       "layout.latest-article": <LatestArticle {...pageContentItem} />,
