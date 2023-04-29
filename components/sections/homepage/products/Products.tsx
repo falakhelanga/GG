@@ -22,7 +22,7 @@ const Products = ({ products: productsData }: any) => {
   const { page } = router.query;
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data.attributes.name === page;
+      return item.category.data?.attributes?.name === page;
     });
   }, [products, page]);
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);

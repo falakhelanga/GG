@@ -24,7 +24,7 @@ const WhatsNewCard = ({
           alt="title"
           height={100}
           width={100}
-          src={`${image.data?.attributes.url}`}
+          src={`${image.data?.attributes?.url}`}
           className=" w-full p-[2rem] bg-cover rounded-md h-full w-full"
         ></Image>
       </div>

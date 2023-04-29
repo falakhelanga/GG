@@ -14,7 +14,6 @@ const Row = ({
   text: any[];
   title: string;
 }) => {
-  console.log(image[0], "imgae");
   console.log(text, "text");
   return (
     <ContentWrap className="md:mb-14 mb-8">

@@ -182,7 +182,7 @@ submit a query and request a second entry by sending an email to:`}
                     showError={false}
                     name="acceptedTsAndCs"
                     label="Accept T's & C's"
-                    link="/terms-and-conditions"
+                    link="/competition/terms-and-conditions"
                   />
                 </div>
                 {TsAndCsCheckBoxMeta &&

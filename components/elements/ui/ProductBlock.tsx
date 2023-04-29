@@ -20,7 +20,7 @@ const ProductBlock = ({ product: productData }: { product: any }) => {
             height={200}
             width={200}
             alt="gynaguard product"
-            src={`${product.image.data?.attributes.url}`}
+            src={`${product.image.data?.attributes?.url}`}
             className="h-full w-full"
           />
         </Link>

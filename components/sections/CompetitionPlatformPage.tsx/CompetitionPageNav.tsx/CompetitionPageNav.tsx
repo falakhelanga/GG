@@ -8,22 +8,22 @@ const NAV_LINKS = [
   {
     ligthText: "enter",
     boldText: "now",
-    link: "/entry",
+    link: "/competition/entry",
   },
   {
     ligthText: "view",
     boldText: "gallery",
-    link: "/contestant",
+    link: "/competition/contestant",
   },
   {
     ligthText: "read",
     boldText: `faq's`,
-    link: "/faq",
+    link: "/competition/faq",
   },
   {
     ligthText: "competition",
     boldText: "terms",
-    link: "/terms-and-conditions",
+    link: "/competition/terms-and-conditions",
   },
 ];
 

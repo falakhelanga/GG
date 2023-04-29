@@ -4,7 +4,6 @@ import Image from "next/image";
 import { imageFormatter } from "@/helpers.tsx/imageFormatter";
 
 const BadgesRow = ({ badges, text }: { badges: any; text: any }) => {
-  console.log(badges.data[0], "badges");
   return (
     <div className="md:mb-14 mb-8">
       <ContentWrap className="flex gap-4 w-full justify-center md:mb-6 mb-6 ">

@@ -31,7 +31,7 @@ const GenericPage = ({
         <div className=" ">
           <PageComponentBuilderController
             page={page}
-            pageContent={apiBasicPageData?.attributes.page_components}
+            pageContent={apiBasicPageData?.attributes?.page_components}
           />
         </div>
       </>
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
         ?.map((basicPageDataElement: any) => {
           return {
             params: {
-              page: basicPageDataElement?.attributes.slug,
+              page: basicPageDataElement?.attributes?.slug,
               id: basicPageDataElement.id,
             },
           };
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps<{
   const generatedPaths = basicPageData?.map((basicPageDataElement: any) => {
     return {
       params: {
-        page: basicPageDataElement?.attributes.slug,
+        page: basicPageDataElement?.attributes?.slug,
         id: basicPageDataElement.id,
       },
     };
@@ -101,7 +101,9 @@ export const getStaticProps: GetStaticProps<{
     );
 
     if (filteredPaths.length > 0) {
-      const generatedPathsFiltered = filteredPaths[0].params.id;
+      const generatedPathsFiltered = filteredPaths
+        ? filteredPaths[0].params.id
+        : null;
 
       return generatedPathsFiltered;
     }

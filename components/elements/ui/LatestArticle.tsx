@@ -45,19 +45,21 @@ const LatestArticle = ({
           </div>
           <div>
             <div className="text-end text-white font-bold">
-              <div>
-                <span className="font-paul text-2xl font-thin">
-                  {topRightText[0]}{" "}
-                </span>
-                <span className="uppercase">{topRightText[1]}</span>
-              </div>
+              {topRightText ? (
+                <div>
+                  <span className="font-paul text-2xl font-thin">
+                    {topRightText[0]}{" "}
+                  </span>
+                  <span className="uppercase">{topRightText[1]}</span>
+                </div>
+              ) : null}
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
-                {article.data.attributes.title}
+                {article.data?.attributes?.title}
               </div>
               <MarkDown className="text-black text-sm my-8">
-                {article.data.attributes.intro_text}
+                {article.data?.attributes?.intro_text}
               </MarkDown>
               <Link
                 href={`/free-to-just-be-hub/${article.data.id}`}
@@ -98,19 +100,21 @@ const LatestArticle = ({
           </div>
           <div>
             <div className="text-end text-white font-bold">
-              <div>
-                <span className="font-paul text-2xl font-thin">
-                  {topRightText[0]}{" "}
-                </span>
-                <span className="uppercase">{topRightText[1]}</span>
-              </div>
+              {topRightText ? (
+                <div>
+                  <span className="font-paul text-2xl font-thin">
+                    {topRightText[0]}{" "}
+                  </span>
+                  <span className="uppercase">{topRightText[1]}</span>
+                </div>
+              ) : null}
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
-                {article.data.attributes.title}
+                {article.data?.attributes?.title}
               </div>
               <MarkDown className="text-black text-sm my-8">
-                {article.data.attributes.intro_text}
+                {article.data?.attributes?.intro_text}
               </MarkDown>
               <Link
                 href={`/free-to-just-be-hub/${article.data.id}`}

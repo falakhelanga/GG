@@ -19,7 +19,7 @@ const VideoBlockRow = ({ video }: { video: any }) => {
             />
           </div>
           <div className="w-full text-center text-green font-bold md:text-lg md:mt-8 mt-4">
-            {truncate(30, item.product.data?.attributes.name)}
+            {truncate(30, item.product.data?.attributes?.name)}
           </div>
         </div>
       ))}
