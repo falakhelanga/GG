@@ -29,8 +29,14 @@ const badges = [
     text: "Infused with Aloe Barbadensis to help soothe irritation",
   },
 ];
-
-const GynaguardPromise = () => {
+const defaultIntroText = `Our promise to you is that every GynaGuard product is made with the
+highest quality ingredient, which is why we have 6 core benefits that
+ensure the health of your V-zone.`;
+const GynaguardPromise = ({
+  introText = defaultIntroText,
+}: {
+  introText?: string;
+}) => {
   return (
     <div className="w-full pb-14">
       <ContentWrap>
@@ -65,9 +71,7 @@ const GynaguardPromise = () => {
           </h1>
         </div>
         <div className="md:mb-16 mb-10 md:text-lg text-center md:mx-[10rem]">
-          Our promise to you is that every GynaGuard product is made with the
-          highest quality ingredient, which is why we have 6 core benefits that
-          ensure the health of your V-zone.
+          {introText}
         </div>
         <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
           {badges.map((badge) => (
