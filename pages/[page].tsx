@@ -46,22 +46,24 @@ export async function getStaticPaths() {
   const { data: basicPageData } = await fetchAPI("basi-pages");
   const excludedPaths = ["home", "products-range"];
   let generatedPaths = basicPageData
-    .map((basicPageDataElement: any) => {
-      return {
-        params: {
-          page: basicPageDataElement.attributes.slug,
-          id: basicPageDataElement.id,
-        },
-      };
-    })
-    .filter((path: any) => {
-      const isPathExist = excludedPaths.find(
-        (page) => page === path.params.page
-      );
-      if (!isPathExist) {
-        return path;
-      }
-    });
+    ? basicPageData
+        ?.map((basicPageDataElement: any) => {
+          return {
+            params: {
+              page: basicPageDataElement.attributes.slug,
+              id: basicPageDataElement.id,
+            },
+          };
+        })
+        .filter((path: any) => {
+          const isPathExist = excludedPaths.find(
+            (page) => page === path.params.page
+          );
+          if (!isPathExist) {
+            return path;
+          }
+        })
+    : [];
 
   generatedPaths = generatedPaths.filter((generatedPath: any) => {
     if (!excludedGeneratedPaths.includes(generatedPath.params.page)) {
