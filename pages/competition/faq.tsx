@@ -182,7 +182,7 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData?.attributes.products.products.data.map((product: any) => ({
+    productsData?.attributes?.products.products.data.map((product: any) => ({
       ...product?.attributes,
       id: product.id,
     }));

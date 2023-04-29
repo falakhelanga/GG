@@ -57,7 +57,7 @@ const FreeToBeHub = ({
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { setSubCategories, setNewProducts } = useSubCategories();
-  const latestArticleCard = pageData?.attributes.page_components.filter(
+  const latestArticleCard = pageData?.attributes?.page_components.filter(
     (item: any) => item.__component === "layout.latest-article"
   )[0]["latest_article_card"];
 
@@ -78,7 +78,7 @@ const FreeToBeHub = ({
     if (sortCategoriesValue) {
       return articles.filter(
         (article: any) =>
-          article.category.data?.attributes.name.toLowerCase().trim() ===
+          article.category.data?.attributes?.name.toLowerCase().trim() ===
           sortCategoriesValue?.toLowerCase().trim()
       );
     }
@@ -270,7 +270,7 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData?.attributes.products.products.data?.map((product: any) => ({
+    productsData?.attributes?.products.products.data?.map((product: any) => ({
       ...product?.attributes,
       id: product.id,
     }));

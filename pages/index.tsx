@@ -53,7 +53,7 @@ export default function Home({
     index: idx - 1,
   }));
 
-  const blogs = pageData?.attributes.page_components
+  const blogs = pageData?.attributes?.page_components
     .filter((item: any) => item.__component === "layout.blogs")
     .map((item: any) => {
       return item.blogs.data;
@@ -124,7 +124,7 @@ export default function Home({
       <ParallaxProvider>
         <main className="">
           <PageComponentBuilderController
-            pageContent={pageData?.attributes.page_components}
+            pageContent={pageData?.attributes?.page_components}
           />
           {/* <PageComponentBuilderController pageContent={pageData} /> */}
           {/* <HomePageHero links={links} /> */}
@@ -162,7 +162,7 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData?.attributes.products.products.data.map((product: any) => ({
+    productsData?.attributes?.products.products.data.map((product: any) => ({
       ...product?.attributes,
       id: product.id,
     }));

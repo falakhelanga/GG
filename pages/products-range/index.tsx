@@ -35,7 +35,7 @@ const ProductRangePage = ({
   newProducts,
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const blogs = pageData?.attributes.page_components
+  const blogs = pageData?.attributes?.page_components
     .filter((item: any) => item.__component === "layout.blogs")
     .map((item: any) => {
       return item.blogs.data;
@@ -95,7 +95,7 @@ const ProductRangePage = ({
 
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data?.attributes.name === page;
+      return item.category.data?.attributes?.name === page;
     });
   }, [products, data, page]);
 
@@ -230,7 +230,7 @@ export const getStaticProps: GetStaticProps<{
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
   const { data: pageData } = await fetchAPI("basi-pages/3", ["deep"]);
   const { data: categories } = await fetchAPI("categories");
-  const products: ProductType[] = data?.attributes.products.products.data.map(
+  const products: ProductType[] = data?.attributes?.products.products.data.map(
     (product: any) => ({ ...product?.attributes, id: product.id })
   );
   const newProducts = products.filter((product) => product.isNew);

@@ -43,7 +43,9 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
                   className="h-full md:h-[80vh] h-[80vh] w-full"
                 >
                   <div
-                    style={{ backgroundImage: `url(${image?.attributes.url})` }}
+                    style={{
+                      backgroundImage: `url(${image?.attributes?.url})`,
+                    }}
                     className={`flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end   bg-cover bg-no-repeat bg-center`}
                   >
                     {heroData.withButton && (
@@ -98,7 +100,9 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
                   className="h-full md:h-[80vh] h-[80vh] w-full"
                 >
                   <div
-                    style={{ backgroundImage: `url(${image?.attributes.url})` }}
+                    style={{
+                      backgroundImage: `url(${image?.attributes?.url})`,
+                    }}
                     className={`flex justify-center md:h-[80vh] h-[80vh]  relative flex items-end   bg-cover bg-no-repeat bg-center`}
                   >
                     {heroData.withButton && (
