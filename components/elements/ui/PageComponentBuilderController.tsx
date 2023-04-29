@@ -26,6 +26,9 @@ import BadgesRow from "./BadgesRow";
 import LinkButton from "./LinkButton";
 import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
 import { useRouter } from "next/router";
+import HomePageFeminineHygiene from "./HomePageFeminineHygiene";
+import GynaguardPromise from "@/components/sections/GynaguardPromise/GynaguardPromise";
+import BackgroundWithCenteredText from "./BackgroundWithCenteredText";
 
 const PageComponentBuilderController = ({
   pageContent,
@@ -70,8 +73,13 @@ const PageComponentBuilderController = ({
       "layout.badges-row": <BadgesRow {...pageContentItem} />,
       "layout.link-button": <LinkButton {...pageContentItem} />,
       "layout.home-page-feminine-hygiene": (
-        <FeminineHygiene {...pageContentItem} />
+        <HomePageFeminineHygiene {...pageContentItem} />
       ),
+      "layout.gynaguard-promise": <GynaguardPromise {...pageContentItem} />,
+      "layout.background-with-centered-text": (
+        <BackgroundWithCenteredText {...pageContentItem} />
+      ),
+      // "layout.gynaguard-promise": <GynaguardPromise {...pageContentItem} />,
 
       default: (
         <div key={`page-${idx}`}>

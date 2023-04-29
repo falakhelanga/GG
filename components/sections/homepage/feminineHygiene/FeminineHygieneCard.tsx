@@ -2,12 +2,14 @@ import Title from "@/components/elements/ui/Title";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useMemo } from "react";
-
+import ReactMarkDown from "react-markdown";
 interface FeminineHygieneCardPropType {
   color: "lightPink" | "lightGreen" | "lightBrown";
   body: string;
   title: string;
   className?: string;
+  smallTitle: string;
+  largeTitle: string;
 }
 
 const FeminineHygieneCard = ({
@@ -15,6 +17,8 @@ const FeminineHygieneCard = ({
   body,
   title,
   className,
+  smallTitle,
+  largeTitle,
 }: FeminineHygieneCardPropType) => {
   const bgColor = useMemo(() => {
     if (color === "lightBrown") {
@@ -44,12 +48,12 @@ const FeminineHygieneCard = ({
       <div className={`${bgColor} w-full h-10 rounded-t-md `}></div>
       <div className="md:bg-[rgb(255,255,255,0.9)] bg-white p-6">
         <Title className="uppercase text-black font-semibold">
-          feminine hygiene for
+          {smallTitle}
         </Title>
         <Title size="md" className={` ${textColor} uppercase `}>
-          {title}
+          {largeTitle}
         </Title>
-        <div className="text-black my-6">{body}</div>
+        <ReactMarkDown className="text-black my-6">{body}</ReactMarkDown>
         <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer ">
           <span className="font-bold">find out more</span>{" "}
           <FontAwesomeIcon

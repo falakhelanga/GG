@@ -31,19 +31,19 @@ const linksVariants = {
 const burgerMenuItems = [
   {
     name: "FAQ",
-    link: "/#",
+    link: "/faq",
   },
   {
     name: "About Gynaguard",
-    link: "/#",
+    link: "/about-gynaguard",
   },
   {
     name: "Contact Us",
-    link: "/#",
+    link: "/contact-page",
   },
   {
     name: "Terms of use",
-    link: "/#",
+    link: "/terms-of-use",
   },
 ];
 
@@ -59,7 +59,7 @@ const BurgerMenu = () => {
                 key={idx}
                 className="find-out-more"
               >
-                <Link href={"/#"} className="w-64">
+                <Link href={item.link} className="w-64">
                   <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer flex py-1 justify-end items-center">
                     {item.name}
                     <FontAwesomeIcon

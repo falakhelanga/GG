@@ -11,10 +11,10 @@ import { useRouter } from "next/router";
 const Articles = ({ articles }: { articles: any }) => {
   const router = useRouter();
   return (
-    <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 ">
-      <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">
-        <ContentWrap className="grid md:grid-cols-2 h-full  items-end md:mt-14 pt-14">
-          <div className="md:pb-10 max-sm:mt-[12rem]">
+    <div className=" w-full bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-10 -mt-2">
+      <div className="md:h-auto  w-full bg-cover bg-no-repeat md:bg-center  ">
+        <ContentWrap className="grid md:grid-cols-2 h-full  items-end  ">
+          {/* <div className="md:pb-10 max-sm:mt-[12rem]">
             <div className="">
               <Logo />
               <div className="md:text-8xl text-4xl text-pink font-semibold">
@@ -27,8 +27,8 @@ const Articles = ({ articles }: { articles: any }) => {
                 HUB
               </div>
             </div>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <div className="text-end text-white font-bold">
               <div>
                 <span className="font-paul text-2xl font-thin">Latest </span>
@@ -53,7 +53,7 @@ const Articles = ({ articles }: { articles: any }) => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </ContentWrap>
       </div>
       {/* articles */}
