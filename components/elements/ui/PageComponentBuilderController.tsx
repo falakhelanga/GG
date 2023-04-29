@@ -17,18 +17,30 @@ import ProductBlock from "./ProductBlock";
 import ProductsRow from "./ProductsRow";
 import Blogs from "./Blogs";
 import FormBlock from "./FormBlock";
+import PageHeader from "./PageHeader";
 import ContactFormPage from "./ContactFormPage";
+import HeadingMarkDown from "./HeadingMarkDown";
+import Row from "./Row";
+import IntroCopy from "./IntroCopy";
+import BadgesRow from "./BadgesRow";
+import LinkButton from "./LinkButton";
+import FeminineHygiene from "@/components/sections/homepage/feminineHygiene/FeminineHygiene";
+import { useRouter } from "next/router";
 
 const PageComponentBuilderController = ({
   pageContent,
+  page,
 }: {
   pageContent: any[];
+  page?: any;
 }): ReactElement => {
+  const router = useRouter();
   return pageContent.map((pageContentItem, idx) => {
     console.log(pageContentItem, "page content");
     const layouts: any = {
       "layout.latest-article": <LatestArticle {...pageContentItem} />,
       "layout.hero": <SlidingHero heroData={pageContentItem} />,
+      "layout.header": <PageHeader headerData={pageContentItem} />,
       "layout.gyanaguard-product-range-heading": (
         <GynaguardProductRangeHeading
           {...pageContentItem}
@@ -48,9 +60,19 @@ const PageComponentBuilderController = ({
       "layout.video-blocks-row": <VideoBlockRow {...pageContentItem} />,
       "layout.product-block": <ProductBlock {...pageContentItem} />,
       "layout.products-row": <ProductsRow {...pageContentItem} />,
-      "layout.blogs": <Blogs {...pageContentItem} />,
+      "layout.blogs": router.route !== "/" && <Blogs {...pageContentItem} />,
       "layout.form": <FormBlock {...pageContentItem} />,
       "layout.contact-form": <ContactFormPage {...pageContentItem} />,
+      "layout.page-header": <PageHeader {...pageContentItem} />,
+      "layout.heading": <HeadingMarkDown {...pageContentItem} />,
+      "layout.row": <Row {...pageContentItem} />,
+      "layout.intro-text": <IntroCopy {...pageContentItem} />,
+      "layout.badges-row": <BadgesRow {...pageContentItem} />,
+      "layout.link-button": <LinkButton {...pageContentItem} />,
+      "layout.home-page-feminine-hygiene": (
+        <FeminineHygiene {...pageContentItem} />
+      ),
+
       default: (
         <div key={`page-${idx}`}>
           {/* <ErrorComponent
