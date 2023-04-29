@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async ({ params }) => {
   const { data: basicPageData } = await fetchAPI("basi-pages");
 
-  const generatedPaths = basicPageData.map((basicPageDataElement: any) => {
+  const generatedPaths = basicPageData?.map((basicPageDataElement: any) => {
     return {
       params: {
         page: basicPageDataElement.attributes.slug,
@@ -110,7 +110,7 @@ export const getStaticProps: GetStaticProps<{
   const productPopulate = ["image", "products"];
   const { data: productsData } = await fetchAPI("products", productPopulate);
 
-  const products: ProductType[] = productsData.map((product: any) => ({
+  const products: ProductType[] = productsData?.map((product: any) => ({
     ...product.attributes,
     id: product.id,
   }));
