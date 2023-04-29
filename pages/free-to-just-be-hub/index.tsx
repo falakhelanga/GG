@@ -290,7 +290,7 @@ export const getStaticProps: GetStaticProps<{
           body: article.intro_text,
         })),
       newProducts,
-      subcategories: subcategories.map((subcategory: any) => ({
+      subcategories: subcategories?.map((subcategory: any) => ({
         ...subcategory.attributes,
         id: subcategory.id,
       })),

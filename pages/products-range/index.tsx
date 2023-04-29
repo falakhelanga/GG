@@ -35,13 +35,13 @@ const ProductRangePage = ({
   newProducts,
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const blogs = pageData.attributes.page_components
+  const blogs = pageData?.attributes.page_components
     .filter((item: any) => item.__component === "layout.blogs")
     .map((item: any) => {
       return item.blogs.data;
     })[0]
     .map((article: any) => ({
-      ...article.attributes,
+      ...article?.attributes,
       id: article.id,
     }))
     .map((article: any) => ({
@@ -95,7 +95,7 @@ const ProductRangePage = ({
 
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data.attributes.name === page;
+      return item.category.data?.attributes.name === page;
     });
   }, [products, data, page]);
 
@@ -113,7 +113,7 @@ const ProductRangePage = ({
       }
       return acc;
     }, [])
-    .map((review: any) => ({ ...review.attributes, id: review.id }));
+    .map((review: any) => ({ ...review?.attributes, id: review.id }));
 
   // const moveSlider = (index: number) => {
   //   setSliderPosition(190 * index);
@@ -230,8 +230,8 @@ export const getStaticProps: GetStaticProps<{
   const { data: subcategories } = await fetchAPI("subcategories", ["products"]);
   const { data: pageData } = await fetchAPI("basi-pages/3", ["deep"]);
   const { data: categories } = await fetchAPI("categories");
-  const products: ProductType[] = data.attributes.products.products.data.map(
-    (product: any) => ({ ...product.attributes, id: product.id })
+  const products: ProductType[] = data?.attributes.products.products.data.map(
+    (product: any) => ({ ...product?.attributes, id: product.id })
   );
   const newProducts = products.filter((product) => product.isNew);
   products.sort((a, b) => {
@@ -250,12 +250,12 @@ export const getStaticProps: GetStaticProps<{
       products,
       newProducts,
       categories: categories.map((category: any) => ({
-        ...category.attributes,
+        ...category?.attributes,
         id: category.id,
       })),
       pageData,
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
     },

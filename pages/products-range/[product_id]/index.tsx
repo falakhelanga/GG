@@ -30,7 +30,7 @@ const IndividualProduct = ({
   newProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const reviews = product.reviews.data.map((review: any) => ({
-    ...review.attributes,
+    ...review?.attributes,
     id: review.id,
   }));
   const { setSubCategories, setNewProducts } = useSubCategories();
@@ -42,7 +42,7 @@ const IndividualProduct = ({
   const gynaguardPromise: GynaguardPromiseType | null = product
     .gynaguard_promise.data
     ? {
-        ...product.gynaguard_promise.data.attributes,
+        ...product.gynaguard_promise.data?.attributes,
         id: product.gynaguard_promise.id,
       }
     : null;
@@ -68,9 +68,9 @@ const IndividualProduct = ({
             />
             <Link
               className="hover:text-pink"
-              href={`/products-range?page=${product.category.data.attributes.name}`}
+              href={`/products-range?page=${product.category.data?.attributes.name}`}
             >
-              {product.category.data.attributes.name}
+              {product.category.data?.attributes.name}
             </Link>
             <FontAwesomeIcon
               icon={faChevronRight}
@@ -90,20 +90,20 @@ const IndividualProduct = ({
                 alt={product.name}
                 height={1000}
                 width={1000}
-                src={`${product.image.data.attributes.url}`}
+                src={`${product.image.data?.attributes.url}`}
               />
               {gynaguardPromise && (
                 <>
                   <Image
                     className="absolute top-0 right-8 md:block hidden"
-                    src={`${gynaguardPromise.badge.data.attributes.url}`}
+                    src={`${gynaguardPromise.badge.data?.attributes.url}`}
                     alt={gynaguardPromise.text}
                     height={170}
                     width={170}
                   />
                   <Image
                     className="absolute top-0 right-8 md:hidden block"
-                    src={`${gynaguardPromise.badge.data.attributes.url}`}
+                    src={`${gynaguardPromise.badge.data?.attributes.url}`}
                     alt={gynaguardPromise.text}
                     height={100}
                     width={100}
@@ -168,7 +168,7 @@ export async function getStaticPaths() {
   const { data } = await fetchAPI("products");
 
   const products: ProductType[] = data.map((product: any) => ({
-    ...product.attributes,
+    ...product?.attributes,
     id: product.id,
   }));
   const paths = products.map((product) => ({
@@ -205,18 +205,18 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
-      ...product.attributes,
+    productsData?.attributes.products.products.data.map((product: any) => ({
+      ...product?.attributes,
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
-  const product = data.attributes;
+  const product = data?.attributes;
   return {
     props: {
       newProducts,
       product,
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
     },

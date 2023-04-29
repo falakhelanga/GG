@@ -24,7 +24,7 @@ import PageComponentBuilderController from "@/components/elements/ui/PageCompone
 
 export default function Home({
   products,
-  hero,
+
   categories,
   subcategories,
   newProducts,
@@ -53,13 +53,13 @@ export default function Home({
     index: idx - 1,
   }));
 
-  const blogs = pageData.attributes.page_components
+  const blogs = pageData?.attributes.page_components
     .filter((item: any) => item.__component === "layout.blogs")
     .map((item: any) => {
       return item.blogs.data;
     })[0]
     .map((article: any) => ({
-      ...article.attributes,
+      ...article?.attributes,
       id: article.id,
     }))
     .map((article: any) => ({
@@ -124,7 +124,7 @@ export default function Home({
       <ParallaxProvider>
         <main className="">
           <PageComponentBuilderController
-            pageContent={pageData.attributes.page_components}
+            pageContent={pageData?.attributes.page_components}
           />
           {/* <PageComponentBuilderController pageContent={pageData} /> */}
           {/* <HomePageHero links={links} /> */}
@@ -162,8 +162,8 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData.attributes.products.products.data.map((product: any) => ({
-      ...product.attributes,
+    productsData?.attributes.products.products.data.map((product: any) => ({
+      ...product?.attributes,
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
@@ -173,12 +173,12 @@ export const getStaticProps: GetStaticProps<{
     props: {
       products,
       categories: categories.map((category: any) => ({
-        ...category.attributes,
+        ...category?.attributes,
         id: category.id,
       })),
 
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
       newProducts,
