@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps<{
   return {
     props: {
       newProducts,
-      subcategories: subcategories.map((subcategory: any) => ({
+      subcategories: subcategories?.map((subcategory: any) => ({
         ...subcategory.attributes,
         id: subcategory.id,
       })),
