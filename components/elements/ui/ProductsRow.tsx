@@ -5,7 +5,7 @@ import React from "react";
 
 const ProductsRow = ({ products }: { products: any }) => {
   const productsData: ProductType[] = products.data.map((product: any) => ({
-    ...product.attributes,
+    ...product?.attributes,
     id: product.id,
   }));
   return (

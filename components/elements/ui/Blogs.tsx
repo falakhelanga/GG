@@ -5,7 +5,7 @@ import ArticleCard from "@/components/sections/homepage/articles/ArticleCard";
 const Blogs = ({ blogs: blogsData }: { blogs: any }) => {
   const articles = blogsData.data
     .map((article: any) => ({
-      ...article.attributes,
+      ...article?.attributes,
       id: article.id,
     }))
     .map((article: any) => ({

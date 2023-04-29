@@ -31,7 +31,7 @@ const GenericPage = ({
         <div className=" ">
           <PageComponentBuilderController
             page={page}
-            pageContent={apiBasicPageData.attributes.page_components}
+            pageContent={apiBasicPageData?.attributes.page_components}
           />
         </div>
       </>
@@ -46,22 +46,24 @@ export async function getStaticPaths() {
   const { data: basicPageData } = await fetchAPI("basi-pages");
   const excludedPaths = ["home", "products-range"];
   let generatedPaths = basicPageData
-    .map((basicPageDataElement: any) => {
-      return {
-        params: {
-          page: basicPageDataElement.attributes.slug,
-          id: basicPageDataElement.id,
-        },
-      };
-    })
-    .filter((path: any) => {
-      const isPathExist = excludedPaths.find(
-        (page) => page === path.params.page
-      );
-      if (!isPathExist) {
-        return path;
-      }
-    });
+    ? basicPageData
+        ?.map((basicPageDataElement: any) => {
+          return {
+            params: {
+              page: basicPageDataElement?.attributes.slug,
+              id: basicPageDataElement.id,
+            },
+          };
+        })
+        .filter((path: any) => {
+          const isPathExist = excludedPaths.find(
+            (page) => page === path.params.page
+          );
+          if (!isPathExist) {
+            return path;
+          }
+        })
+    : [];
 
   generatedPaths = generatedPaths.filter((generatedPath: any) => {
     if (!excludedGeneratedPaths.includes(generatedPath.params.page)) {
@@ -84,10 +86,10 @@ export const getStaticProps: GetStaticProps<{
 }> = async ({ params }) => {
   const { data: basicPageData } = await fetchAPI("basi-pages");
 
-  const generatedPaths = basicPageData.map((basicPageDataElement: any) => {
+  const generatedPaths = basicPageData?.map((basicPageDataElement: any) => {
     return {
       params: {
-        page: basicPageDataElement.attributes.slug,
+        page: basicPageDataElement?.attributes.slug,
         id: basicPageDataElement.id,
       },
     };
@@ -110,8 +112,8 @@ export const getStaticProps: GetStaticProps<{
   const productPopulate = ["image", "products"];
   const { data: productsData } = await fetchAPI("products", productPopulate);
 
-  const products: ProductType[] = productsData.map((product: any) => ({
-    ...product.attributes,
+  const products: ProductType[] = productsData?.map((product: any) => ({
+    ...product?.attributes,
     id: product.id,
   }));
   const newProducts = products.filter((product) => product.isNew);
@@ -124,8 +126,8 @@ export const getStaticProps: GetStaticProps<{
   return {
     props: {
       newProducts,
-      subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+      subcategories: subcategories?.map((subcategory: any) => ({
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
       apiBasicPageData: data,

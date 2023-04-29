@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<{
   const { data: productsData } = await fetchAPI("products", productPopulate);
 
   const products: ProductType[] = productsData.map((product: any) => ({
-    ...product.attributes,
+    ...product?.attributes,
     id: product.id,
   }));
   const newProducts = products.filter((product) => product.isNew);
@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       newProducts,
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory.attributes,
+        ...subcategory?.attributes,
         id: subcategory.id,
       })),
     },

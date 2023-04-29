@@ -7,7 +7,7 @@ import BuyNowDropDown from "@/components/sections/homepage/products/BuyNowDropDo
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 const ProductBlock = ({ product: productData }: { product: any }) => {
-  const product = productData.data.attributes;
+  const product = productData.data?.attributes;
 
   return (
     <div className="flex w-full justify-center md:mb-14 mb-8">
@@ -20,7 +20,7 @@ const ProductBlock = ({ product: productData }: { product: any }) => {
             height={200}
             width={200}
             alt="gynaguard product"
-            src={`${product.image.data.attributes.url}`}
+            src={`${product.image.data?.attributes.url}`}
             className="h-full w-full"
           />
         </Link>

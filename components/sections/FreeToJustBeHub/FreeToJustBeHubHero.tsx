@@ -11,7 +11,7 @@ const FreeToJustBeHubHero = ({
   latestArticleCardData: any;
   article: any;
 }) => {
-  const topRightText = latestArticleCardData.top_right_text.split(" ");
+  const topRightText = latestArticleCardData?.top_right_text.split(" ");
   console.log(topRightText, "gdg");
   return (
     <div className="md:h-auto md:pt-24 w-full bg-[url(/images/mobile_hub_bg.png)] md:bg-[url(/images/desktop_hub_bg.png)] bg-cover bg-no-repeat md:bg-center  ">

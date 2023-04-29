@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 const Products = ({ products: productsData }: any) => {
   // const { products: productsData } = sliderData;
   const products: ProductType[] = productsData.data.map((product: any) => ({
-    ...product.attributes,
+    ...product?.attributes,
     id: product.id,
   }));
   const router = useRouter();
