@@ -76,7 +76,7 @@ const ContactFormPage = ({
             />
           </div>
           <div className="w-full flex justify-center flex-col items-center gap-4 ">
-            <div className="flex flex-col col-span-2 md:items-center max-sm:w-full">
+            {/* <div className="flex flex-col col-span-2 md:items-center max-sm:w-full">
               <div className="flex md:flex-row flex-col col-span-2 md:justify-center justify-start md:gap-6 max-sm:w-full">
                 <Checkbox
                   name="isSubscribed"
@@ -92,7 +92,7 @@ const ContactFormPage = ({
                   link="/terms-and-conditions"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="max-sm:w-full">
               <Button type="submit" className="uppercase max-sm:w-full">
                 submit form
