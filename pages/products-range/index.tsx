@@ -87,7 +87,7 @@ const ProductRangePage = ({
 
   const tabsRef = useRef<any>([]);
   const moveToActiveTab = () => {
-    setActiveTabIndex(page as string);
+    setActiveTabIndex(page?.toString().toLowerCase() as string);
   };
   useEffect(() => {
     function setTabPosition() {
@@ -168,9 +168,9 @@ const ProductRangePage = ({
                       ref={(el) =>
                         (tabsRef.current[item.name.trim().toLowerCase()] = el)
                       }
-                      href={`?page=${item.name}`}
+                      href={`?page=${item.name.toLowerCase()}`}
                       onMouseEnter={() => {
-                        setActiveTabIndex(item.name);
+                        setActiveTabIndex(item.name.trim().toLowerCase());
                       }}
                       onMouseLeave={moveToActiveTab}
                       className={`hover:text-green z-[10]  md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
