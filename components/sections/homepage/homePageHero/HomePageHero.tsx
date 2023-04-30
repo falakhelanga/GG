@@ -77,10 +77,12 @@ const HomePageHero = ({
                 return (
                   <Link
                     key={item.name}
-                    ref={(el) => (tabsRef.current[item.name] = el)}
+                    ref={(el) =>
+                      (tabsRef.current[item.name.trim().toLowerCase()] = el)
+                    }
                     href={`?page=${item.name}`}
                     onMouseEnter={() => {
-                      setActiveTabIndex(item.name);
+                      setActiveTabIndex(item.name.toLowerCase());
                     }}
                     onMouseLeave={moveToActiveTab}
                     className={`hover:text-green relative z-[10] md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${

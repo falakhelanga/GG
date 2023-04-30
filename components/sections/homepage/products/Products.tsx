@@ -24,7 +24,9 @@ const Products = ({ products: productsData }: any) => {
   const { page } = router.query;
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data?.attributes?.name === page;
+      return (
+        item.category.data?.attributes?.name?.trim().toLowerCase() === page
+      );
     });
   }, [products, page]);
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
@@ -40,7 +42,7 @@ const Products = ({ products: productsData }: any) => {
       );
     },
   };
-  console.log(pageProducts[0], "hs");
+  // console.log(pageProducts[0], "hs");
   return (
     <div className=" relative md:mb-14 mb-8 mx-4">
       {pageProducts.length === 1 && (
