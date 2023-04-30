@@ -109,7 +109,7 @@ const HomePageHero = ({
               className={`absolute  bg-green  block h-2  transition-all duration-300 bottom-0`}
             />
           </div>
-          <div className="text-brown text-center my-5 text-lg">
+          <div className="text-black text-center my-5 text-lg">
             {description.text}
           </div>
         </div>

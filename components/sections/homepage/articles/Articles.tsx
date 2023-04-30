@@ -66,7 +66,7 @@ const Articles = ({ articles }: { articles: any }) => {
             <Button
               link="/free-to-just-be-hub"
               variant="outline"
-              className="uppercase max-sm:w-full"
+              className="uppercase max-sm:w-full text-center flex justify-center"
             >
               see all articles
             </Button>

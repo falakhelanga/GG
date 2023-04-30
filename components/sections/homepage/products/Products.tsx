@@ -117,7 +117,7 @@ const Products = ({ products: productsData }: any) => {
             })}
           </Swiper>
 
-          <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[2rem] mt-[5rem] " />
+          <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[6rem] mt-[6rem] " />
         </>
       )}
     </div>

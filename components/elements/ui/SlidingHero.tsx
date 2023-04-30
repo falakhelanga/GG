@@ -92,7 +92,7 @@ const SlidingHero = ({ heroData }: { heroData: any }) => {
           className="mySwiper flex md:h-[80vh] h-[80vh] w-full "
         >
           <div className="md:block hidden">
-            {heroData.desktopImages.data.map((image: any, idx: number) => {
+            {heroData.mobileImages.data.map((image: any, idx: number) => {
               console.log(image, "image");
               return (
                 <SwiperSlide

@@ -7,7 +7,7 @@ const TextBlocksRow = ({ Text_block }: any) => {
     <ContentWrap>
       <div className="flex md:flex-row flex-col gap-6">
         {Text_block.map((item: any) => (
-          <TextBlock key={item.id} Text={item.Text} />
+          <TextBlock withContentWrap={false} key={item.id} Text={item.Text} />
         ))}
       </div>
     </ContentWrap>

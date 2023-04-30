@@ -5,7 +5,7 @@ import ContentWrap from "./ContentWrap";
 
 const ImageBlock = ({ desktop_image, mobile_image }: any) => {
   return (
-    <ContentWrap>
+    <ContentWrap className="md:mb-14 mb-8">
       <div className="w-full h-auto max-h-[1000px] md:block hidden ">
         <Image
           alt=""

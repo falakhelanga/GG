@@ -100,17 +100,18 @@ const FeminineHygieneCard = ({
           {largeTitle}
         </Title>
         <ReactMarkDown className="text-black my-6">{body}</ReactMarkDown>
-        <a
-          href={link}
-          target="_blank"
-          className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer "
-        >
-          <span className="font-bold">find out more</span>{" "}
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            className="text-pink find-out-more-chevron"
-          />
-        </a>
+        {link && (
+          <Link
+            href={link}
+            className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer "
+          >
+            <span className="font-bold">find out more</span>{" "}
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className="text-pink find-out-more-chevron"
+            />
+          </Link>
+        )}
       </div>
     </div>
   );

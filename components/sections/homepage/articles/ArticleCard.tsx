@@ -56,7 +56,7 @@ const ArticleCard = ({
           {truncate(40, title)}
         </MarkDown>
 
-        <MarkDown className="text-black text-sm md:h-[7.5rem] h-[10rem] overflow-hidden text-ellipsis">
+        <MarkDown className="text-black text-sm md:h-[7.5rem]  overflow-hidden text-ellipsis">
           {body}
         </MarkDown>
         <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more cursor-pointer ">

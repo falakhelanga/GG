@@ -106,7 +106,7 @@ const ProductRangePage = ({
 
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data?.attributes?.name === page;
+      return item.category.data?.attributes?.name.trim().toLowerCase() === page;
     });
   }, [products, data, page]);
 
@@ -148,35 +148,47 @@ const ProductRangePage = ({
         <div className="flex flex-col w-full ">
           <div className="flex relative flex-col uppercase w-full overflow-hidden  items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
             <div className="flex max-sm:gap-8 gap-[4rem] ">
-              {links.map((item, idx) => {
-                return (
-                  <Link
-                    key={item.name}
-                    ref={(el) => (tabsRef.current[item.name] = el)}
-                    href={`?page=${item.name}`}
-                    onMouseEnter={() => {
-                      setActiveTabIndex(item.name);
-                    }}
-                    onMouseLeave={moveToActiveTab}
-                    className={`hover:text-green z-[10]  md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
-                      page === item.link && "  translate-y-[3px] "
-                    } ${
-                      !page &&
-                      idx === 0 &&
-                      "  translate-y-[3px]  transition duration-200 transition-all ease-in-out"
-                    } relative  pb-4   `}
-                    scroll={false}
-                  >
-                    <span
-                      className={`font-bold ${
-                        page === item.link && "text-green"
-                      } ${!page && idx === 0 && "text-green"} `}
+              {links
+                .filter((item) => {
+                  if (
+                    item.name.trim().toLowerCase() === "comfort" ||
+                    item.name.trim().toLowerCase() === "control" ||
+                    item.name.trim().toLowerCase() === "intimate"
+                  ) {
+                    return item;
+                  }
+                })
+                .map((item, idx) => {
+                  return (
+                    <Link
+                      key={item.name}
+                      ref={(el) =>
+                        (tabsRef.current[item.name.trim().toLowerCase()] = el)
+                      }
+                      href={`?page=${item.name}`}
+                      onMouseEnter={() => {
+                        setActiveTabIndex(item.name);
+                      }}
+                      onMouseLeave={moveToActiveTab}
+                      className={`hover:text-green z-[10]  md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
+                        page === item.link && "  translate-y-[3px] "
+                      } ${
+                        !page &&
+                        idx === 0 &&
+                        "  translate-y-[3px]  transition duration-200 transition-all ease-in-out"
+                      } relative  pb-4   `}
+                      scroll={false}
                     >
-                      {item.name}
-                    </span>
-                  </Link>
-                );
-              })}
+                      <span
+                        className={`font-bold ${
+                          page === item.link && "text-green"
+                        } ${!page && idx === 0 && "text-green"} `}
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+                  );
+                })}
             </div>
 
             <span
@@ -184,7 +196,7 @@ const ProductRangePage = ({
               className={`absolute  bg-green  block h-2 bg-black transition-all duration-300 bottom-0`}
             />
           </div>
-          <div className="text-brown text-center my-5 text-lg">
+          <div className="text-black text-center my-5 text-lg">
             {description.text}
           </div>
         </div>

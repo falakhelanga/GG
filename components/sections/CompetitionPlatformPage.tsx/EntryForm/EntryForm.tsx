@@ -174,10 +174,12 @@ submit a query and request a second entry by sending an email to:`}
               <div className="flex flex-col col-span-2 md:items-center">
                 <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
                   <Checkbox
+                    inputClassNames={`bg-[white] placeholder-black`}
                     name="isSubscribed"
                     label="Subscribe to GynaGuard"
                   />
                   <Checkbox
+                    inputClassNames={`bg-[white] placeholder-black`}
                     // setTsAndCsCheckboxMeta={setTsAndCsCheckboxMeta}
                     showError={false}
                     name="acceptedTsAndCs"

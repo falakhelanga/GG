@@ -65,7 +65,7 @@ const ContactFormPage = ({
               containerClassNames="md:col-span-2 col-span-2 w-full"
               inputClassNames={`bg-[#f1ecee] placeholder-black`}
               name="mobileNo"
-              placeholder="Mobile N0."
+              placeholder="Mobile No."
             />
             <TextAreaInput
               placeholder="Your message"
@@ -75,9 +75,9 @@ const ContactFormPage = ({
               rows="5"
             />
           </div>
-          <div className="w-full flex justify-center flex-col items-center gap-4">
-            <div className="flex flex-col col-span-2 md:items-center">
-              <div className="flex md:flex-row flex-col col-span-2 justify-center md:gap-6">
+          <div className="w-full flex justify-center flex-col items-center gap-4 ">
+            <div className="flex flex-col col-span-2 md:items-center max-sm:w-full">
+              <div className="flex md:flex-row flex-col col-span-2 md:justify-center justify-start md:gap-6 max-sm:w-full">
                 <Checkbox
                   name="isSubscribed"
                   inputClassNames={`bg-[#f1ecee] placeholder-black`}
@@ -93,8 +93,8 @@ const ContactFormPage = ({
                 />
               </div>
             </div>
-            <div>
-              <Button type="submit" className="uppercase">
+            <div className="max-sm:w-full">
+              <Button type="submit" className="uppercase max-sm:w-full">
                 submit form
               </Button>
             </div>

@@ -28,9 +28,9 @@ const HomePageFeminineHygiene = ({
     translateY: ["50px", "-180px"],
   });
   return (
-    <div className="md:mb-1">
+    <div className="md:mb-1 ">
       {/* DESKTOP */}
-      <div className="md:block hidden md:bg-[url(/images/desktop_fem_hyg_bg.png)] relative  bg-cover bg-center  h-auto relative bg-no-repeat md:overflow-hidden">
+      <div className="md:block hidden md:bg-[url(/images/desktop_fem_hyg_bg.png)] relative md:pt-[4rem]  bg-cover bg-center  h-auto relative bg-no-repeat md:overflow-hidden">
         <div className="h-full w-full absolute top-0 left-0 md:hidden block">
           <Image
             fill

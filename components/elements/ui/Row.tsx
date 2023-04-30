@@ -33,7 +33,7 @@ const Row = ({
           </div>
         ))}
         {text.map((item) => (
-          <TextBlock key={item.id} {...item} />
+          <TextBlock withContentWrap={false} key={item.id} {...item} />
         ))}
       </div>
     </ContentWrap>
