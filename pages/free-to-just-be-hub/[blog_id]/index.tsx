@@ -53,10 +53,10 @@ const IndividualBlog = ({
           </span>
         </div>
         <div className="mt-10">
-          <h1 className=" font-medium md:text-[2.5em] max-sm:mb-3 text-4xl uppercase  flex items-end h-full leading-10">
+          <h1 className=" font-medium md:text-[2.5em] max-sm:mb-3 text-4xl uppercase  flex items-end h-full leading-10 mb-5">
             {article.title}
           </h1>
-          <div className="w-full md:block hidden h-[715px] object-contain">
+          <div className="w-full md:block hidden h-[715px] object-contain md:mb-12">
             <Image
               alt=""
               width={2000}
@@ -65,7 +65,7 @@ const IndividualBlog = ({
               className="h-full w-full object-contain"
             />
           </div>
-          <div className="w-full block mb-8 md:hidden h-[715px] object-contain">
+          <div className="w-full block mb-8 md:hidden  object-contain">
             <Image
               alt=""
               width={2000}
