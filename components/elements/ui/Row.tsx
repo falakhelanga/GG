@@ -4,6 +4,7 @@ import TextBlock from "./TextBlock";
 import ContentWrap from "./ContentWrap";
 import Image from "next/image";
 import { imageFormatter } from "@/helpers.tsx/imageFormatter";
+import MarkDown from "./MarkDown";
 
 const Row = ({
   image,
@@ -15,9 +16,9 @@ const Row = ({
   title: string;
 }) => {
   return (
-    <ContentWrap className="">
+    <ContentWrap className="md:mb-10 mb-8">
       <div className="text-2xl font-bold mb-6">{title}</div>
-      <div className="flex md:flex-row flex-col gap-3 items-start">
+      <div className="flex md:flex-row flex-col md:gap-3 items-start">
         {image.map((item) => (
           <div
             key={item.id}
@@ -32,8 +33,14 @@ const Row = ({
             />
           </div>
         ))}
-        {text.map((item) => (
-          <TextBlock withContentWrap={false} key={item.id} {...item} />
+        {text.map((item, idx) => (
+          <MarkDown
+            key={idx}
+            //   rehypePlugins={[rehypeRaw]}
+            className="prose w-full max-w-none   max-sm:text-left"
+          >
+            {item.Text}
+          </MarkDown>
         ))}
       </div>
     </ContentWrap>

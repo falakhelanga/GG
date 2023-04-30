@@ -17,7 +17,7 @@ const TextBlock = ({
         <ContentWrap>
           <MarkDown
             //   rehypePlugins={[rehypeRaw]}
-            className="prose w-full max-w-none md:mb-14 mb-8 max-sm:text-left"
+            className="prose w-full max-w-none md:mb-10 mb-8 max-sm:text-left"
           >
             {Text}
           </MarkDown>
@@ -26,7 +26,7 @@ const TextBlock = ({
       {!withContentWrap && (
         <MarkDown
           //   rehypePlugins={[rehypeRaw]}
-          className="prose w-full max-w-none md:mb-14 mb-8 max-sm:text-left"
+          className="prose w-full max-w-none md:mb-10 mb-8 max-sm:text-left"
         >
           {Text}
         </MarkDown>
