@@ -15,7 +15,7 @@ const PageHeader = ({
   normalText: any;
 }) => {
   return (
-    <div className="w-screen bg-[#E9E7E6] pb-8 flex justify-center flex-col pt-[7rem] uppercase gap-4 mb-8">
+    <div className="w-screen bg-[#E9E7E6] pb-8  flex justify-center flex-col pt-[8rem] uppercase gap-4 mb-8">
       <img src="/images/GynaGuard Logo Pink.svg" className="w-48 m-auto" />
       <div className="flex justify-center gap-4 ">
         <h2 className="text-pink text-5xl font-extrabold">{boldText}</h2>
