@@ -8,9 +8,9 @@ import FeminineHygieneCard from "@/components/sections/homepage/feminineHygiene/
 import MarkDown from "./MarkDown";
 
 const HomePageFeminineHygiene = ({
-  feminineHygienePinnedCard,
+  card,
   montserratHeading,
-  paulSignaterHeading,
+  paulSignatureHeading,
   quoteText,
   bodyCopyText,
 }: any) => {
@@ -81,7 +81,7 @@ const HomePageFeminineHygiene = ({
                     {montserratHeading}
                   </MarkDown>
                   <MarkDown className="font-paul text-green md:text-8xl text-6xl -mt-6">
-                    {paulSignaterHeading}
+                    {paulSignatureHeading}
                   </MarkDown>
                 </div>
                 <div className="text-center my-8 flex justify-center">
@@ -98,9 +98,10 @@ const HomePageFeminineHygiene = ({
 
               <div className=" bottom-0   w-full flex-1 justify-center flex left-0 max-sm:h-full ">
                 <div className="mx-auto w-full md:max-w-7xl md:px-8 grid md:grid-cols-3 gap-6  justify-center  w-full max-sm:h-full max-sm:pb-8">
-                  {feminineHygienePinnedCard.map((item: any) => (
+                  {card.map((item: any) => (
                     <FeminineHygieneCard
                       key={item.id}
+                      link={item.link}
                       color={item.color.color}
                       body={item.body}
                       title="teenage girls"
@@ -172,7 +173,7 @@ const HomePageFeminineHygiene = ({
                   {montserratHeading}
                 </MarkDown>
                 <MarkDown className="font-paul text-green md:text-8xl text-7xl -mt-6">
-                  {paulSignaterHeading}
+                  {paulSignatureHeading}
                 </MarkDown>
               </div>
               <div className="mt-6 text-white text-center">
@@ -184,7 +185,7 @@ const HomePageFeminineHygiene = ({
 
               <div className="md:absolute bottom-0   w-full flex-1 justify-center flex left-0 max-sm:h-full mt-14 ">
                 <div className="mx-auto w-full md:max-w-7xl md:px-8 grid md:grid-cols-3 gap-6  justify-center  w-full max-sm:h-full max-sm:pb-8">
-                  {feminineHygienePinnedCard.map((item: any) => (
+                  {card.map((item: any) => (
                     <FeminineHygieneCard
                       key={item.id}
                       color={item.color.color}

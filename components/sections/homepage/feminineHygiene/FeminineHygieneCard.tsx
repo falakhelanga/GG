@@ -2,6 +2,7 @@ import Title from "@/components/elements/ui/Title";
 import { ColoursEnum } from "@/enums/colourEnum";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import React, { useMemo } from "react";
 import ReactMarkDown from "react-markdown";
 interface FeminineHygieneCardPropType {
@@ -11,6 +12,7 @@ interface FeminineHygieneCardPropType {
   className?: string;
   smallTitle: string;
   largeTitle: string;
+  link: string;
 }
 
 const FeminineHygieneCard = ({
@@ -20,6 +22,7 @@ const FeminineHygieneCard = ({
   className,
   smallTitle,
   largeTitle,
+  link,
 }: FeminineHygieneCardPropType) => {
   const bgColor = useMemo(() => {
     if (color === "Beige") {
@@ -97,13 +100,17 @@ const FeminineHygieneCard = ({
           {largeTitle}
         </Title>
         <ReactMarkDown className="text-black my-6">{body}</ReactMarkDown>
-        <div className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer ">
+        <a
+          href={link}
+          target="_blank"
+          className="uppercase font-medium mt-6 text-black text-sm hover:text-pink font-semibold find-out-more md:cursor-pointer "
+        >
           <span className="font-bold">find out more</span>{" "}
           <FontAwesomeIcon
             icon={faChevronRight}
             className="text-pink find-out-more-chevron"
           />
-        </div>
+        </a>
       </div>
     </div>
   );
