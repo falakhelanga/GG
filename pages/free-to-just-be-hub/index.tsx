@@ -67,10 +67,18 @@ const FreeToBeHub = ({
     link: category.name,
     text: category.description,
   }));
-  const categoriesOptions = ["select"].concat(
-    categories.map((item) => item.name)
-  );
-
+  const categoriesOptions = ["select"]
+    .concat(categories.map((item) => item.name))
+    .filter((item) => {
+      if (
+        item.toLowerCase() !== "comfort" ||
+        item.toLowerCase() !== "control" ||
+        item.toLowerCase() !== "intimate"
+      ) {
+        return item;
+      }
+    });
+  console.log(categoriesOptions, "gsg");
   const latestArticleCard = pageData?.attributes?.page_components.filter(
     (item: any) => item.__component === "layout.latest-article"
   )[0]["latest_article_card"];

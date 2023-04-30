@@ -137,7 +137,8 @@ export default function Home({
           <div ref={arcticlesRef} className="md:mt-1">
             <Articles articles={blogs} />
           </div>
-          <div ref={promiseRef}>
+          <div ref={promiseRef} className="h-[4rem] bg-black"></div>
+          <div>
             <GynaguardPromise />
           </div>
         </main>
