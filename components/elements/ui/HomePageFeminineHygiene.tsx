@@ -84,13 +84,13 @@ const HomePageFeminineHygiene = ({
                     {paulSignatureHeading}
                   </MarkDown>
                 </div>
-                <div className="text-center my-8 flex justify-center">
+                <div className="text-center mt-8 flex justify-center">
                   <MarkDown className="text-lg md:w-[50%]">
                     {quoteText}
                   </MarkDown>
                 </div>
                 <div className="text-center mb-8 text-sm flex justify-center">
-                  <MarkDown className="text-center mb-8 text-sm md:w-[50%]">
+                  <MarkDown className="text-center mb-5 text-sm md:w-[50%]">
                     {bodyCopyText}
                   </MarkDown>
                 </div>

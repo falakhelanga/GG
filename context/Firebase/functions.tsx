@@ -30,7 +30,7 @@ const Firebase = {
     return addDoc(entryRef, {
       ...values,
       enteredAt: Timestamp.fromDate(new Date()),
-
+      isApproved: false,
       // fullName: values.firstName + " " + values.lastName,
     });
   },

@@ -58,7 +58,7 @@ const LatestArticle = ({
               <div className="text-green uppercase font-semibold">
                 {article.data?.attributes?.title}
               </div>
-              <MarkDown className="text-black text-sm my-8">
+              <MarkDown className="text-black text-sm my-4">
                 {article.data?.attributes?.intro_text}
               </MarkDown>
               <Link

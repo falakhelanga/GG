@@ -13,4 +13,5 @@ export interface EntryValues {
   bio: "";
   acceptedTsAndCs?: boolean;
   subscribe?: boolean;
+  isApproved?: boolean;
 }

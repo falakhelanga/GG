@@ -99,7 +99,7 @@ const FeminineHygieneCard = ({
         <Title size="md" className={` ${textColor} uppercase `}>
           {largeTitle}
         </Title>
-        <ReactMarkDown className="text-black my-6">{body}</ReactMarkDown>
+        <ReactMarkDown className="text-black my-4">{body}</ReactMarkDown>
         {link && (
           <Link
             href={link}
