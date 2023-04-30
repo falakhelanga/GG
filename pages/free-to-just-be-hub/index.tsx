@@ -84,7 +84,7 @@ const FreeToBeHub = ({
         return item;
       }
     });
-  console.log(categoriesOptions, "gsg");
+
   const latestArticleCard = pageData?.attributes?.page_components.filter(
     (item: any) => item.__component === "layout.latest-article"
   )[0]["latest_article_card"];
@@ -97,7 +97,11 @@ const FreeToBeHub = ({
   );
   const [visible, setVisible] = useState(ITEMS_PER_PAGE);
   const [totalBlogs, setTotalBlogs] = useState(1);
-
+  useEffect(() => {
+    if (sortValue !== "newest") {
+      setSortValue("newest");
+    }
+  }, [sortCategoriesValue]);
   const articlesByCategories = useMemo(() => {
     if (sortCategoriesValue?.trim().toLowerCase() === "select") {
       return articles;
