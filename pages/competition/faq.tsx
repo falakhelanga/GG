@@ -92,14 +92,14 @@ const Faq = ({
                   2. HOW LONG WILL IT TAKE TO SEE MY ENTRY ON THE GALLERY?
                 </h1>
                 <div className="text-brown ">
-                  After a successful entry submission, it takes up to 48 hours
+                  {`  After a successful entry submission, it takes up to 48 hours
                   for your entry to be reviewed and approved, thereafter it will
                   be visible on the gallery. If 48 hours passes and you still
                   don't see your entry, it is likely that your entry has not
                   been approved. Try resubmitting - ensure that your new entry
                   does not have any offensive language or visuals and that you
                   have followed the instructions fully in your description text
-                  and photo.
+                  and photo.`}
                 </div>
               </div>
               <div className="mb-8">
@@ -107,13 +107,13 @@ const Faq = ({
                   3. WHEN WILL THE WINNERS BE NOTIFIED?
                 </h1>
                 <div className="text-brown ">
-                  After the closing date of 31 July 2023 an internal judging
+                  {`After the closing date of 31 July 2023 an internal judging
                   process will take place. Finalists will be shortlisted and
                   another round of judging will take place. The 3 winners will
                   be contacted directly by phone. This will be followed by
                   official announcement on GynaGuard's social media pages and
                   other media. Be sure to follow us on social media so you don’t
-                  miss any updates!
+                  miss any updates!`}
                 </div>
               </div>
             </div>
