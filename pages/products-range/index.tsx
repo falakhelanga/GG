@@ -106,7 +106,10 @@ const ProductRangePage = ({
 
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
-      return item.category.data?.attributes?.name.trim().toLowerCase() === page;
+      return (
+        item.category.data?.attributes?.name.trim().toLowerCase() ===
+        page?.toString().toLowerCase()
+      );
     });
   }, [products, data, page]);
 

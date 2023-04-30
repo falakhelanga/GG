@@ -80,7 +80,7 @@ const HomePageHero = ({
                     ref={(el) =>
                       (tabsRef.current[item.name.trim().toLowerCase()] = el)
                     }
-                    href={`?page=${item.name}`}
+                    href={`?page=${item.name.toLowerCase()}`}
                     onMouseEnter={() => {
                       setActiveTabIndex(item.name.toLowerCase());
                     }}

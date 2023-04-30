@@ -25,7 +25,8 @@ const Products = ({ products: productsData }: any) => {
   const pageProducts = useMemo(() => {
     return products.filter((item: any) => {
       return (
-        item.category.data?.attributes?.name?.trim().toLowerCase() === page
+        item.category.data?.attributes?.name?.trim().toLowerCase() ===
+        page?.toString().toLowerCase()
       );
     });
   }, [products, page]);
