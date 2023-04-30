@@ -26,15 +26,27 @@ const Footer = () => {
             </div>
           </Link>
           <div className="flex gap-4 my-6">
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+            <a
+              target="_blank"
+              href="https://www.facebook.com/GynaGuard"
+              className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300"
+            >
               <FontAwesomeIcon icon={faFacebookF} color="white" size="xl" />
-            </div>
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+            </a>
+            <a
+              href="https://www.instagram.com/gynaguardsa/"
+              target="_blank"
+              className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300"
+            >
               <FontAwesomeIcon icon={faInstagram} size="xl" />
-            </div>
-            <div className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300">
+            </a>
+            <a
+              href="https://www.tiktok.com/@gynaguardsa"
+              target="_blank"
+              className="rounded-full flex items-center justify-center h-12 w-12 border border-2 border-white hover:opacity-80 md:cursor-pointer transition-all ease-in-out transition-duration-300"
+            >
               <FontAwesomeIcon icon={faTiktok} size="xl" />
-            </div>
+            </a>
           </div>
           <div className="text-center">
             <div>CUSTOMER SERVICE</div>
