@@ -86,7 +86,8 @@ const HomePageHero = ({
                     }}
                     onMouseLeave={moveToActiveTab}
                     className={`hover:text-green relative z-[10] md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
-                      page === item.link && "  translate-y-[3px] "
+                      page?.toString().toLowerCase() === item.link &&
+                      "  translate-y-[3px] "
                     } ${
                       !page &&
                       idx === 0 &&
@@ -96,7 +97,8 @@ const HomePageHero = ({
                   >
                     <span
                       className={`font-bold ${
-                        page === item.link && "text-green"
+                        page?.toString().toLowerCase() === item.link &&
+                        "text-green"
                       } ${!page && idx === 0 && "text-green"} `}
                     >
                       {item.name}
