@@ -70,11 +70,17 @@ const FreeToBeHub = ({
   const categoriesOptions = ["select"]
     .concat(categories.map((item) => item.name))
     .filter((item) => {
-      if (
-        item.toLowerCase() !== "comfort" ||
-        item.toLowerCase() !== "control" ||
-        item.toLowerCase() !== "intimate"
-      ) {
+      if (item.toLowerCase() !== "comfort") {
+        return item;
+      }
+    })
+    .filter((item) => {
+      if (item.toLowerCase() !== "control") {
+        return item;
+      }
+    })
+    .filter((item) => {
+      if (item.toLowerCase() !== "intimate") {
         return item;
       }
     });
