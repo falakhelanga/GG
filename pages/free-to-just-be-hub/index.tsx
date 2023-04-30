@@ -143,13 +143,14 @@ const FreeToBeHub = ({
       });
     }
   }, [sortValue, articlesByCategories]);
-  const latestArticle = sortedArticles?.reduce((previous, current) => {
-    return new Date(current.createdAt) > new Date(previous.createdAt)
-      ? current
-      : previous;
-  });
+  const latestArticle = useMemo(() => {
+    return sortedArticles?.reduce((previous, current) => {
+      return new Date(current.createdAt) > new Date(previous.createdAt)
+        ? current
+        : previous;
+    });
+  }, [sortedArticles]);
 
-  console.log(latestArticle, "las");
   return (
     <>
       <Head>
@@ -187,6 +188,7 @@ const FreeToBeHub = ({
 
               <div>
                 <DropDown
+                  withWhiteBg
                   options={categoriesOptions}
                   name="Categories"
                   sortValue={sortCategoriesValue}
@@ -195,6 +197,7 @@ const FreeToBeHub = ({
               </div>
               <div>
                 <DropDown
+                  withWhiteBg
                   options={sortingOptions}
                   name="Sort articles by"
                   sortValue={sortValue}

@@ -71,7 +71,9 @@ const NavBar = () => {
     [feminineHygieneRef, promiseRef]
   );
   const router = useRouter();
-  const { section } = router.query;
+
+  const { section, page } = router.query;
+
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const [showMobileBurgerMenu, setShowMobileBurgerMenu] = useState(false);
   const burgerMenuRef = useRef(null);
@@ -95,7 +97,7 @@ const NavBar = () => {
             type: "just",
           }}
         >
-          <BurgerMenu />
+          <BurgerMenu setShowBurgerMenu={setShowBurgerMenu} />
         </motion.div>
       </div>
       <div className="bg-pink w-full h-[10vh] fixed top-0 right-0 left-0 flex  z-[100]">
@@ -163,7 +165,9 @@ const NavBar = () => {
                   >
                     <div
                       className={`nav-link ${
-                        section === item.link && "translate-y-[3px]"
+                        (section === item.link ||
+                          page === "feminine-hygiene") &&
+                        "translate-y-[3px]"
                       }`}
                     >
                       <div className="text-[#f5f5f5]">{item.lightText}</div>
@@ -173,9 +177,9 @@ const NavBar = () => {
                 );
               })}
               <Link
-                ref={(el) => (tabsRef.current["hub"] = el)}
+                ref={(el) => (tabsRef.current["/free-to-just-be-hub"] = el)}
                 onMouseEnter={() => {
-                  setActiveTabIndex("hub");
+                  setActiveTabIndex("/free-to-just-be-hub");
                   menu.hideMenu();
                 }}
                 href={{
@@ -186,7 +190,8 @@ const NavBar = () => {
               >
                 <div
                   className={`nav-link  ${
-                    section === "hub" && "translate-y-[3px]"
+                    router.route === "/free-to-just-be-hub" &&
+                    "translate-y-[3px]"
                   }`}
                 >
                   <div className="text-[#f5f5f5]  relative ">
@@ -202,19 +207,30 @@ const NavBar = () => {
               </Link>
             </div>
 
-            {(section || router.route === "/products-range") && (
+            {(section ||
+              router.route === "/products-range" ||
+              page === "feminine-hygiene" ||
+              router.route === "/free-to-just-be-hub") && (
               <span
                 style={{
                   left:
                     tabsRef?.current[
                       router.route === "/products-range"
                         ? "/products-range"
+                        : page === "feminine-hygiene"
+                        ? "/feminine-hygiene"
+                        : router.route === "/free-to-just-be-hub"
+                        ? "/free-to-just-be-hub"
                         : (section as string)
                     ]?.offsetLeft ?? 0,
                   width:
                     tabsRef?.current[
                       router.route === "/products-range"
                         ? "/products-range"
+                        : page === "feminine-hygiene"
+                        ? "/feminine-hygiene"
+                        : router.route === "/free-to-just-be-hub"
+                        ? "/free-to-just-be-hub"
                         : (section as string)
                     ]?.clientWidth ?? 0,
                 }}

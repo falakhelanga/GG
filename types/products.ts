@@ -28,6 +28,7 @@ export type GynaguardPromiseType = {
 };
 
 export type ProductType = {
+  productVideo: any;
   name: string;
   subContent: string;
   subContentBullets: string;

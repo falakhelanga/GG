@@ -14,15 +14,17 @@ const Row = ({
   text: any[];
   title: string;
 }) => {
-  console.log(text, "text");
   return (
-    <ContentWrap className="md:mb-14 mb-8">
+    <ContentWrap className="">
       <div className="text-2xl font-bold mb-6">{title}</div>
-      <div className="flex md:flex-row flex-col gap-3 items-center">
+      <div className="flex md:flex-row flex-col gap-3 items-start">
         {image.map((item) => (
-          <div key={item.id} className=" h-full flex items-center w-full">
+          <div
+            key={item.id}
+            className=" h-full  flex items-center w-full relative object-cover "
+          >
             <Image
-              className="h-full w-full"
+              className="h-full w-full object-cover"
               width={3000}
               height={3000}
               src={imageFormatter(item.desktop_image)}

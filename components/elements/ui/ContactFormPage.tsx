@@ -32,8 +32,7 @@ const ContactFormPage = ({
         </MarkDown>
       </ContentWrap>
 
-      <ContentWrap className="flex md:flex-row flex-col  md:gap-6">
-        {" "}
+      <ContentWrap className="grid md:grid-cols-5   md:gap-6">
         <Form
           onSubmit={(values) => {
             createContacts(values);
@@ -41,7 +40,7 @@ const ContactFormPage = ({
           }}
           initialValues={initialValues}
           containerClassName="
-           w-full pb-14 max-sm:mt-4"
+           w-full pb-14 max-sm:mt-4 md:col-span-3 col-span-5"
         >
           <div className="grid grid-cols-2  gap-x-8 w-full">
             <TextInput
@@ -101,9 +100,11 @@ const ContactFormPage = ({
             </div>
           </div>
         </Form>
-        <MarkDown className="max-sm:text-center max-sm:mb-4">
-          {contactDetails}
-        </MarkDown>
+        <div className="flex items-start">
+          <MarkDown className="max-sm:text-center max-sm:mb-4 md:col-span-2 col-span-5  flex items-star ">
+            {contactDetails}
+          </MarkDown>
+        </div>
       </ContentWrap>
     </div>
   );

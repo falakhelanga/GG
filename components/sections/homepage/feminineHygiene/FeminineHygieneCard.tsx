@@ -1,10 +1,11 @@
 import Title from "@/components/elements/ui/Title";
+import { ColoursEnum } from "@/enums/colourEnum";
 import { faChevronRight } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useMemo } from "react";
 import ReactMarkDown from "react-markdown";
 interface FeminineHygieneCardPropType {
-  color: "lightPink" | "lightGreen" | "lightBrown";
+  color: string;
   body: string;
   title: string;
   className?: string;
@@ -21,25 +22,67 @@ const FeminineHygieneCard = ({
   largeTitle,
 }: FeminineHygieneCardPropType) => {
   const bgColor = useMemo(() => {
-    if (color === "lightBrown") {
-      return "bg-lightBrown";
+    if (color === "Beige") {
+      return "bg-[#cfb9bb]";
     }
-    if (color === "lightPink") {
-      return "bg-lightPink";
+    if (color === "DarkPink") {
+      return "bg-[#de2e64]";
     }
-    if (color === "lightGreen") {
-      return "bg-lightGreen";
+    if (color === "GGPink") {
+      return "bg-[#e9608a]";
     }
+    if (color === "GGTurquoise") {
+      return "bg-[#43b8b4]";
+    }
+    if (color === "Grey") {
+      return "bg-[#7d7d7d]";
+    }
+    if (color === "LightPink") {
+      return "bg-[#d995ad]";
+    }
+    if (color === "OffWhite") {
+      return "bg-[#f1ecee]";
+    }
+    if (color === "LightTurquoise") {
+      return "bg-[#9bc3c1]";
+    }
+    if (color === "White") {
+      return "bg-[#FFFFFF]";
+    }
+    // if (color === "lightPink") {
+    //   return "bg-lightPink";
+    // }
+    // if (color === "lightGreen") {
+    //   return "bg-lightGreen";
+    // }
   }, [color]);
   const textColor = useMemo(() => {
-    if (color === "lightBrown") {
-      return "text-lightBrown";
+    if (color === "Beige") {
+      return "text-[#cfb9bb]";
     }
-    if (color === "lightPink") {
-      return "text-lightPink";
+    if (color === "DarkPink") {
+      return "text-[#de2e64]";
     }
-    if (color === "lightGreen") {
-      return "text-lightGreen";
+    if (color === "GGPink") {
+      return "text-[#e9608a]";
+    }
+    if (color === "GGTurquoise") {
+      return "text-[#43b8b4]";
+    }
+    if (color === "Grey") {
+      return "text-[#7d7d7d]";
+    }
+    if (color === "LightPink") {
+      return "text-[#d995ad]";
+    }
+    if (color === "OffWhite") {
+      return "text-[#f1ecee]";
+    }
+    if (color === "LightTurquoise") {
+      return "text-[#9bc3c1]";
+    }
+    if (color === "White") {
+      return "text-[#FFFFFF]";
     }
   }, [color]);
 

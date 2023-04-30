@@ -35,6 +35,7 @@ const ProductRangePage = ({
   newProducts,
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(pageData, "pageData");
   const blogs = pageData?.attributes?.page_components
     .filter((item: any) => item.__component === "layout.blogs")
     .map((item: any) => {
@@ -51,6 +52,16 @@ const ProductRangePage = ({
       body: article.intro_text,
     }));
 
+  const productsReviews = pageData?.attributes?.page_components
+    .filter((item: any) => item.__component === "products.product-reviews")
+    .map((item: any) => {
+      return item.reviews.data;
+    })[0]
+    .map((review: any) => ({
+      ...review?.attributes,
+      id: review.id,
+    }));
+  console.log(productsReviews, "jd");
   const links: {
     name: string;
     link: string;
@@ -98,22 +109,6 @@ const ProductRangePage = ({
       return item.category.data?.attributes?.name === page;
     });
   }, [products, data, page]);
-
-  const reviews = products.map((product: any) => {
-    return product.reviews;
-  });
-
-  const reviewsArray = reviews
-    .reduce((acc: any, curr: any) => {
-      return acc.concat(curr);
-    }, [])
-    .reduce((acc: any, curr: any) => {
-      for (const review of curr.data) {
-        acc.push(review);
-      }
-      return acc;
-    }, [])
-    .map((review: any) => ({ ...review?.attributes, id: review.id }));
 
   // const moveSlider = (index: number) => {
   //   setSliderPosition(190 * index);
@@ -198,9 +193,7 @@ const ProductRangePage = ({
         <ContentWrap className="mt-14 overflow-hidden">
           <ProductsRange products={pageProducts} />
           <div className="mt-[5rem]">
-            <Reviews
-              reviews={[reviewsArray[0], reviewsArray[1], reviewsArray[2]]}
-            />
+            <Reviews reviews={productsReviews} />
           </div>
         </ContentWrap>
         <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] w-full py-8 mt-14">
@@ -223,7 +216,7 @@ export const getStaticProps: GetStaticProps<{
   const pagePopulate = [
     "products.products.image",
     "products.products",
-    "products.products.reviews",
+
     "products.products.category",
   ];
   const { data } = await fetchAPI("products-range", pagePopulate);

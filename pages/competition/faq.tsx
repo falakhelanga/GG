@@ -1,5 +1,4 @@
 import ContentWrap from "@/components/elements/ui/ContentWrap";
-import PageHeader from "@/components/elements/ui/PageHeader";
 import CompetitionPageNav from "@/components/sections/CompetitionPlatformPage.tsx/CompetitionPageNav.tsx/CompetitionPageNav";
 import { useSubCategories } from "@/context/subCategories";
 import { fetchAPI } from "@/lib/api";
@@ -25,12 +24,23 @@ const Faq = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PageHeader headerData={""} />
       <div className=" ">
-        {/* <CompetitionPageNav /> */}
-        <div className=" pb-14">
+        <CompetitionPageNav />
+        <div className="bg-gradient-to-b from-[#E9E7E6] to-[#E7D4DB] pb-14">
           <ContentWrap className="pt-14 flex-col items-center ">
-            <div className=" text-brown text-center">
+            <div className="text-5xl flex flex-col items-center">
+              <div
+                className="
+      md:text-5xl text-4xl uppercase text-pink
+      "
+              >
+                ABOUT &
+              </div>
+              <div className="font-paul text-green md:text-8xl text-7xl -mt-6">
+                faq page
+              </div>
+            </div>
+            <div className="my-14 text-brown text-center">
               <p className="text-lg">
                 Have questions? Find some answers below.
               </p>
@@ -47,120 +57,63 @@ const Faq = ({
                   ABOUT THE COMPETITION
                 </h1>
                 <div className="text-brown max-sm:text-center">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
+                  <p className="mb-3">
+                    The Face of GynaGuard is an exciting ambassador search,
+                    being held for the first time in 2023.
+                  </p>
+                  <p className="mb-3">
+                    We are looking for 3 amazing women who will represent the
+                    brand for a 12-month period. Each Face of GynaGuard winner
+                    will receive a branded Fiat 500 and be featured in GynaGuard
+                    advertising, as well as doing brand advocacy work online and
+                    in-person.{" "}
+                  </p>
+                  <p className="">
+                    If this sounds like you, head to the ENTER NOW page and
+                    submit your entry now!
+                  </p>
                 </div>
               </div>
               <div className="my-8 h-[2px] w-full bg-[#B1B0B0]"></div>
               <div className="mb-8">
                 <h1 className="text-brown font-semibold text-lg ">
-                  1.FAQ TOPIC OF DISCUSSION HERE
+                  1. I AM NOT ABLE TO UPLOAD MY PHOTO. PLEASE HELP!
                 </h1>
                 <div className="text-brown ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
+                  Refresh the page and try uploading the photo again or try
+                  using a different device/computer/browser. When you upload
+                  your photo, the best format is a .PNG or .JPG file. If you are
+                  still struggling to upload your photo, you can send an email
+                  to help@gygnaguard.co.za for more assistance.
                 </div>
               </div>
               <div className="mb-8">
                 <h1 className="text-brown font-semibold text-lg ">
-                  2.FAQ TOPIC OF DISCUSSION HERE
+                  2. HOW LONG WILL IT TAKE TO SEE MY ENTRY ON THE GALLERY?
                 </h1>
                 <div className="text-brown ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
+                  After a successful entry submission, it takes up to 48 hours
+                  for your entry to be reviewed and approved, thereafter it will
+                  be visible on the gallery. If 48 hours passes and you still
+                  don't see your entry, it is likely that your entry has not
+                  been approved. Try resubmitting - ensure that your new entry
+                  does not have any offensive language or visuals and that you
+                  have followed the instructions fully in your description text
+                  and photo.
                 </div>
               </div>
               <div className="mb-8">
                 <h1 className="text-brown font-semibold text-lg ">
-                  3.FAQ TOPIC OF DISCUSSION HERE
+                  3. WHEN WILL THE WINNERS BE NOTIFIED?
                 </h1>
                 <div className="text-brown ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
-                </div>
-              </div>
-              <div className="mb-8">
-                <h1 className="text-brown font-semibold text-lg ">
-                  4.FAQ TOPIC OF DISCUSSION HERE
-                </h1>
-                <div className="text-brown ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
-                </div>
-              </div>
-              <div className="mb-8">
-                <h1 className="text-brown font-semibold text-lg ">
-                  5.FAQ TOPIC OF DISCUSSION HERE
-                </h1>
-                <div className="text-brown ">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Consequuntur laborum qui excepturi architecto dolorum pariatur
-                  maiores corrupti id eos, aut suscipit, ex adipisci omnis
-                  recusandae est. Labore aliquam similique quam ad omnis eveniet
-                  provident officia odio ratione delectus facere nulla eius,
-                  sint molestiae, quas sequi beatae enim, officiis praesentium!
-                  Praesentium ipsam eaque nemo. Natus possimus illum vitae
-                  ratione accusamus dolore quos quas aspernatur, optio neque
-                  unde officiis quibusdam id. Delectus illum voluptatem
-                  voluptatum ducimus dolores, unde quibusdam commodi accusantium
-                  voluptates ad est facere molestias explicabo autem tempora
-                  adipisci modi nesciunt? Consequatur laudantium commodi
-                  sapiente dolor sint optio? Cupiditate, assumenda hic!
+                  After the closing date of 31 July 2023 an internal judging
+                  process will take place. Finalists will be shortlisted and
+                  another round of judging will take place. The 3 winners will
+                  be contacted directly by phone. This will be followed by
+                  official announcement on GynaGuard's social media pages and
+                  other media. Be sure to follow us on social media so you don’t
+                  miss any updates!
                 </div>
               </div>
             </div>
@@ -182,8 +135,8 @@ export const getStaticProps: GetStaticProps<{
     productPopulate
   );
   const products: ProductType[] =
-    productsData?.attributes?.products.products.data.map((product: any) => ({
-      ...product?.attributes,
+    productsData.attributes.products.products.data.map((product: any) => ({
+      ...product.attributes,
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
@@ -191,7 +144,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       newProducts,
       subcategories: subcategories.map((subcategory: any) => ({
-        ...subcategory?.attributes,
+        ...subcategory.attributes,
         id: subcategory.id,
       })),
     },

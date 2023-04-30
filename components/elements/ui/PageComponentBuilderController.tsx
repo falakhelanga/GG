@@ -29,6 +29,7 @@ import { useRouter } from "next/router";
 import HomePageFeminineHygiene from "./HomePageFeminineHygiene";
 import GynaguardPromise from "@/components/sections/GynaguardPromise/GynaguardPromise";
 import BackgroundWithCenteredText from "./BackgroundWithCenteredText";
+import WhoAreWe from "./WhoAreWe";
 
 const PageComponentBuilderController = ({
   pageContent,
@@ -79,6 +80,7 @@ const PageComponentBuilderController = ({
       "layout.background-with-centered-text": (
         <BackgroundWithCenteredText {...pageContentItem} />
       ),
+      "layout.who-we-are-and-what-we-do": <WhoAreWe {...pageContentItem} />,
       // "layout.gynaguard-promise": <GynaguardPromise {...pageContentItem} />,
 
       default: (

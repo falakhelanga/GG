@@ -17,7 +17,9 @@ const BadgesRow = ({ badges, text }: { badges: any; text: any }) => {
           />
         ))}
       </ContentWrap>
-      <ContentWrap className="text-brown text-center">{text}</ContentWrap>
+      <ContentWrap className="text-brown text-center md:w-[50%]">
+        {text}
+      </ContentWrap>
     </div>
   );
 };

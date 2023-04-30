@@ -29,7 +29,7 @@ const WhatsNewCard = ({
         ></Image>
       </div>
       <div className="flex flex-col col-span-2 hover:text-pink transition-all ease-in-out transition-duration-300">
-        <h1 className="font-bold  text-lg">{title}</h1>
+        <h1 className="font-bold  ">{title}</h1>
         <ReactMarkdown className="   flex-1">
           {truncate(160, text)}
         </ReactMarkdown>

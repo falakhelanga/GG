@@ -11,6 +11,8 @@ import { ProductType } from "@/types/products";
 import SliderLeftArrow from "@/components/elements/ui/SliderLeftArrow";
 import SliderRightArrow from "@/components/elements/ui/SliderRightArrow";
 import { useRouter } from "next/router";
+import ProductsRange from "../../products-range/ProductsRange";
+import ProductBlock from "@/components/elements/ui/ProductBlock";
 
 const Products = ({ products: productsData }: any) => {
   // const { products: productsData } = sliderData;
@@ -38,69 +40,86 @@ const Products = ({ products: productsData }: any) => {
       );
     },
   };
+  console.log(pageProducts[0], "hs");
   return (
     <div className=" relative md:mb-14 mb-8 mx-4">
-      <div
-        className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
-        ref={(node) => setPrevEl(node)}
-      >
-        {/* <Image
+      {pageProducts.length === 1 && (
+        <ProductBlock
+          product={{
+            data: {
+              attributes: pageProducts[0],
+            },
+          }}
+        />
+      )}
+      {pageProducts.length < 5 && pageProducts.length !== 1 && (
+        <ProductsRange products={pageProducts} isBlogPage />
+      )}
+      {pageProducts.length > 5 && (
+        <>
+          <div
+            className=" absolute top-[20%] md:left-[0rem] md:ml-[20rem] -left-6 z-[3] md:cursor-pointer  "
+            ref={(node) => setPrevEl(node)}
+          >
+            {/* <Image
           alt="arrow-left"
           src="/images/slider_arrows_left.svg"
           height={70}
           width={70}
         /> */}
-        <SliderLeftArrow />
-      </div>
+            <SliderLeftArrow />
+          </div>
 
-      <div
-        ref={(node) => setNextEl(node)}
-        className=" absolute top-[20%] md:right-[0rem] md:mr-[20rem] -right-6 z-[3] md:cursor-pointer "
-      >
-        <SliderRightArrow />
-        {/* <Image
+          <div
+            ref={(node) => setNextEl(node)}
+            className=" absolute top-[20%] md:right-[0rem] md:mr-[20rem] -right-6 z-[3] md:cursor-pointer  "
+          >
+            <SliderRightArrow />
+            {/* <Image
           alt="arrow-left"
           src="/images/slider_arrows_right.svg"
           height={70}
           width={70}
         /> */}
-      </div>
+          </div>
 
-      <Swiper
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-          },
-          1024: {
-            slidesPerView: 4,
-          },
-          1685: {
-            slidesPerView: 5,
-          },
-        }}
-        slidesPerView={5}
-        navigation={{ prevEl, nextEl }}
-        spaceBetween={90}
-        // speed={6000}
-        loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={pagination}
-        modules={[Pagination, Navigation, Autoplay]}
-        className="mySwiper  "
-      >
-        {pageProducts.map((product, idx) => {
-          return (
-            <SwiperSlide key={idx} className="">
-              <Product isCarousel product={product} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+          <Swiper
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+              1685: {
+                slidesPerView: 5,
+              },
+            }}
+            slidesPerView={5}
+            navigation={{ prevEl, nextEl }}
+            spaceBetween={90}
+            // speed={6000}
+            loop={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={pagination}
+            modules={[Pagination, Navigation, Autoplay]}
+            className="mySwiper  "
+          >
+            {pageProducts.map((product, idx) => {
+              return (
+                <SwiperSlide key={idx} className="">
+                  <Product isCarousel product={product} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
 
-      <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[8rem] mt-[5rem] " />
+          <div className="my-custom-pagination-div flex gap-2 justify-center  w-full h-10 md:mt-[2rem] mt-[5rem] " />
+        </>
+      )}
     </div>
   );
 };

@@ -9,11 +9,13 @@ const GallerySortDropDown = ({
   setSortValue,
   name,
   options,
+  withWhiteBg = false,
 }: {
   setSortValue: React.Dispatch<React.SetStateAction<any | null>>;
   sortValue: string | null;
   name: string;
   options: string[];
+  withWhiteBg?: boolean;
 }) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [showDropdown, setShowDropDown] = useState(false);
@@ -62,8 +64,13 @@ const GallerySortDropDown = ({
                   <div
                     className={` ${
                       idx === 0 && "first-drop-down-item-gallery"
-                    } ${sortValue === item ? "bg-[#f1ecee]" : "bg-white"}
-                   hover:bg-[#f1ecee]  h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize `}
+                    } ${
+                      sortValue === item
+                        ? `${withWhiteBg ? "bg-white" : "bg-[#f1ecee]"}`
+                        : `${withWhiteBg ? "bg-[#f1ecee]" : "bg-white"}`
+                    }
+                    ${withWhiteBg ? "hover:bg-white" : "  hover:bg-[#f1ecee]"}
+                   h-10 w-full border-b border-b-[#f5f5f5] border-b-1 text-pink flex justify-center text-center items-center py-4 capitalize `}
                   >
                     {item}
                   </div>

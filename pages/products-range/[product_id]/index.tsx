@@ -24,6 +24,7 @@ import Link from "next/link";
 import truncate from "@/helpers.tsx/textTruncate";
 import { useSubCategories } from "@/context/subCategories";
 import ReactPlayer from "react-player";
+import { imageFormatter } from "@/helpers.tsx/imageFormatter";
 const IndividualProduct = ({
   product,
   subcategories,
@@ -46,7 +47,7 @@ const IndividualProduct = ({
         id: product.gynaguard_promise.id,
       }
     : null;
-
+  console.log(product, "product");
   return (
     <>
       <Head>
@@ -139,21 +140,34 @@ const IndividualProduct = ({
             <Reviews reviews={reviews} />
           </div>
         </ContentWrap>
-        <div className="  w-full flex-1 flex flex-col items-center justify-center bg-[#f2f1f0] object-cover md:h-[65vh] h-auto relative md:mt-[8rem]">
-          <div className="md:w-[50%] w-full  md:-mt-[3rem] h-full">
-            <ReactPlayer
-              className="react-player aspect-video "
-              height={"100%"}
-              width={"100%"}
-              url={`http://127.0.0.1:1337/uploads/pexels_zura_narimanishvili_5490419_1920x1080_25fps_87c8504875.mp4`}
-              controls
-            />
-          </div>
+        {(product?.productVideo?.video || product?.productVideo?.video_url) && (
+          <div className="  w-full flex-1 flex flex-col items-center justify-center bg-[#f2f1f0] object-cover md:h-[65vh] h-auto relative md:mt-[8rem]">
+            <div className="md:w-[50%] w-full  md:-mt-[3rem] h-full">
+              <ReactPlayer
+                className="react-player aspect-video "
+                height={"100%"}
+                width={"100%"}
+                url={
+                  product?.productVideo?.video_url ||
+                  imageFormatter(product?.productVideo?.video)
+                }
+                controls
+              />
+              {/* <ReactPlayer
+                className="react-player aspect-video "
+                height={"100%"}
+                width={"100%"}
+                url={`http://127.0.0.1:1337/uploads/pexels_zura_narimanishvili_5490419_1920x1080_25fps_87c8504875.mp4`}
+                controls
+              /> */}
+            </div>
 
-          <ContentWrap className="w-full text-center text-green font-bold md:text-lg md:my-8 my-4">
-            {product.name}
-          </ContentWrap>
-        </div>
+            <ContentWrap className="w-full text-center text-green font-bold md:text-lg md:my-8 my-4">
+              {product.name}
+            </ContentWrap>
+          </div>
+        )}
+
         <div>
           <GynaguardPromise />
         </div>
@@ -191,6 +205,8 @@ export const getStaticProps: GetStaticProps<{
     "category",
     "gynaguard_promise",
     "gynaguard_promise.badge",
+    "productVideo",
+    "productVideo.video",
   ];
 
   const productId = ctx?.params?.product_id;

@@ -44,58 +44,164 @@ const TermsAndConditions = ({
             </div>
             <div className="mt-14 text-brown text-center">
               <p className="text-left mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                voluptate tempora labore cupiditate? Corrupti dolor molestias
-                veniam repudiandae expedita. Dolore quos odit repellendus nobis
-                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-                earum, dolor at aliquam asperiores architecto in harum beatae
-                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-                placeat exercitationem! Ut eligendi quas, voluptas laborum non
-                quaerat aperiam, illum inventore placeat adipisci odio pariatur
-                officiis possimus ab quasi eius distinctio repudiandae amet iste
-                eum maiores eos deserunt!
+                1. The organiser of this competition is Adcock Ingram Healthcare
+                (Pty) Ltd and/or its designated agencies and is collectively
+                referred to as “the Organisers”.
               </p>
               <p className="text-left mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                voluptate tempora labore cupiditate? Corrupti dolor molestias
-                veniam repudiandae expedita. Dolore quos odit repellendus nobis
-                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-                earum, dolor at aliquam asperiores architecto in harum beatae
-                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-                placeat exercitationem! Ut eligendi quas, voluptas laborum non
-                quaerat aperiam,
+                2. This competition will run from 01 May 2023 until 31 July
+                2023.
               </p>
               <p className="text-left mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                voluptate tempora labore cupiditate? Corrupti dolor molestias
-                veniam repudiandae expedita. Dolore quos odit repellendus nobis
-                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-                earum, dolor at aliquam asperiores architecto in harum beatae
-                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-                placeat exercitationem! Ut eligendi quas, voluptas laborum non
-                quaerat aperiam, illum inventore placeat adipisci odio pariatur
-                officiis possimus ab quasi eius distinctio repudiandae amet iste
-                eum maiores eos deserunt!
+                3. 3 (Three) lucky participant stands a chance to become face of
+                GynaGuard (ambassadorship) (“the Prize”). To enter this
+                competition, participants must purchase any GynaGuard products
+                from any of the participating stores (Makro, Clicks, Dis-Chem,
+                Shoprite Checkers, Pick n Pay and Spar) and complete the entry
+                form on www.faceofgynaguard.co.za.
               </p>
               <p className="text-left mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                voluptate tempora labore cupiditate? Corrupti dolor molestias
-                veniam repudiandae expedita. Dolore quos odit repellendus nobis
-                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-                earum, dolor at aliquam asperiores architecto in harum beatae
-                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
+                4. Participants may enter as many times as they wish and are
+                required to retain their till slip as proof of purchase for
+                purposes of entry validation.
               </p>
               <p className="text-left mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-                voluptate tempora labore cupiditate? Corrupti dolor molestias
-                veniam repudiandae expedita. Dolore quos odit repellendus nobis
-                in! Eos quos cumque voluptas quia iure eligendi numquam expedita
-                earum, dolor at aliquam asperiores architecto in harum beatae
-                saepe quisquam excepturi tenetur dolorem nemo molestiae sapiente
-                placeat exercitationem! Ut eligendi quas, voluptas laborum non
-                quaerat aperiam, illum inventore placeat adipisci odio pariatur
-                officiis possimus ab quasi eius distinctio repudiandae amet iste
-                eum maiores eos deserunt!
+                <p>5. The Prize amounts to R350 000 rands:</p>
+                <ul className="list-disc pl-4">
+                  <li> A GynaGuard branded Fiat 500 worth R250 000</li>
+                  <li>R50 000 cash prize</li>
+                  <li>Petrol for a year (worth R24 000) in total</li>
+                  <li>
+                    GynaGuard product for a year and first to try new products
+                  </li>
+                  <li>Brand photoshoot and cover girl on a magazine</li>
+                </ul>
+              </p>
+              <p className="text-left mb-6">
+                6. Three ladies will each win the above stipulated prizes and
+                will become brand ambassadors for a year from 01 September 2023
+                to 31 August 2024.
+              </p>
+              <p className="text-left mb-6">
+                7. The Prize winners will be drawn 30 (thirty days) after
+                competition closes. Winner will be notified telephonically
+                within a reasonable period after the draw.
+              </p>
+              <p className="text-left mb-6">
+                8. If GynaGuard is unable to reach any of the winners for
+                whatever reason following all reasonable attempts to do so, such
+                winners will be disqualified and GynaGuard reserves the right to
+                draw another winner in substitution.
+              </p>
+              <p className="text-left mb-6">
+                9. This competition is open to South African female residents
+                only and participants must be in possession of a valid identity
+                document and/or a valid driver’s licence. Participants must be
+                aged 18 (eighteen) years or over.
+              </p>
+              <p className="text-left mb-6">
+                10. The judges’ decision is final, and no correspondence will be
+                entered into.
+              </p>
+              <p className="text-left mb-6">
+                11. All participating stores and GynaGuard may publish the
+                winner(s) name(s) in any advertising and promotional material or
+                digital media for this competition and any other future
+                competitions/promotions provided that the winner(s) has given
+                his/her consent to the participating store and/or GynaGuard.
+                Winner(s) consent to the use of his/her name in any advertising
+                and promotional material or digital media for this competition
+                and any other future competitions/promotions, he/she will have
+                no claim to any compensation or payment in respect of the use of
+                his/her name.
+              </p>
+              <p className="text-left mb-6">
+                12. Entry is not open to (i) any director, member, partner,
+                employee, agent of, consultant to, lessee of, sub-lessee of,
+                (employee of such lessee/sub-lessee), or anyone associated with
+                or affiliated to any of the participating stores and Adcock
+                Ingram via any direct/indirect brand affiliation. or otherwise,
+                and (ii) such prohibition extends to any spouse, life partner,
+                parent, child, brother, sister, business partner or associate of
+                such persons listed in (i).
+              </p>
+              <p className="text-left mb-6">
+                13. Adcock Ingram’s internal auditors are the appointed auditors
+                for this competition. Adcock Ingram reserves the right to
+                appoint external auditors in its sole discretion and for any
+                reason whatsoever.
+              </p>
+              <p className="text-left mb-6">
+                14. Adcock Ingram reserves the right to cancel, terminate,
+                modify or suspend the competition and any Prize (which have not
+                been subject to a draw), or any aspect thereof, or the terms and
+                conditions at any time, and for any reason, with or without
+                notice and without any liability. In the event of such
+                termination, all entrants hereby immediately agree to waive any
+                rights they may have in terms of this competition and
+                acknowledge that they have no recourse against Adcock Ingram,
+                its agents and/or promoters.
+              </p>
+              <p className="text-left mb-6">
+                15. Subject to the provisions of the Consumer Protection Act 68
+                of 2008, the Prize winner accepts the Prize at his/her own risk
+                and Adcock Ingram will not be liable for any costs incurred by
+                the winner in claiming their prize. Adcock Ingram cannot be held
+                responsible for any accident, injury, or loss of property
+                experienced as a result of winning, accepting and/or utilising
+                Prizes won.
+              </p>
+              <p className="text-left mb-6">
+                16. Entries, which are duplicated, which are unclear, illegible,
+                are submitted via an incorrect entry mechanism or contain errors
+                or are from disqualified persons, will be declared invalid. Any
+                technical failures that leads to any promotional competition
+                entry being invalid or not received will not be Adcock Ingram’s,
+                and Adcock Ingram cannot be held responsible for technical
+                errors.
+              </p>
+              <p className="text-left mb-6">
+                17. All participants and the winners, as the case may be,
+                indemnify Adcock Ingram, its advertising agencies, advisers,
+                nominated agents, suppliers and its affiliates and/or associated
+                companies against any and all claims of any nature whatsoever
+                arising out of and/or from their participation in any way
+                howsoever in this promotional competition (including, as a
+                result of any act or omission, whether as a result of
+                negligence, misrepresentation, misconduct or otherwise on the
+                part of Adcock Ingram and/or use of the Prizes).
+              </p>
+              <p className="text-left mb-6">
+                18. Winners cannot win if they have won any GynaGuard
+                competition within the last 12 (twelve) months.
+              </p>
+              <p className="text-left mb-6">
+                19. No cash or other alternatives in whole or part substitution
+                of the specified prizes will be offered, and the prizes are
+                non-transferable. However, GynaGuard reserves the right to
+                replace/alter any Prize with a prize of equivalent value.
+              </p>
+              <p className="text-left mb-6">
+                20. By entering this competition, participants agree to the
+                terms and conditions herein.
+              </p>
+              <p className="text-left mb-6">
+                20. By entering this competition, participants agree to the
+                terms and conditions herein.
+              </p>
+              <p className="text-left mb-6">
+                21. A copy of these terms and conditions and the winners can
+                also be sourced (at no cost) at www.faceofgynaguard.co.za.
+              </p>
+              <p className="text-left mb-6">
+                22. These Terms and Conditions and any issues or disputes which
+                may arise out of or in connection herewith (whether such
+                disputes or issues are contractual or non- contractual in
+                nature, such as claims in tort, for breach of statute or
+                regulation or otherwise) shall be governed by and construed in
+                accordance with South African law. Entrants hereby irrevocably
+                submit to the exclusive jurisdiction of the South African courts
+                to settle any such dispute or issues.
               </p>
             </div>
           </ContentWrap>

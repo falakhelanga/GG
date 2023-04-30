@@ -47,7 +47,11 @@ const burgerMenuItems = [
   },
 ];
 
-const BurgerMenu = () => {
+const BurgerMenu = ({
+  setShowBurgerMenu,
+}: {
+  setShowBurgerMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="absolute w-screen bg-white  z-[100] mt-[1.5vh] md:block hidden shadow-sm ">
       <div className="flex p-7">
@@ -59,7 +63,13 @@ const BurgerMenu = () => {
                 key={idx}
                 className="find-out-more"
               >
-                <Link href={item.link} className="w-64">
+                <Link
+                  onClick={() => {
+                    setShowBurgerMenu(false);
+                  }}
+                  href={item.link}
+                  className="w-64"
+                >
                   <div className="uppercase font-bold text-gray-500 hover:text-pink md:cursor-pointer flex py-1 justify-end items-center">
                     {item.name}
                     <FontAwesomeIcon
