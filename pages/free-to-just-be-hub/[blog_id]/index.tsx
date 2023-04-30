@@ -26,57 +26,61 @@ const IndividualBlog = ({
   }, [setSubCategories, subcategories, setNewProducts, newProducts]);
   return (
     <div className="bg-[#F1ECEE]">
-      <ContentWrap className="bg-white md:pt-[8rem] pt-[6rem] pb-14">
-        <div className="uppercase flex items-center gap-2 text-sm text-black max-sm:text-xs">
-          <Link
-            className="hover:text-pink uppercase"
-            href="/free-to-just-be-hub"
-          >
-            free to be hub
-          </Link>
-          {/* <FontAwesomeIcon
+      <div className="bg-white md:pt-[8rem] pt-[6rem] pb-14 mx-auto w-full max-w-7xl ">
+        <ContentWrap>
+          <div className="uppercase flex items-center gap-2 text-sm text-black max-sm:text-xs">
+            <Link
+              className="hover:text-pink uppercase"
+              href="/free-to-just-be-hub"
+            >
+              free to be hub
+            </Link>
+            {/* <FontAwesomeIcon
             icon={faChevronRight}
             className="text-pink text-xs"
           /> */}
 
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            className="text-pink text-xs"
-          />
-          <span className="font-bold md:hidden block">
-            {" "}
-            {truncate(15, article?.title)}{" "}
-          </span>
-          <span className="font-bold md:block hidden r">
-            {" "}
-            {article?.title}{" "}
-          </span>
-        </div>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className="text-pink text-xs"
+            />
+            <span className="font-bold md:hidden block">
+              {" "}
+              {truncate(15, article?.title)}{" "}
+            </span>
+            <span className="font-bold md:block hidden r">
+              {" "}
+              {article?.title}{" "}
+            </span>
+          </div>
+        </ContentWrap>
         <div className="mt-10">
-          <h1 className=" font-medium md:text-[2.5em] max-sm:mb-3 text-4xl uppercase  flex items-end h-full leading-10 mb-5">
-            {article.title}
-          </h1>
-          <div className="w-full md:block hidden h-[715px] object-contain md:mb-12">
-            <Image
-              alt=""
-              width={2000}
-              height={2000}
-              src={imageFormatter(article.desktop_image)}
-              className="h-full w-full object-contain"
-            />
-          </div>
-          <div className="w-full block mb-8 md:hidden  object-contain">
-            <Image
-              alt=""
-              width={2000}
-              height={2000}
-              src={imageFormatter(article.mobile_image)}
-              className="h-full w-full object-contain  "
-            />
-          </div>
+          <ContentWrap>
+            <h1 className=" font-medium md:text-[2.5em] max-sm:mb-3 text-4xl uppercase  flex items-end h-full leading-10 mb-5">
+              {article.title}
+            </h1>
+            <div className="w-full md:block hidden h-[715px] object-contain md:mb-12">
+              <Image
+                alt=""
+                width={2000}
+                height={2000}
+                src={imageFormatter(article.desktop_image)}
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="w-full block mb-8 md:hidden  object-contain">
+              <Image
+                alt=""
+                width={2000}
+                height={2000}
+                src={imageFormatter(article.mobile_image)}
+                className="h-full w-full object-contain  "
+              />
+            </div>
+          </ContentWrap>
           <PageComponentBuilderController pageContent={article.components} />
         </div>
-      </ContentWrap>
+      </div>
     </div>
   );
 };
