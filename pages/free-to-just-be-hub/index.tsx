@@ -46,7 +46,7 @@ const articles = [
   },
 ];
 
-const categoriesOptions = ["select", "comfort", "control", "intimate"];
+// const categoriesOptions = ["select", "comfort", "control", "intimate"];
 const sortingOptions = ["newest", "oldest"];
 const searchKeys = ["title"];
 const ITEMS_PER_PAGE = 16;
@@ -58,18 +58,18 @@ const FreeToBeHub = ({
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { setSubCategories, setNewProducts } = useSubCategories();
-  // const formattedCategories: {
-  //   name: string;
-  //   link: string;
-  //   text: string;
-  // }[] = categories.map((category, idx) => ({
-  //   name: category.name,
-  //   link: category.name,
-  //   text: category.description,
-  // }));
-  // const categoriesOptions = ["select"].concat(
-  //   categories.map((item) => item.name)
-  // );
+  const formattedCategories: {
+    name: string;
+    link: string;
+    text: string;
+  }[] = categories.map((category, idx) => ({
+    name: category.name,
+    link: category.name,
+    text: category.description,
+  }));
+  const categoriesOptions = ["select"].concat(
+    categories.map((item) => item.name)
+  );
 
   const latestArticleCard = pageData?.attributes?.page_components.filter(
     (item: any) => item.__component === "layout.latest-article"
@@ -158,7 +158,7 @@ const FreeToBeHub = ({
     }
   }, [sortValue, articlesByCategories]);
   const latestArticle = useMemo(() => {
-    return sortedArticles?.reduce((previous, current) => {
+    return articles?.reduce((previous, current) => {
       return new Date(current.createdAt) > new Date(previous.createdAt)
         ? current
         : previous;
