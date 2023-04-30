@@ -11,7 +11,7 @@ import { searchResultsFormatter } from "@/context/searchResultsFormatter";
 import { useSubCategories } from "@/context/subCategories";
 import { useSearch } from "@/hooks/useSearch";
 import { fetchAPI } from "@/lib/api";
-import { ProductType, SubCategoryType } from "@/types/products";
+import { CategoryType, ProductType, SubCategoryType } from "@/types/products";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import React, { useEffect, useMemo, useState } from "react";
@@ -51,12 +51,26 @@ const sortingOptions = ["newest", "oldest"];
 const searchKeys = ["title"];
 const ITEMS_PER_PAGE = 16;
 const FreeToBeHub = ({
+  categories,
   subcategories,
   newProducts,
   articles,
   pageData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { setSubCategories, setNewProducts } = useSubCategories();
+  // const formattedCategories: {
+  //   name: string;
+  //   link: string;
+  //   text: string;
+  // }[] = categories.map((category, idx) => ({
+  //   name: category.name,
+  //   link: category.name,
+  //   text: category.description,
+  // }));
+  // const categoriesOptions = ["select"].concat(
+  //   categories.map((item) => item.name)
+  // );
+
   const latestArticleCard = pageData?.attributes?.page_components.filter(
     (item: any) => item.__component === "layout.latest-article"
   )[0]["latest_article_card"];
@@ -69,7 +83,7 @@ const FreeToBeHub = ({
   );
   const [visible, setVisible] = useState(ITEMS_PER_PAGE);
   const [totalBlogs, setTotalBlogs] = useState(1);
-
+  console;
   const articlesByCategories = useMemo(() => {
     if (sortCategoriesValue?.trim().toLowerCase() === "select") {
       return articles;
@@ -248,6 +262,7 @@ export default FreeToBeHub;
 
 export const getStaticProps: GetStaticProps<{
   subcategories: SubCategoryType[];
+  categories: CategoryType[];
   newProducts: ProductType[];
   pageData: any;
   articles: {
@@ -278,9 +293,14 @@ export const getStaticProps: GetStaticProps<{
       id: product.id,
     }));
   const newProducts = products.filter((product) => product.isNew);
+  const { data: categories } = await fetchAPI("categories");
   return {
     props: {
       pageData,
+      categories: categories.map((category: any) => ({
+        ...category?.attributes,
+        id: category.id,
+      })),
       articles: articles
         ?.map((article: any) => ({
           ...article?.attributes,

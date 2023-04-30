@@ -24,7 +24,9 @@ const LatestArticle = ({
     <>
       <div
         style={{
-          backgroundImage: `url(${imageFormatter(desktop_background_image)})`,
+          backgroundImage:
+            desktop_background_image &&
+            `url(${imageFormatter(desktop_background_image)})`,
         }}
         className={`md:h-auto md:pt-24 w-full  bg-cover bg-no-repeat md:bg-center md:block hidden `}
       >
@@ -79,7 +81,9 @@ const LatestArticle = ({
       </div>
       <div
         style={{
-          backgroundImage: `url(${imageFormatter(mobile_background_image)})`,
+          backgroundImage:
+            mobile_background_image &&
+            `url(${imageFormatter(mobile_background_image)})`,
         }}
         className={`md:h-auto md:pt-24 w-full  bg-cover bg-no-repeat md:bg-center block md:hidden `}
       >
