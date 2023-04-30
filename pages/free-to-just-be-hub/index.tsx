@@ -83,7 +83,7 @@ const FreeToBeHub = ({
   );
   const [visible, setVisible] = useState(ITEMS_PER_PAGE);
   const [totalBlogs, setTotalBlogs] = useState(1);
-  console.log(totalBlogs);
+
   const articlesByCategories = useMemo(() => {
     if (sortCategoriesValue?.trim().toLowerCase() === "select") {
       return articles;
