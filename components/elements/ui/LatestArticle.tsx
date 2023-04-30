@@ -18,7 +18,7 @@ const LatestArticle = ({
   latest_article_card,
   mobile_background_image,
 }: LayoutLatestArticle) => {
-  const topRightText = latest_article_card?.top_right_text.split(" ");
+  const topRightText = latest_article_card?.top_right_text?.split(" ");
   console.log(desktop_background_image, "latest");
   return (
     <>
@@ -58,17 +58,17 @@ const LatestArticle = ({
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
-                {article.data?.attributes?.title}
+                {article?.data?.attributes?.title}
               </div>
               <MarkDown className="text-black text-sm my-4">
-                {article.data?.attributes?.intro_text}
+                {article?.data?.attributes?.intro_text}
               </MarkDown>
               <Link
-                href={`/free-to-just-be-hub/${article.data.id}`}
+                href={`/free-to-just-be-hub/${article?.data?.id}`}
                 className="uppercase font-medium my-6 text-black text-sm hover:text-pink font-semibold find-out-more "
               >
                 <span className="">
-                  {latest_article_card.read_more_link_text}
+                  {latest_article_card?.read_more_link_text}
                 </span>{" "}
                 <FontAwesomeIcon
                   icon={faChevronRight}
@@ -115,17 +115,17 @@ const LatestArticle = ({
             </div>
             <div className="p-6 bg-[rgb(255,255,255,0.9)] rounded-t-md">
               <div className="text-green uppercase font-semibold">
-                {article.data?.attributes?.title}
+                {article?.data?.attributes?.title}
               </div>
               <MarkDown className="text-black text-sm my-8">
-                {article.data?.attributes?.intro_text}
+                {article?.data?.attributes?.intro_text}
               </MarkDown>
               <Link
-                href={`/free-to-just-be-hub/${article.data.id}`}
+                href={`/free-to-just-be-hub/${article?.data?.id}`}
                 className="uppercase font-medium my-6 text-black text-sm hover:text-pink font-semibold find-out-more "
               >
                 <span className="">
-                  {latest_article_card.read_more_link_text}
+                  {latest_article_card?.read_more_link_text}
                 </span>{" "}
                 <FontAwesomeIcon
                   icon={faChevronRight}
