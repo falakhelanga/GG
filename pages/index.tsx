@@ -80,7 +80,7 @@ export default function Home({
         router.push(
           {
             pathname: "/",
-            query: { ...router.query, page: "comfort" },
+            query: { ...router.query, page: "Comfort" },
           },
           undefined,
           { scroll: false }

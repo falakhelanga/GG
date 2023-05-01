@@ -68,7 +68,7 @@ const ProductsNavigation = ({
       <ContentWrap className=" flex flex-col items-center ">
         <div className="flex flex-col md:w-[50%]">
           <div className="overflow-hidden flex flex-col uppercase w-full   relative items-center max-sm:text-center text-black md:text-lg text-md border-b border-b-green  ">
-            <div className="flex max-sm:gap-8 gap-[4rem] ">
+            <div className="flex max-sm:gap-8 gap-[0rem] ">
               {links.map((item, idx) => {
                 return (
                   <Link
@@ -79,7 +79,7 @@ const ProductsNavigation = ({
                       setActiveTabIndex(item.name);
                     }}
                     onMouseLeave={moveToActiveTab}
-                    className={`hover:text-green relative z-[10] md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
+                    className={`hover:text-green relative  px-[4rem] z-[10] md:hover:translate-y-[3px] transition-all ease-in transition-duration-[3000ms] ${
                       page === item.link && "  translate-y-[3px] "
                     } ${
                       !page &&
