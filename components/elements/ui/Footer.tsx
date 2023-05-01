@@ -78,7 +78,7 @@ const Footer = () => {
             our <span className="font-bold">promise</span>
           </Link>
           <Link
-            href="/?section=hub"
+            href="/free-to-just-be-hub"
             className=" hover:opacity-80 transition-all ease-in-out transition-duration-300"
           >
             Free to <span className="font-paul text-3xl">just be</span>{" "}
@@ -142,7 +142,7 @@ const Footer = () => {
             href="/faq"
             className="hover:opacity-80 transition-all ease-in-out transition-duration-300"
           >
-            <span className="font-bold">privacy</span> policy
+            FAQ
           </Link>
           <Link
             href="/terms-of-use"

@@ -68,7 +68,7 @@ const ProductRange = ({ menu }: { menu: any }) => {
   }[] = subcategories
     .filter(
       (subcategory) =>
-        subcategory.name === "teen washes" || subcategory.name === "foam baths"
+        subcategory.name === "teen washes" || subcategory.name === "BATH & BARS"
     )
     .map((item) => ({
       title: item.name,
