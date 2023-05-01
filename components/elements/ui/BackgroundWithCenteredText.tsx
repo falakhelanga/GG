@@ -1,5 +1,6 @@
 import { imageFormatter } from "@/helpers.tsx/imageFormatter";
 import React from "react";
+import ContentWrap from "./ContentWrap";
 
 const BackgroundWithCenteredText = ({ backgroundImage, text }: any) => {
   return (
@@ -10,11 +11,9 @@ const BackgroundWithCenteredText = ({ backgroundImage, text }: any) => {
         }}
         className="md:h-[70vh] h-[100vh]  w-full bg-cover   bg-no-repeat bg-center  md:mb-8 mb-8 md:block hidden"
       >
-        <div className="h-full w-full items-end justify-center flex">
-          <div className="md:w-[80%] w-[90%] max-sm:text-sm bg-white p-6 rounded-t">
-            {text}
-          </div>
-        </div>
+        <ContentWrap className="h-full  items-end justify-center flex">
+          <div className="] max-sm:text-sm bg-white p-6 rounded-t">{text}</div>
+        </ContentWrap>
       </div>
       <div
         style={{

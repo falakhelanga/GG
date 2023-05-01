@@ -125,7 +125,7 @@ const FreeToBeHub = ({
     setSubCategories(subcategories);
   }, [setSubCategories, subcategories, setNewProducts, newProducts]);
 
-  const { searchResults, loading } = useSearch(
+  const { searchResults, loading, setSearchResults } = useSearch(
     articlesByCategories || [],
     searchKeys,
     selectedSearchValue
@@ -211,12 +211,19 @@ const FreeToBeHub = ({
           </div>
           <div className="relative">
             <div className="md:grid flex flex-col  md:grid-cols-3 md:mt-10 md:gap-7 gap-1 relative z-[5]">
-              <SearchInput
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                handleSearch={handleSearch}
-                placeholder="Search for an article"
-              />
+              <div
+                onMouseEnter={() => {
+                  setSearchResults([]);
+                }}
+                className=""
+              >
+                <SearchInput
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  handleSearch={handleSearch}
+                  placeholder="Search for an article"
+                />
+              </div>
 
               <div>
                 <DropDown

@@ -74,5 +74,5 @@ export const useSearch = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue, delay]);
 
-  return { searchResults, loading };
+  return { searchResults, loading, setSearchResults };
 };

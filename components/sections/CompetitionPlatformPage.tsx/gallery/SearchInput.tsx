@@ -26,6 +26,7 @@ const SearchInput = ({
         className="flex-1 bg-[transparent] outline-none"
         placeholder={placeholder}
       />
+
       <button type="submit">
         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-pink" />
       </button>

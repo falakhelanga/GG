@@ -46,12 +46,8 @@ const ContactFormPage = ({
       </ContentWrap>
       {submitted && (
         <ContentWrap className="pb-14 ">
-          <div className="text-center">
-            {`Thank you for reaching out to us! We appreciate your interest in our
-          company and will do our best to respond to your inquiry as soon as
-          possible. If you need immediate assistance, please don't hesitate to
-          call us at +27 11 635 0000. Thanks again for contacting us and
-          have a great day!`}
+          <div className="text-center text-pink md:text-[2.5em] text-4xl">
+            {`Thanks for your message, we’ll get back to you shortly`}
           </div>
         </ContentWrap>
       )}
